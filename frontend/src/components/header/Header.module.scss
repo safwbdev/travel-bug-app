@@ -1,0 +1,127 @@
+.header {
+    background-color: darkblue;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    position: relative;
+
+    &Container {
+        margin: 20px 0 100px 0px;
+        max-width: 1024px;
+        width: 100%;
+
+        &.listMode {
+            margin: 20px 0 0px 0px;
+        }
+    }
+
+    &List {
+        display: flex;
+        gap: 40px;
+
+        &Item {
+            align-items: center;
+            display: flex;
+            gap: 10px;
+
+            &.active {
+                border: 1px solid #ffffff;
+                border-radius: 20px;
+                padding: 10px;
+            }
+        }
+    }
+
+    &Desc {
+        margin: 10px 0;
+    }
+
+    &Button {
+        background-color: #0071c2;
+        border: none;
+        color: #ffffff;
+        cursor: pointer;
+        font-weight: 500;
+        padding: 10px;
+    }
+
+    &Search {
+        align-items: center;
+        background-color: #ffffff;
+        border: 3px solid #febb02;
+        border-radius: 5px;
+        bottom: -25px;
+        display: flex;
+        height: 30px;
+        justify-content: space-around;
+        min-width: 1024px;
+        padding: 10px 0;
+        position: absolute;
+
+        &Item {
+            align-items: center;
+            display: flex;
+            gap: 10px;
+        }
+
+        &Input {
+            border: 0;
+            outline: none;
+        }
+
+        &Text {
+            cursor: pointer;
+            color: lightgray;
+        }
+    }
+
+    &Icon {
+        color: lightgray;
+    }
+
+    .date {
+        position: absolute;
+        top: 50px;
+        z-index: 2;
+    }
+
+    .options {
+        background-color: #ffffff;
+        border: 3px solid #febb02;
+        border-radius: 5px;
+        color: gray;
+        position: absolute;
+        top: 50px;
+        z-index: 2;
+
+
+        .option {
+            &Counter {
+                align-items: center;
+                display: flex;
+                color: #000000;
+                font-size: 12px;
+                gap: 10px;
+
+                &Button {
+                    background-color: #ffffff;
+                    border: 1px solid #0071c2;
+                    color: #0071c2;
+                    height: 30px;
+                    width: 30px;
+
+                    &:disabled {
+                        cursor: not-allowed;
+                    }
+                }
+            }
+
+            &Item {
+                display: flex;
+                justify-content: space-between;
+                margin: 10px;
+                width: 200px;
+            }
+        }
+    }
+}

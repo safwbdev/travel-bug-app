@@ -1,0 +1,23 @@
+.footer {
+    font-size: 12px;
+    max-width: 1024px;
+    width: 100%;
+
+    &Lists {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 50px;
+        width: 100%;
+    }
+
+    &List {
+        list-style: none;
+        padding: 0;
+
+        &Item {
+            color: #003580;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+    }
+}

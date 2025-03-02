@@ -1,0 +1,21 @@
+.home {
+    border: 1px solid red;
+
+    p {
+        color: blue;
+    }
+
+    &Container {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        margin-top: 50px;
+    }
+
+    &Title {
+        font-size: 20px;
+        width: 1024px;
+
+    }
+}
