@@ -1,49 +1,32 @@
 import React from 'react'
 import classes from './FeaturedProperties.module.scss'
+import useFetch from '../../hooks/useFetch';
 
 const FeaturedProperties = () => {
+
+    const { data, loading, error } = useFetch("/api/hotels?featured=true&limit=4");
+
     return (
         <div className={classes.featuredProperties}>
-            <div className={classes.featuredPropertiesItem}>
-                <img className={classes.featuredPropertiesImage} src="https://cf.bstatic.com/xdata/images/hotel/square240/647130478.webp?k=622d868070952901f87760d0ee8eafb7a3d69c251131d826489cfacc2c098be4&o=" alt="" />
-                <span className={classes.featuredPropertiesName}>Aparthotel Stare Miasto</span>
-                <span className={classes.featuredPropertiesCity}>Madrid</span>
-                <span className={classes.featuredPropertiesPrice}>Starting from $120</span>
-                <div className={classes.featuredPropertiesRating}>
-                    <button>8.9</button>
-                    <span>Excellent</span>
-                </div>
-            </div>
-            <div className={classes.featuredPropertiesItem}>
-                <img className={classes.featuredPropertiesImage} src="https://cf.bstatic.com/xdata/images/hotel/square240/647130478.webp?k=622d868070952901f87760d0ee8eafb7a3d69c251131d826489cfacc2c098be4&o=" alt="" />
-                <span className={classes.featuredPropertiesName}>Aparthotel Stare Miasto</span>
-                <span className={classes.featuredPropertiesCity}>Madrid</span>
-                <span className={classes.featuredPropertiesPrice}>Starting from $120</span>
-                <div className={classes.featuredPropertiesRating}>
-                    <button>8.9</button>
-                    <span>Excellent</span>
-                </div>
-            </div>
-            <div className={classes.featuredPropertiesItem}>
-                <img className={classes.featuredPropertiesImage} src="https://cf.bstatic.com/xdata/images/hotel/square240/647130478.webp?k=622d868070952901f87760d0ee8eafb7a3d69c251131d826489cfacc2c098be4&o=" alt="" />
-                <span className={classes.featuredPropertiesName}>Aparthotel Stare Miasto</span>
-                <span className={classes.featuredPropertiesCity}>Madrid</span>
-                <span className={classes.featuredPropertiesPrice}>Starting from $120</span>
-                <div className={classes.featuredPropertiesRating}>
-                    <button>8.9</button>
-                    <span>Excellent</span>
-                </div>
-            </div>
-            <div className={classes.featuredPropertiesItem}>
-                <img className={classes.featuredPropertiesImage} src="https://cf.bstatic.com/xdata/images/hotel/square240/647130478.webp?k=622d868070952901f87760d0ee8eafb7a3d69c251131d826489cfacc2c098be4&o=" alt="" />
-                <span className={classes.featuredPropertiesName}>Aparthotel Stare Miasto</span>
-                <span className={classes.featuredPropertiesCity}>Madrid</span>
-                <span className={classes.featuredPropertiesPrice}>Starting from $120</span>
-                <div className={classes.featuredPropertiesRating}>
-                    <button>8.9</button>
-                    <span>Excellent</span>
-                </div>
-            </div>
+            {loading ? "Loading" : (
+                <>
+                    {data.map((item, index) => (
+                        <div className={classes.featuredPropertiesItem} key={index}>
+                            <img
+                                className={classes.featuredPropertiesImage}
+                                src={item.photos.length > 0 ? item.photos[0] : "https://placehold.co/400x400?text=Image+Not+Found"}
+                                alt="" />
+                            <span className={classes.featuredPropertiesName}>{item.name}</span>
+                            <span className={classes.featuredPropertiesCity}>{item.city}</span>
+                            <span className={classes.featuredPropertiesPrice}>Starting from ${item.cheapestPrice}</span>
+                            {item.rating && (
+                                <div className={classes.featuredPropertiesRating}>
+                                    <button>{item.rating}</button>
+                                    <span>Excellent</span>
+                                </div>)}
+                        </div>))}
+                </>
+            )}
         </div>
     )
 }
