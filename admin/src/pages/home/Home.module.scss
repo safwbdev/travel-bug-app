@@ -1,0 +1,13 @@
+.home {
+    display: flex;
+
+    &Container {
+        flex: 6;
+    }
+
+    &Content {
+        display: flex;
+        padding: 20px;
+        gap: 20px;
+    }
+}
