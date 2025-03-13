@@ -21,7 +21,7 @@ const Booking = ({ setOpen, hotelId }) => {
         const dates = [];
 
         while (date <= end) {
-            dates.push(new Date(date).getTime());
+            dates.push(new Date(date).getTime().toString());
             date.setDate(date.getDate() + 1);
         }
 
@@ -32,11 +32,10 @@ const Booking = ({ setOpen, hotelId }) => {
 
     const navigate = useNavigate();
 
-    // FIXME 
     const isAvailable = (roomNumber) => {
-        const isFound = roomNumber.unavailableDates.some((date) =>
-            alldates.includes(new Date(date).getTime())
-        );
+        const isFound = roomNumber.unavailableDates.some((date) => {
+            return alldates.includes(date);
+        });
         return !isFound;
     };
 
