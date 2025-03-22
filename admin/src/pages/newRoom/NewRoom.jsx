@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
 import classes from './NewRoom.module.scss'
-import Sidebar from '../../components/sidebar/Sidebar';
-import Navbar from '../../components/navbar/Navbar';
+import { Sidebar, Navbar } from '../../components'
 import { roomInputs } from '../../formSource';
 import useFetch from '../../hooks/useFetch';
 import axios from 'axios';
+import { HOTEL_PATH, ROOM_PATH } from '../../routes';
 
 const NewRoom = () => {
     const [info, setInfo] = useState({});
     const [hotelId, setHotelId] = useState(undefined);
     const [rooms, setRooms] = useState([]);
-    const { data, loading, error } = useFetch(`/api/hotels`);
+    const { data, loading, error } = useFetch(HOTEL_PATH);
 
     const handleChange = (e) => {
         setInfo(prev => ({ ...prev, [e.target.id]: e.target.value }))
@@ -20,7 +20,7 @@ const NewRoom = () => {
         e.preventDefault();
         const roomNumbers = rooms.split(",").map((room) => ({ number: room }));
         try {
-            await axios.post(`/api/rooms/${hotelId}`, { ...info, roomNumbers })
+            await axios.post(`${ROOM_PATH}/${hotelId}`, { ...info, roomNumbers })
         } catch (err) {
             console.log(err);
 

@@ -1,17 +1,17 @@
 import React, { useState } from 'react'
 import classes from './NewHotel.module.scss'
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
-import Sidebar from '../../components/sidebar/Sidebar';
-import Navbar from '../../components/navbar/Navbar';
 import { hotelInputs } from '../../formSource';
+import { Sidebar, Navbar } from '../../components'
 import useFetch from '../../hooks/useFetch';
 import axios from 'axios';
+import { HOTEL_PATH, IMG_UPLOAD_PATH, ROOM_PATH } from '../../routes';
 
 const NewHotel = () => {
     const [files, setFiles] = useState("");
     const [info, setInfo] = useState({});
     const [rooms, setRooms] = useState([]);
-    const { data, loading, error } = useFetch(`/api/rooms`);
+    const { data, loading, error } = useFetch(ROOM_PATH);
 
     const handleChange = (e) => {
         setInfo(prev => ({ ...prev, [e.target.id]: e.target.value }))
@@ -30,7 +30,7 @@ const NewHotel = () => {
                     const data = new FormData();
                     data.append("file", file);
                     data.append("upload_preset", "upload");
-                    const uploadRes = await axios.post(`https://api.cloudinary.com/v1_1/dibc1gqvz/image/upload`, data);
+                    const uploadRes = await axios.post(IMG_UPLOAD_PATH, data);
                     const { url } = uploadRes.data;
                     return url
                 }));
@@ -39,7 +39,7 @@ const NewHotel = () => {
                 ...info, rooms, photos: list
             };
 
-            await axios.post("/api/hotels", newHotel);
+            await axios.post(HOTEL_PATH, newHotel);
         } catch (err) {
 
         }

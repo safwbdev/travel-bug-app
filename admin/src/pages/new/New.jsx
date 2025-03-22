@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import classes from './New.module.scss'
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
-import Sidebar from '../../components/sidebar/Sidebar';
-import Navbar from '../../components/navbar/Navbar';
+import { Sidebar, Navbar } from '../../components'
 import axios from 'axios';
+import { IMG_UPLOAD_PATH, REGISTER_PATH } from '../../routes';
 
 const New = ({ inputs, title }) => {
     const [file, setFile] = useState("");
@@ -18,13 +18,13 @@ const New = ({ inputs, title }) => {
         data.append("file", file);
         data.append("upload_preset", "upload");
         try {
-            const uploadRes = await axios.post(`https://api.cloudinary.com/v1_1/dibc1gqvz/image/upload`, data);
+            const uploadRes = await axios.post(IMG_UPLOAD_PATH, data);
             const { url } = uploadRes.data;
             const newUser = {
                 ...info,
                 img: url
             }
-            await axios.post("/api/auth/register", newUser);
+            await axios.post(REGISTER_PATH, newUser);
 
         } catch (err) {
             console.log(err);

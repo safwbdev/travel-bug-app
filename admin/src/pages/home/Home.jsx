@@ -1,7 +1,6 @@
 import React from 'react'
 import classes from './Home.module.scss'
-import Navbar from '../../components/navbar/Navbar'
-import Sidebar from '../../components/sidebar/Sidebar'
+import { Sidebar, Navbar } from '../../components'
 
 const Home = () => {
     return (

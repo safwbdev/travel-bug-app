@@ -15,13 +15,14 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 import { Link } from "react-router-dom";
 import { DarkModeContext } from "../../context/darkModeContext";
 import { useContext } from "react";
+import { HOTELS, ROOMS, ROOT, USERS } from '../../routes';
 
 const Sidebar = () => {
     const { dispatch } = useContext(DarkModeContext);
     return (
         <div className={classes.sidebar}>
             <div className={classes.sidebarTop}>
-                <Link to="/" style={{ textDecoration: "none" }}>
+                <Link to={ROOT} style={{ textDecoration: "none" }}>
                     <span className={classes.sidebarLogo}>Travel Bug</span>
                 </Link>
             </div>
@@ -34,19 +35,19 @@ const Sidebar = () => {
                         <span>Dashboard</span>
                     </li>
                     <p className={classes.sidebarTitle}>LISTS</p>
-                    <Link to="/users" style={{ textDecoration: "none" }}>
+                    <Link to={`/${USERS}`} style={{ textDecoration: "none" }}>
                         <li>
                             <PersonOutlineIcon className={classes.sidebarIcon} />
                             <span>Users</span>
                         </li>
                     </Link>
-                    <Link to="/hotels" style={{ textDecoration: "none" }}>
+                    <Link to={`/${HOTELS}`} style={{ textDecoration: "none" }}>
                         <li>
                             <StoreIcon className={classes.sidebarIcon} />
                             <span>Hotels</span>
                         </li>
                     </Link>
-                    <Link to="/rooms" style={{ textDecoration: "none" }}>
+                    <Link to={`/${ROOMS}`} style={{ textDecoration: "none" }}>
                         <li>
                             <CreditCardIcon className={classes.sidebarIcon} />
                             <span>Rooms</span>

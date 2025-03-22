@@ -1,19 +1,20 @@
-import { useState } from 'react'
+import classes from './styles/dark.module.scss'
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-// import './App.css'
-import Home from './pages/home/Home';
-import Login from './pages/login/Login';
+import {
+  Home,
+  List,
+  Login,
+  New,
+  NewHotel,
+  NewRoom,
+  Single,
+} from './pages';
 import { useContext } from 'react';
 import { DarkModeContext } from './context/darkModeContext';
-import classes from './styles/dark.module.scss'
 import { AuthContext } from './context/AuthContext';
-import Single from './pages/single/Single';
-import New from './pages/new/New';
 import { userInputs } from "./formSource.js";
-import List from './pages/list/List';
 import { hotelColumns, roomColumns, userColumns } from './components/datatable/datatablesource';
-import NewHotel from './pages/newHotel/NewHotel.jsx';
-import NewRoom from './pages/newRoom/NewRoom.jsx';
+import { HOTELS, LOGIN, NEW, ROOMS, ROOT, BY_ID, USERS } from './routes.js';
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -26,64 +27,74 @@ function App() {
     }
     return children
   }
+  /**
+   * ====
+   * TODO
+   * ====
+   * 
+   * Redirect to list after creating new thing
+   * Single page layout & display data
+   * apply isAdmin to User creation
+   * change color brand
+   */
 
   return (
     <div className={`${classes.app} ${darkMode ? classes.dark : ''}`}>
       <BrowserRouter>
         <Routes>
-          <Route path="/">
-            <Route path="login" element={<Login />} />
+          <Route path={ROOT}>
+            <Route path={LOGIN} element={<Login />} />
             <Route index element={
               <ProtectedRoute>
                 <Home />
               </ProtectedRoute>
             } />
-            <Route path='users'>
+            <Route path={USERS}>
               <Route index element={
                 <ProtectedRoute>
                   <List columns={userColumns} />
                 </ProtectedRoute>}>
               </Route>
-              <Route path=':userId' element={
+              <Route path={BY_ID} element={
                 <ProtectedRoute>
                   <Single />
                 </ProtectedRoute>
               } />
-              <Route path='new' element={
+              <Route path={NEW} element={
                 <ProtectedRoute>
                   <New inputs={userInputs} title="Add new user" />
                 </ProtectedRoute>
               } />
             </Route>
-            <Route path='hotels'>
+            <Route path={HOTELS}>
               <Route index element={
                 <ProtectedRoute>
                   <List columns={hotelColumns} />
                 </ProtectedRoute>}>
               </Route>
-              <Route path=':userId' element={
+              <Route path={BY_ID} element={
                 <ProtectedRoute>
                   <Single />
                 </ProtectedRoute>
               } />
-              <Route path='new' element={
+              <Route path={NEW} element={
                 <ProtectedRoute>
                   <NewHotel />
                 </ProtectedRoute>
               } />
             </Route>
-            <Route path='rooms'>
+            <Route path={ROOMS}>
               <Route index element={
                 <ProtectedRoute>
                   <List columns={roomColumns} />
                 </ProtectedRoute>}>
               </Route>
-              <Route path=':userId' element={
+              <Route path={BY_ID} element={
                 <ProtectedRoute>
                   <Single />
                 </ProtectedRoute>
               } />
-              <Route path='new' element={
+              <Route path={NEW} element={
                 <ProtectedRoute>
                   <NewRoom />
                 </ProtectedRoute>

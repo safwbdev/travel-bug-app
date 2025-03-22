@@ -1,8 +1,6 @@
 import React from 'react'
 import classes from './List.module.scss'
-import Sidebar from '../../components/sidebar/Sidebar'
-import Navbar from '../../components/navbar/Navbar'
-import Datatable from '../../components/datatable/Datatable'
+import { Sidebar, Navbar, Datatable } from '../../components'
 
 const List = ({ columns }) => {
     return (

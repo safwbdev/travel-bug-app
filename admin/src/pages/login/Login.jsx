@@ -3,6 +3,7 @@ import classes from './Login.module.scss'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
+import { LOGIN_PATH } from '../../routes';
 
 const Login = () => {
     const [credentials, setCredentials] = useState({
@@ -21,7 +22,7 @@ const Login = () => {
         e.preventDefault();
         dispatch({ type: "LOGIN_START" })
         try {
-            const res = await axios.post("/api/auth/login", credentials)
+            const res = await axios.post(LOGIN_PATH, credentials)
             if (res.data.isAdmin) {
                 dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details })
                 navigate("/")
