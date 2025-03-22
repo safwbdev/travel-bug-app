@@ -18,7 +18,7 @@ const Navbar = () => {
                 </div>
                 <div className={classes.navbarItems}>
                     <div className={classes.navbarItem}>
-                        <LanguageOutlinedIcon className="navbarIcon" />
+                        <LanguageOutlinedIcon className={classes.navbarIcon} />
                         English
                     </div>
                     <div className={classes.navbarItem}>

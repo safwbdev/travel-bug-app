@@ -3,11 +3,14 @@ import { createRoot } from 'react-dom/client'
 // import './index.css'
 import App from './App.jsx'
 import { DarkModeContextProvider } from "./context/darkModeContext";
+import { AuthContextProvider } from './context/AuthContext.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <DarkModeContextProvider>
-      <App />
-    </DarkModeContextProvider>
+    <AuthContextProvider>
+      <DarkModeContextProvider>
+        <App />
+      </DarkModeContextProvider>
+    </AuthContextProvider>
   </StrictMode>,
 )
