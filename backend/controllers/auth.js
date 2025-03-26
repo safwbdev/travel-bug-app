@@ -39,8 +39,9 @@ export const login = async (req, res, next) => {
         // FIXME: Need to add domain name
         res
             .cookie('access_token', token, {
-                httpOnly: false,
-                domain: 'https://travellingbug.netlify.app/'
+                domain: 'https://travellingbug.netlify.app',
+                path: '/',
+                secure: true
             })
             .status(200)
             .json({ details: { ...otherDetails }, isAdmin });
