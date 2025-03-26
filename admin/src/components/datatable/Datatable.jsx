@@ -4,12 +4,13 @@ import classes from './Datatable.module.scss'
 import { Link, useLocation, } from 'react-router-dom';
 import useFetch from '../../hooks/useFetch.jsx';
 import axios from 'axios';
+import { API_URL } from '../../routes.js';
 
 const Datatable = ({ columns }) => {
     const [list, setList] = useState([]);
     const location = useLocation();
     const path = location.pathname.split("/")[1];
-    const { data, loading, error, reFetch } = useFetch(`/api/${path}`);
+    const { data, loading, error, reFetch } = useFetch(`${API_URL}/${path}`);
 
     useEffect(() => {
         setList(data);
@@ -21,7 +22,7 @@ const Datatable = ({ columns }) => {
 
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`/api/${path}/${id}`)
+            await axios.delete(`${API_URL}/${path}/${id}`)
             setList(list.filter((item) => item._id !== id));
         } catch (err) {
             console.log(err);
