@@ -8,8 +8,6 @@ export const register = async (req, res, next) => {
         const salt = bcrypt.genSaltSync(10);
         const hashedPass = bcrypt.hashSync(req.body.password, salt)
         const newUser = new User({
-            // username: req.body.username,
-            // email: req.body.email,
             ...req.body,
             password: hashedPass,
         });
@@ -38,9 +36,10 @@ export const login = async (req, res, next) => {
 
         const { password, isAdmin, ...otherDetails } = user._doc;
 
+        // FIXME: Need to add domain name
         res
             .cookie('access_token', token, {
-                // httpOnly: true,
+                httpOnly: true,
             })
             .status(200)
             .json({ details: { ...otherDetails }, isAdmin });
