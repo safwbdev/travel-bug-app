@@ -28,9 +28,12 @@ const Login = () => {
                 navigate("/")
             } else {
                 dispatch({ type: "LOGIN_FAIL", message: "You are not authorized" });
+                console.log('ERROR B');
+
             }
         } catch (err) {
             dispatch({ type: "LOGIN_FAIL", payload: err.response.data });
+            console.log('ERROR A');
 
         }
     }
