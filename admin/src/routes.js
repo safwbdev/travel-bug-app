@@ -1,11 +1,15 @@
+const API_URL = import.meta.env.VITE_API_URL;
+const CLOUDINARY_ID = import.meta.env.VITE_CLOUDINARY
+
+
 // Fetch 
-export const ROOM_PATH = `/api/rooms`;
+export const ROOM_PATH = `${API_URL}/api/rooms`;
 export const HOTEL_PATH = `/api/hotels`;
 
 // axios 
-export const LOGIN_PATH = `/api/auth/login`;
-export const REGISTER_PATH = `/api/auth/register`;
-export const IMG_UPLOAD_PATH = `https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUDINARY}/image/upload`;
+export const LOGIN_PATH = `${API_URL}/api/auth/login`;
+export const REGISTER_PATH = `${API_URL}/api/auth/register`;
+export const IMG_UPLOAD_PATH = `https://api.cloudinary.com/v1_1/${CLOUDINARY_ID}/image/upload`;
 
 // Navigation 
 export const ROOT = `/`;
