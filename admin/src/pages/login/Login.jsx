@@ -22,9 +22,8 @@ const Login = () => {
         e.preventDefault();
         dispatch({ type: "LOGIN_START" })
         try {
-            console.log('LOGIN_PATH: ', LOGIN_PATH);
-
             const res = await axios.post(LOGIN_PATH, credentials)
+
             if (res.data.isAdmin) {
                 dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details })
                 navigate("/")

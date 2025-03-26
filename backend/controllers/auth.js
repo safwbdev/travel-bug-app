@@ -29,20 +29,20 @@ export const login = async (req, res, next) => {
 
         if (!isPasswordCorrect) return next(createError(400, "Wrong password or username"));
 
-        // NOTE: Cookie not working on production due to cross platform hosting issue
-        // const token = jwt.sign(
-        //     { id: user._id, isAdmin: user.isAdmin },
-        //     process.env.JWT_SECRET
-        // );
+        const token = jwt.sign(
+            { id: user._id, isAdmin: user.isAdmin },
+            process.env.JWT_SECRET
+        );
 
-        // const { password, isAdmin, ...otherDetails } = user._doc;
+        const { password, isAdmin, ...otherDetails } = user._doc;
 
-        // res
-        //     .cookie('access_token', token, {
-        //         httpOnly: true
-        //     })
-        //     .status(200)
-        //     .json({ details: { ...otherDetails }, isAdmin });
+        // NOTE: Cookie not being created due to cross platform hosting issue
+        res
+            .cookie('access_token', token, {
+                httpOnly: true
+            })
+            .status(200)
+            .json({ details: { ...otherDetails }, isAdmin });
 
     } catch (error) {
         next(error)
