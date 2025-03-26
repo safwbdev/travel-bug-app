@@ -20,16 +20,28 @@ const UserRouter = express.Router();
 //     res.send("Hello Admin! You can do whatever you want!")
 // });
 
+// // update 
+// UserRouter.put('/:id', verifyUser, updateUser);
+
+// // delete 
+// UserRouter.delete('/:id', verifyUser, deleteUser);
+
+// // get by id 
+// UserRouter.get('/:id', verifyUser, getUser);
+
+// // get all
+// UserRouter.get('/', verifyUser, getAllUsers);
+
 // update 
-UserRouter.put('/:id', verifyUser, updateUser);
+UserRouter.put('/:id', updateUser);
 
 // delete 
-UserRouter.delete('/:id', verifyUser, deleteUser);
+UserRouter.delete('/:id', deleteUser);
 
 // get by id 
-UserRouter.get('/:id', verifyUser, getUser);
+UserRouter.get('/:id', getUser);
 
 // get all
-UserRouter.get('/', verifyUser, getAllUsers);
+UserRouter.get('/', getAllUsers);
 
 export default UserRouter;
