@@ -15,6 +15,7 @@ import { AuthContext } from './context/AuthContext';
 import { userInputs } from "./formSource.js";
 import { hotelColumns, roomColumns, userColumns } from './components/datatable/datatablesource';
 import { HOTELS, LOGIN, NEW, ROOMS, ROOT, BY_ID, USERS } from './routes.js';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -34,8 +35,9 @@ function App() {
    * 
    * Redirect to list after creating new thing
    * Single page layout & display data
-   * apply isAdmin to User creation
+   * apply isAdmin to User creation (Not applicable for now due to cookie/CORS issue)
    * change color brand
+   * Outlet
    */
 
   return (
@@ -103,6 +105,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
+      <ToastContainer />
     </div>
   )
 }

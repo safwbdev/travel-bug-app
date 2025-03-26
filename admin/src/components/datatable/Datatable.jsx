@@ -5,6 +5,8 @@ import { Link, useLocation, } from 'react-router-dom';
 import useFetch from '../../hooks/useFetch.jsx';
 import axios from 'axios';
 import { API_URL } from '../../routes.js';
+import { toast } from 'react-toastify';
+
 
 const Datatable = ({ columns }) => {
     const [list, setList] = useState([]);
@@ -24,6 +26,8 @@ const Datatable = ({ columns }) => {
         try {
             await axios.delete(`${API_URL}/${path}/${id}`)
             setList(list.filter((item) => item._id !== id));
+            toast.error(`Entry has been deleted!`)
+
         } catch (err) {
             console.log(err);
         }

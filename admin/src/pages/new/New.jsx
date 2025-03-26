@@ -4,10 +4,15 @@ import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUpload
 import { Sidebar, Navbar } from '../../components'
 import axios from 'axios';
 import { IMG_UPLOAD_PATH, REGISTER_PATH } from '../../routes';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const New = ({ inputs, title }) => {
     const [file, setFile] = useState("");
     const [info, setInfo] = useState({});
+    const navigate = useNavigate();
+    const path = location.pathname.split("/")[1];
+
 
     const handleChange = (e) => {
         setInfo(prev => ({ ...prev, [e.target.id]: e.target.value }))
@@ -25,6 +30,8 @@ const New = ({ inputs, title }) => {
                 img: url
             }
             await axios.post(REGISTER_PATH, newUser);
+            toast.success(`New entry has been created!`);
+            navigate(`/${path}`)
 
         } catch (err) {
             console.log(err);
