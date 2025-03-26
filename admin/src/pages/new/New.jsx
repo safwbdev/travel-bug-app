@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import classes from './New.module.scss'
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
-import { Sidebar, Navbar } from '../../components'
 import axios from 'axios';
 import { IMG_UPLOAD_PATH, REGISTER_PATH } from '../../routes';
 import { toast } from 'react-toastify';
@@ -41,49 +40,45 @@ const New = ({ inputs, title }) => {
     }
 
     return (
-        <div className={classes.new}>
-            <Sidebar />
-            <div className={classes.newContainer}>
-                <Navbar />
-                <div className={classes.top}>
-                    <h1>{title}</h1>
+        <div className={classes.newContainer}>
+            <div className={classes.top}>
+                <h1>{title}</h1>
+            </div>
+            <div className={classes.bottom}>
+                <div className={classes.left}>
+                    <img
+                        src={
+                            file
+                                ? URL.createObjectURL(file)
+                                : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
+                        }
+                        alt=""
+                    />
                 </div>
-                <div className={classes.bottom}>
-                    <div className={classes.left}>
-                        <img
-                            src={
-                                file
-                                    ? URL.createObjectURL(file)
-                                    : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
-                            }
-                            alt=""
-                        />
-                    </div>
-                    <div className={classes.right}>
-                        <form>
-                            <div className={classes.formInput}>
-                                <label htmlFor="file">
-                                    Image: <DriveFolderUploadOutlinedIcon className={classes.icon} />
-                                </label>
-                                <input
-                                    type="file"
-                                    id="file"
-                                    onChange={(e) => setFile(e.target.files[0])}
-                                    style={{ display: "none" }}
-                                />
-                            </div>
+                <div className={classes.right}>
+                    <form>
+                        <div className={classes.formInput}>
+                            <label htmlFor="file">
+                                Image: <DriveFolderUploadOutlinedIcon className={classes.icon} />
+                            </label>
+                            <input
+                                type="file"
+                                id="file"
+                                onChange={(e) => setFile(e.target.files[0])}
+                                style={{ display: "none" }}
+                            />
+                        </div>
 
-                            {inputs.map((input) => {
-                                return (
-                                    <div className={classes.formInput} key={input.id}>
-                                        <label>{input.label}</label>
-                                        <input onChange={handleChange} type={input.type} placeholder={input.placeholder} id={input.id} />
-                                    </div>
-                                )
-                            })}
-                            <button onClick={handleClick}>Send</button>
-                        </form>
-                    </div>
+                        {inputs.map((input) => {
+                            return (
+                                <div className={classes.formInput} key={input.id}>
+                                    <label>{input.label}</label>
+                                    <input onChange={handleChange} type={input.type} placeholder={input.placeholder} id={input.id} />
+                                </div>
+                            )
+                        })}
+                        <button onClick={handleClick}>Send</button>
+                    </form>
                 </div>
             </div>
         </div>

@@ -16,6 +16,7 @@ import { userInputs } from "./formSource.js";
 import { hotelColumns, roomColumns, userColumns } from './components/datatable/datatablesource';
 import { HOTELS, LOGIN, NEW, ROOMS, ROOT, BY_ID, USERS } from './routes.js';
 import { ToastContainer } from 'react-toastify';
+import Main from './layout/Main.jsx';
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -35,14 +36,13 @@ function App() {
    * apply isAdmin to User creation (Not applicable for now due to cookie/CORS issue)
    * change color brand
    * Edit data
-   * Outlet
    */
 
   return (
     <div className={`${classes.app} ${darkMode ? classes.dark : ''}`}>
       <BrowserRouter>
         <Routes>
-          <Route path={ROOT}>
+          <Route path={ROOT} element={<Main />}>
             <Route path={LOGIN} element={<Login />} />
             <Route index element={
               <ProtectedRoute>

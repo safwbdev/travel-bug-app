@@ -2,7 +2,6 @@ import React from 'react'
 import classes from './Single.module.scss'
 import useFetch from '../../hooks/useFetch'
 import { API_URL } from '../../routes'
-import { Navbar, Sidebar } from '../../components'
 import {
     hotelInputs, userInputs,
     roomInputs
@@ -39,16 +38,12 @@ const Single = () => {
     }
 
     return loading ? (<h2>Loading...</h2>) : (
-        <div className={classes.new}>
-            <Sidebar />
-            <div className={classes.newContainer}>
-                <Navbar />
-                <div className={classes.top}>
-                    <h1>{data.name}</h1>
-                </div>
-                <div className={classes.bottom}>
-                    {displayData(getDataType())}
-                </div>
+        <div className={classes.newContainer}>
+            <div className={classes.top}>
+                <h1>{data.name}</h1>
+            </div>
+            <div className={classes.bottom}>
+                {displayData(getDataType())}
             </div>
         </div>
     )
