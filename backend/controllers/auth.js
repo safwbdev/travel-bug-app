@@ -40,6 +40,8 @@ export const login = async (req, res, next) => {
         res
             .cookie('access_token', token, {
                 sameSite: 'None',
+                domain: 'travellingbug.netlify.app',
+                secure: true,
                 // httpOnly: true
             })
             .status(200)
