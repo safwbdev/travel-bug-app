@@ -1,6 +1,10 @@
 import express from 'express';
 import { deleteUser, getAllUsers, getUser, updateUser } from '../controllers/user.js';
-import { verifyAdmin, verifyToken, verifyUser } from '../utils/verifyToken.js';
+import {
+    // verifyAdmin, 
+    // verifyToken, 
+    verifyUser
+} from '../utils/verifyToken.js';
 
 const UserRouter = express.Router();
 
@@ -26,6 +30,6 @@ UserRouter.delete('/:id', verifyUser, deleteUser);
 UserRouter.get('/:id', verifyUser, getUser);
 
 // get all
-UserRouter.get('/', verifyAdmin, getAllUsers);
+UserRouter.get('/', verifyUser, getAllUsers);
 
 export default UserRouter;

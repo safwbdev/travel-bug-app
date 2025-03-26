@@ -25,19 +25,14 @@ const Login = () => {
             console.log('LOGIN_PATH: ', LOGIN_PATH);
 
             const res = await axios.post(LOGIN_PATH, credentials)
-            console.log('res: ', res);
             if (res.data.isAdmin) {
                 dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details })
                 navigate("/")
             } else {
                 dispatch({ type: "LOGIN_FAIL", message: "You are not authorized" });
-                console.log('ERROR B');
-
             }
         } catch (err) {
             dispatch({ type: "LOGIN_FAIL", payload: err.response.data });
-            console.log('ERROR A');
-
         }
     }
 
