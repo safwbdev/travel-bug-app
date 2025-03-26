@@ -32,11 +32,9 @@ function App() {
    * ====
    * TODO
    * ====
-   * 
-   * Redirect to list after creating new thing
-   * Single page layout & display data
    * apply isAdmin to User creation (Not applicable for now due to cookie/CORS issue)
    * change color brand
+   * Edit data
    * Outlet
    */
 
