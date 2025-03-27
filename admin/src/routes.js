@@ -9,6 +9,7 @@ export const HOTEL_PATH = `${API_URL}/hotels`;
 // axios 
 export const LOGIN_PATH = `${API_URL}/auth/login`;
 export const REGISTER_PATH = `${API_URL}/auth/register`;
+export const USER_PATH = `${API_URL}/users`;
 
 // Cloudinary 
 export const IMG_UPLOAD_PATH = `https://api.cloudinary.com/v1_1/${CLOUDINARY_ID}/image/upload`;

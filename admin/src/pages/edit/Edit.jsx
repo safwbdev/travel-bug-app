@@ -1,21 +1,28 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import classes from './Edit.module.scss'
 import useFetch from '../../hooks/useFetch'
-import { API_URL } from '../../routes'
+import { API_URL, IMG_UPLOAD_PATH, USER_PATH } from '../../routes'
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import {
     hotelInputs, userInputs,
     roomInputs
-} from '../../formSource'
+} from '../../editFormSource'
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const Edit = () => {
     const path = location.pathname.split("/")[1];
     const id = location.pathname.split("/")[3];
     const { data, loading } = useFetch(`${API_URL}/${path === 'hotels' ? 'hotels/find' : path}/${id}`);
+
     const [info, setInfo] = useState({});
-    const [file, setFile] = useState(data.img || "");
+    const [file, setFile] = useState("");
+    const navigate = useNavigate()
 
-
+    useEffect(() => {
+        setInfo(data)
+    }, [data])
 
 
     const handleChange = (e) => {
@@ -37,7 +44,40 @@ const Edit = () => {
     }
 
     const handleClick = async (e) => {
-        console.log('UPDATE');
+        if (file) {
+            const data = new FormData();
+            data.append("file", file);
+            data.append("upload_preset", "upload");
+            try {
+                const uploadRes = await axios.post(IMG_UPLOAD_PATH, data);
+                const { url } = uploadRes.data;
+                const newUser = {
+                    ...info,
+                    img: url
+                }
+                await axios.put(`${USER_PATH}/${id}`, newUser);
+                toast.success(`New entry has been created!`);
+                navigate(`/${path}`)
+
+            } catch (err) {
+                console.log(err);
+
+            }
+
+        } else {
+            const newUser = {
+                ...info
+            }
+            try {
+                await axios.put(`${USER_PATH}/${id}`, newUser);
+                toast.success(`New Entry without image has been created!`);
+                navigate(`/${path}`)
+            } catch (err) {
+                console.log(err);
+
+            }
+
+        }
 
     }
 
@@ -45,7 +85,13 @@ const Edit = () => {
         return array.map((input) => (
             <div className={classes.formInput} key={input.id}>
                 <label>{input.label}</label>
-                <input onChange={handleChange} type={input.type} placeholder={data[input.id]} id={input.id} />
+                <input
+                    onChange={handleChange}
+                    type={input.type}
+                    placeholder={data[input.label]}
+                    value={info[input.id]}
+                    disabled={input.id === 'username'}
+                    id={input.id} />
             </div>
         ))
     }
@@ -81,8 +127,8 @@ const Edit = () => {
                             />
                         </div>)}
                         {displayData(getDataType())}
-                        <button onClick={handleClick}>Update</button>
                     </form>
+                    <button onClick={handleClick}>Update</button>
                 </div>
             </div>
         </div>
