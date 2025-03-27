@@ -4,7 +4,7 @@ import classes from './Datatable.module.scss'
 import { Link, useLocation, } from 'react-router-dom';
 import useFetch from '../../hooks/useFetch.jsx';
 import axios from 'axios';
-import { API_URL } from '../../routes.js';
+import { API_URL, EDIT } from '../../routes.js';
 import { toast } from 'react-toastify';
 
 
@@ -43,6 +43,9 @@ const Datatable = ({ columns }) => {
                     <div className={classes.cellAction}>
                         <Link to={params.row._id} style={{ textDecoration: "none" }}>
                             <div className={classes.viewButton}>View</div>
+                        </Link>
+                        <Link to={`${EDIT}/${params.row._id}`} style={{ textDecoration: "none" }}>
+                            <div className={classes.viewButton}>Edit</div>
                         </Link>
                         <div
                             className={classes.deleteButton}

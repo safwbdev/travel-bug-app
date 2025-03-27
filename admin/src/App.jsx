@@ -1,6 +1,7 @@
 import classes from './styles/dark.module.scss'
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import {
+  Edit,
   Home,
   List,
   Login,
@@ -14,7 +15,7 @@ import { DarkModeContext } from './context/darkModeContext';
 import { AuthContext } from './context/AuthContext';
 import { userInputs } from "./formSource.js";
 import { hotelColumns, roomColumns, userColumns } from './components/datatable/datatablesource';
-import { HOTELS, LOGIN, NEW, ROOMS, ROOT, BY_ID, USERS } from './routes.js';
+import { HOTELS, LOGIN, NEW, ROOMS, ROOT, BY_ID, USERS, EDIT } from './routes.js';
 import { ToastContainer } from 'react-toastify';
 import Main from './layout/Main.jsx';
 
@@ -60,6 +61,11 @@ function App() {
                   <Single />
                 </ProtectedRoute>
               } />
+              <Route path={`${EDIT}/${BY_ID}`} element={
+                <ProtectedRoute>
+                  <Edit />
+                </ProtectedRoute>
+              } />
               <Route path={NEW} element={
                 <ProtectedRoute>
                   <New inputs={userInputs} title="Add new user" />
@@ -82,6 +88,11 @@ function App() {
                   <NewHotel />
                 </ProtectedRoute>
               } />
+              <Route path={`${EDIT}/${BY_ID}`} element={
+                <ProtectedRoute>
+                  <Edit />
+                </ProtectedRoute>
+              } />
             </Route>
             <Route path={ROOMS}>
               <Route index element={
@@ -92,6 +103,11 @@ function App() {
               <Route path={BY_ID} element={
                 <ProtectedRoute>
                   <Single />
+                </ProtectedRoute>
+              } />
+              <Route path={`${EDIT}/${BY_ID}`} element={
+                <ProtectedRoute>
+                  <Edit />
                 </ProtectedRoute>
               } />
               <Route path={NEW} element={

@@ -18,6 +18,7 @@ export const ROOT = `/`;
 export const LOGIN = `login`;
 export const USERS = `users`;
 export const BY_ID = `:userId`;
+export const EDIT = `edit`;
 export const NEW = `new`;
 export const HOTELS = `hotels`;
 export const ROOMS = `rooms`;

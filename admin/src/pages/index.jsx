@@ -1,3 +1,4 @@
+import Edit from "./edit/Edit";
 import Home from "./home/Home";
 import List from "./list/List";
 import Login from "./login/Login";
@@ -14,4 +15,5 @@ export {
     NewHotel,
     NewRoom,
     Single,
+    Edit
 }
