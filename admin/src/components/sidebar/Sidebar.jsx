@@ -8,7 +8,6 @@ import SettingsApplicationsIcon from "@mui/icons-material/SettingsApplications";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { Link, useNavigate } from "react-router-dom";
-import { DarkModeContext } from "../../context/darkModeContext";
 import { useContext } from "react";
 import { HOTELS, ROOMS, ROOT, USERS } from '../../routes';
 import { AuthContext } from '../../context/AuthContext';
