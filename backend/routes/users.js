@@ -1,10 +1,10 @@
 import express from 'express';
 import { deleteUser, getAllUsers, getUser, updateUser } from '../controllers/user.js';
-import {
-    // verifyAdmin, 
-    // verifyToken, 
-    verifyUser
-} from '../utils/verifyToken.js';
+// import {
+// verifyAdmin, 
+// verifyToken, 
+//     verifyUser
+// } from '../utils/verifyToken.js';
 
 const UserRouter = express.Router();
 

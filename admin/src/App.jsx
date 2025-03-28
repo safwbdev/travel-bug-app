@@ -36,7 +36,6 @@ function App() {
    * ====
    * apply isAdmin to User creation (Not applicable for now due to cookie/CORS issue)
    * change color brand
-   * Material UI for layout
    * Edit Room data
    * Edit Hotel data
    * action buttons bug

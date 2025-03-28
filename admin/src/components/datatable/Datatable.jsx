@@ -6,6 +6,7 @@ import useFetch from '../../hooks/useFetch.jsx';
 import axios from 'axios';
 import { API_URL, EDIT } from '../../routes.js';
 import { toast } from 'react-toastify';
+import { Button } from '@mui/material';
 
 
 const Datatable = ({ columns }) => {
@@ -39,22 +40,23 @@ const Datatable = ({ columns }) => {
         {
             field: "action",
             headerName: "Action",
-            width: 200,
+            width: 400,
             renderCell: (params) => {
                 return (
                     <div className={classes.cellAction}>
                         <Link to={params.row._id} style={{ textDecoration: "none" }}>
-                            <div className={classes.viewButton}>View</div>
+                            <Button variant="contained">View</Button>
+
                         </Link>
                         <Link to={`${EDIT}/${params.row._id}`} style={{ textDecoration: "none" }}>
-                            <div className={classes.viewButton}>Edit</div>
+                            <Button variant="contained" color="success">Edit</Button>
                         </Link>
-                        <div
-                            className={classes.deleteButton}
+                        <Button variant="contained" color="error"
                             onClick={() => handleDelete(params.row._id)}
                         >
                             Delete
-                        </div>
+                        </Button>
+
                     </div>
                 );
             },
@@ -66,8 +68,10 @@ const Datatable = ({ columns }) => {
                 <h4>
                     {path}
                 </h4>
-                <Link to={`/${path}/new`} className={classes.link}>
-                    Add New
+                <Link to={`/${path}/new`}>
+                    <Button variant='contained' color="success">
+                        Add New {path.slice(0, -1)}
+                    </Button>
                 </Link>
             </div>
             <DataGrid
