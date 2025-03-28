@@ -23,13 +23,15 @@ const Datatable = ({ columns }) => {
     }, [path]);
 
     const handleDelete = async (id) => {
-        try {
-            await axios.delete(`${API_URL}/${path}/${id}`)
-            setList(list.filter((item) => item._id !== id));
-            toast.error(`Entry has been deleted!`)
+        if (confirm("Are you sure you want to delete this entry?")) {
+            try {
+                await axios.delete(`${API_URL}/${path}/${id}`)
+                setList(list.filter((item) => item._id !== id));
+                toast.error(`Entry has been deleted!`)
 
-        } catch (err) {
-            console.log(err);
+            } catch (err) {
+                console.log(err);
+            }
         }
     };
 
