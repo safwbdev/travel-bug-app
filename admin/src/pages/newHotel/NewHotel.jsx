@@ -130,7 +130,7 @@ const NewHotel = () => {
                                 } ></CardHeader>
                             <Grid2 container rowSpacing={4} columnSpacing={{ xs: 1, sm: 2, md: 3 }} >
                                 {hotelInputs.map((input) => (
-                                    <Grid2 size={6} key={input.id} >
+                                    <Grid2 size={{ xs: 12, sm: 6 }} key={input.id} >
                                         <TextField
                                             id={input.id}
                                             label={input.label || ''}
@@ -143,7 +143,7 @@ const NewHotel = () => {
                                     </Grid2>
 
                                 ))}
-                                <Grid2 size={6}>
+                                <Grid2 size={{ xs: 12, sm: 6 }}>
                                     <FormGroup>
                                         <FormControlLabel
                                             control={
@@ -153,7 +153,7 @@ const NewHotel = () => {
                                         />
                                     </FormGroup>
                                 </Grid2>
-                                <Grid2 size={6}>
+                                <Grid2 size={{ xs: 12, sm: 6 }}>
                                     <FormLabel component="legend">Select Room(s)</FormLabel>
                                     <FormGroup>
                                         {rooms && rooms.map((room) => (
@@ -174,7 +174,7 @@ const NewHotel = () => {
                             </Grid2>
                         </CardContent>
                         <CardActions>
-                            <Button variant='contained' onClick={handleClick}>Create</Button>
+                            <Button variant='contained' fullWidth onClick={handleClick}>Create</Button>
                         </CardActions>
                     </form>
                 </Card>

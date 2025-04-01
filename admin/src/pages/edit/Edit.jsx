@@ -85,7 +85,7 @@ const Edit = () => {
     }
 
     const displayData = (array) => array.map((input) => (
-        <Grid2 size={6} key={input.id} >
+        <Grid2 size={{ xs: 12, sm: 6 }} key={input.id} >
             <TextField
                 id={input.id}
                 label={input.label || ''}
@@ -140,7 +140,7 @@ const Edit = () => {
                             </Grid2>
                         </CardContent>
                         <CardActions>
-                            <Button variant='contained' onClick={handleClick}>Update</Button>
+                            <Button fullWidth variant='contained' onClick={handleClick}>Update</Button>
                         </CardActions>
                     </form>
                 </Card>

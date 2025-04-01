@@ -41,7 +41,7 @@ const NewUser = () => {
     }
 
     const displayData = (array) => array.map((input) => (
-        <Grid2 size={6} key={input.id} >
+        <Grid2 size={{ xs: 12, sm: 6 }} key={input.id} >
             <TextField
                 id={input.id}
                 label={input.label || ''}
@@ -88,11 +88,13 @@ const NewUser = () => {
                                     variant="square"
                                     sx={{ width: 150, height: 150 }} />
                             } ></CardHeader>
-                        <Grid2 container rowSpacing={4} columnSpacing={{ xs: 1, sm: 2, md: 3 }} >
+                        <Grid2 container rowSpacing={4}
+                            columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+                        >
                             {displayData(userInputs)}
                         </Grid2>
                         <CardActions>
-                            <Button variant='contained' onClick={handleClick}>Create</Button>
+                            <Button fullWidth variant='contained' onClick={handleClick}>Create</Button>
                         </CardActions>
                     </CardContent>
                 </Card>

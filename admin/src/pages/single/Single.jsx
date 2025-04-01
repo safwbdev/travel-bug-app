@@ -46,7 +46,6 @@ const Single = () => {
         }
     }
     const displayData = (array) => {
-
         return array.map((arr) => (
             <div className={classes.descText} key={arr.id}>
                 <span>
