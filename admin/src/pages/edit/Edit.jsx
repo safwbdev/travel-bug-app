@@ -43,7 +43,7 @@ const Edit = () => {
         }
     }
 
-    const handleClick = async (e) => {
+    const handleClick = async () => {
         if (file) {
             const data = new FormData();
             data.append("file", file);
@@ -55,8 +55,9 @@ const Edit = () => {
                     ...info,
                     img: url
                 }
-                await axios.put(`${USER_PATH}/${id}`, newUser);
-                toast.success(`New entry has been created!`);
+
+                await axios.put(`${API_URL}/${path}/${id}`, newUser);
+                toast.success(`Entry has been updated!`);
                 navigate(`/${path}`)
 
             } catch (err) {
@@ -69,16 +70,13 @@ const Edit = () => {
                 ...info
             }
             try {
-                await axios.put(`${USER_PATH}/${id}`, newUser);
-                toast.success(`New Entry without image has been created!`);
+                await axios.put(`${API_URL}/${path}/${id}`, newUser);
+                toast.success(`Entry without image has been updated!`);
                 navigate(`/${path}`)
             } catch (err) {
                 console.log(err);
-
             }
-
         }
-
     }
 
     const displayData = (array) => {
