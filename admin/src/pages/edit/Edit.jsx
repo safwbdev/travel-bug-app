@@ -106,23 +106,25 @@ const Edit = () => {
                     <CardHeader title={`EDIT ${path.toLocaleUpperCase().slice(0, -1)}`} />
                     <form>
                         <CardContent>
-                            {requiresImage && (<CardHeader title={<>
-                                <label htmlFor="file"
-                                    style={{
-                                        alignItems: "center",
-                                        display: "flex",
-                                        width: 'max-content'
-                                    }}>
-                                    <DriveFolderUploadOutlinedIcon
-                                        className={classes.icon} style={{ marginRight: '.3em' }} />
-                                    Upload new Image
-                                </label>
-                                <input
-                                    type="file"
-                                    id="file"
-                                    onChange={(e) => setFile(e.target.files[0])}
-                                    style={{ display: "none" }}
-                                /></>}
+                            {requiresImage && (<CardHeader title={
+                                <>
+                                    <label htmlFor="file"
+                                        style={{
+                                            alignItems: "center",
+                                            display: "flex",
+                                            width: 'max-content'
+                                        }}>
+                                        <DriveFolderUploadOutlinedIcon
+                                            className={classes.icon} style={{ marginRight: '.3em' }} />
+                                        Upload new Image
+                                    </label>
+                                    <input
+                                        type="file"
+                                        id="file"
+                                        onChange={(e) => setFile(e.target.files[0])}
+                                        style={{ display: "none" }}
+                                    />
+                                </>}
                                 avatar={
                                     <Avatar alt="image" src={
                                         file

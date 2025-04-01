@@ -5,7 +5,7 @@ import {
   Home,
   List,
   Login,
-  New,
+  NewUser,
   NewHotel,
   NewRoom,
   Single,
@@ -13,7 +13,6 @@ import {
 import { useContext } from 'react';
 import { DarkModeContext } from './context/darkModeContext';
 import { AuthContext } from './context/AuthContext';
-import { userInputs } from "./formSource.js";
 import { hotelColumns, roomColumns, userColumns } from './components/datatable/datatablesource';
 import { HOTELS, LOGIN, NEW, ROOMS, ROOT, BY_ID, USERS, EDIT } from './routes.js';
 import { ToastContainer } from 'react-toastify';
@@ -69,7 +68,7 @@ function App() {
               } />
               <Route path={NEW} element={
                 <ProtectedRoute>
-                  <New inputs={userInputs} title="Add new user" />
+                  <NewUser />
                 </ProtectedRoute>
               } />
             </Route>
