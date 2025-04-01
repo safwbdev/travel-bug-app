@@ -10,7 +10,7 @@ import {
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-import { Button } from '@mui/material';
+import { Avatar, Button, Card, CardActions, CardContent, CardHeader, Grid2, TextField } from '@mui/material';
 
 const Edit = () => {
     const path = location.pathname.split("/")[1];
@@ -84,59 +84,66 @@ const Edit = () => {
         }
     }
 
-    const displayData = (array) => {
-        return array.map((input) => (
-            <div className={classes.formInput} key={input.id}>
-                <label>{input.label}</label>
-                <input
-                    onChange={handleChange}
-                    type={input.type}
-                    placeholder={data[input.label]}
-                    value={info[input.id]}
-                    disabled={input.id === 'username'}
-                    id={input.id} />
-            </div>
-        ))
-    }
+    const displayData = (array) => array.map((input) => (
+        <Grid2 size={6} key={input.id} >
+            <TextField
+                id={input.id}
+                label={input.label || ''}
+                variant="outlined"
+                placeholder={data[input.label]}
+                value={info[input.id]}
+                onChange={handleChange}
+                fullWidth
+                type={input.type} />
+        </Grid2>
+    ))
+
 
     return loading ? (<h2>Loading...</h2>) : (
-        <div className={classes.newContainer}>
-            <div className={classes.top}>
-                <h1>{data.name}</h1>
-            </div>
-            <div className={classes.bottom}>
-                {requiresImage && (<div className={classes.left}>
-                    <img
-                        src={
-                            file
-                                ? URL.createObjectURL(file)
-                                : data.img ||
-                                defaultImg
-                        }
-                        alt=""
-                    />
-                </div>)}
-                <div className={classes.right}>
+        <Grid2 container justify="center" spacing={1}>
+            <Grid2 item md={6}>
+                <Card className={classes.padding}>
+                    <CardHeader title={`EDIT ${path.toLocaleUpperCase().slice(0, -1)}`} />
                     <form>
-                        {requiresImage && (<div className={classes.formInput}>
-                            <label htmlFor="file">
-                                Image: <DriveFolderUploadOutlinedIcon className={classes.icon} />
-                            </label>
-                            <input
-                                type="file"
-                                id="file"
-                                onChange={(e) => setFile(e.target.files[0])}
-                                style={{ display: "none" }}
-                            />
-                        </div>)}
-                        {displayData(getDataType())}
+                        <CardContent>
+                            {requiresImage && (<CardHeader title={<>
+                                <label htmlFor="file"
+                                    style={{
+                                        alignItems: "center",
+                                        display: "flex",
+                                        width: 'max-content'
+                                    }}>
+                                    <DriveFolderUploadOutlinedIcon
+                                        className={classes.icon} style={{ marginRight: '.3em' }} />
+                                    Upload new Image
+                                </label>
+                                <input
+                                    type="file"
+                                    id="file"
+                                    onChange={(e) => setFile(e.target.files[0])}
+                                    style={{ display: "none" }}
+                                /></>}
+                                avatar={
+                                    <Avatar alt="image" src={
+                                        file
+                                            ? URL.createObjectURL(file)
+                                            : data.img ||
+                                            defaultImg
+                                    }
+                                        variant="square"
+                                        sx={{ width: 150, height: 150 }} />
+                                } ></CardHeader>)}
+                            <Grid2 container rowSpacing={4} columnSpacing={{ xs: 1, sm: 2, md: 3 }} >
+                                {displayData(getDataType())}
+                            </Grid2>
+                        </CardContent>
+                        <CardActions>
+                            <Button variant='contained' onClick={handleClick}>Update</Button>
+                        </CardActions>
                     </form>
-                    <div style={{ display: 'flex', justifyContent: 'center', margin: '2.5em 0' }}>
-                        <Button variant='contained' onClick={handleClick}>Update</Button>
-                    </div>
-                </div>
-            </div>
-        </div>
+                </Card>
+            </Grid2>
+        </Grid2>
     )
 }
 
