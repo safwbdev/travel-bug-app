@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import classes from './Single.module.scss'
 import useFetch from '../../hooks/useFetch'
 import { API_URL } from '../../routes'
@@ -20,7 +20,18 @@ const Single = () => {
     const path = location.pathname.split("/")[1];
     const id = location.pathname.split("/")[2];
 
+    const [defaultImg, setdefaultImg] = useState("https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg");
+
     const { data, loading } = useFetch(`${API_URL}/${path === 'hotels' ? 'hotels/find' : path}/${id}`);
+
+    useEffect(() => {
+        if (path === 'users') {
+            setdefaultImg(data.img);
+        }
+        if (path === 'hotels' && data.photos && data.photos.length > 0) {
+            setdefaultImg(data.photos[0]);
+        }
+    }, [data])
 
     const getDataType = () => {
         switch (path) {
@@ -47,12 +58,12 @@ const Single = () => {
 
     return loading ? (<h2>Loading...</h2>) : (
         <Card sx={{ display: 'flex', width: '100%' }}>
-            <CardMedia
+            {path !== 'rooms' && (<CardMedia
                 component="img"
                 sx={{ width: 500 }}
-                image={data.img}
+                image={defaultImg}
                 alt="NA"
-            />
+            />)}
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                 <CardContent sx={{ flex: '1  auto' }}>
                     <Typography component="div" variant="h5">

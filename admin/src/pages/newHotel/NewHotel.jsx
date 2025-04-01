@@ -38,10 +38,6 @@ const NewHotel = () => {
         })
     }, [rooms]);
 
-
-    console.log(selectedRooms);
-
-
     const handleChange = (e) => {
         setInfo(prev => ({ ...prev, [e.target.id]: e.target.value }))
     }
@@ -88,14 +84,11 @@ const NewHotel = () => {
                 featured: isFeatured
             };
 
-            console.log(newHotel);
-
-
             await axios.post(HOTEL_PATH, newHotel);
             toast.success(`Hotel has been created!`);
             navigate(`/hotels`)
         } catch (err) {
-
+            console.log(err);
         }
     }
 
@@ -122,7 +115,6 @@ const NewHotel = () => {
                                     <input
                                         type="file"
                                         id="file"
-                                        // onChange={(e) => setFile(e.target.files[0])}
                                         onChange={(e) => setFiles(e.target.files)}
                                         style={{ display: "none" }}
                                     />
@@ -161,12 +153,6 @@ const NewHotel = () => {
                                         />
                                     </FormGroup>
                                 </Grid2>
-                                {/* <Grid2 size={6}>
-                                    <label>Rooms</label>
-                                    <select id="featured" onChange={handleSelect} multiple>
-                                        {loading ? 'loading' : data && data.map((room) => (<option key={room._id} value={room._id}>{room.title}</option>))}
-                                    </select>
-                                </Grid2> */}
                                 <Grid2 size={6}>
                                     <FormLabel component="legend">Select Room(s)</FormLabel>
                                     <FormGroup>
