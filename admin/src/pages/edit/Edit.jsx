@@ -10,7 +10,17 @@ import {
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-import { Avatar, Button, Card, CardActions, CardContent, CardHeader, Grid2, TextField } from '@mui/material';
+import {
+    Avatar,
+    Button,
+    Card,
+    CardActions,
+    CardContent,
+    CardHeader,
+    CircularProgress,
+    Grid2,
+    TextField,
+} from '@mui/material';
 
 const Edit = () => {
     const path = location.pathname.split("/")[1];
@@ -99,7 +109,7 @@ const Edit = () => {
     ))
 
 
-    return loading ? (<h2>Loading...</h2>) : (
+    return loading ? (<CircularProgress />) : (
         <Grid2 container justify="center" spacing={1}>
             <Grid2 item md={6}>
                 <Card className={classes.padding}>

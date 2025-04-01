@@ -7,6 +7,7 @@ import {
     Card,
     CardContent,
     CardMedia,
+    CircularProgress,
     Typography,
 } from '@mui/material';
 import {
@@ -55,7 +56,7 @@ const Single = () => {
         ))
     }
 
-    return loading ? (<h2>Loading...</h2>) : (
+    return loading ? (<CircularProgress />) : (
         <Card sx={{ display: 'flex', width: '100%' }}>
             {path !== 'rooms' && (<CardMedia
                 component="img"
