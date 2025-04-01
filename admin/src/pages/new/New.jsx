@@ -11,6 +11,7 @@ const New = ({ inputs, title }) => {
     const [info, setInfo] = useState({});
     const navigate = useNavigate();
     const path = location.pathname.split("/")[1];
+    const defaultImg = "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg";
 
 
     const handleChange = (e) => {
@@ -50,7 +51,7 @@ const New = ({ inputs, title }) => {
                         src={
                             file
                                 ? URL.createObjectURL(file)
-                                : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
+                                : defaultImg
                         }
                         alt=""
                     />

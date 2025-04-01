@@ -5,6 +5,7 @@ import { hotelInputs } from '../../formSource';
 import useFetch from '../../hooks/useFetch';
 import axios from 'axios';
 import { HOTEL_PATH, IMG_UPLOAD_PATH, ROOM_PATH } from '../../routes';
+import { Button } from '@mui/material';
 
 const NewHotel = () => {
     const [files, setFiles] = useState("");
@@ -23,20 +24,39 @@ const NewHotel = () => {
 
     const handleClick = async (e) => {
         e.preventDefault();
+        console.log('start');
+
+        /**
+         *
+         * TODO: 
+         * - display the extra images on UI
+         * - delete the extra images on UI
+         * - material UI
+         * 
+         * 
+         * 
+         */
         try {
             const list = await Promise.all(
                 Object.values(files).map(async (file) => {
+                    console.log('adding');
+
                     const data = new FormData();
                     data.append("file", file);
                     data.append("upload_preset", "upload");
                     const uploadRes = await axios.post(IMG_UPLOAD_PATH, data);
                     const { url } = uploadRes.data;
+                    console.log('url:', url);
                     return url
                 }));
+            console.log('data: ', list);
 
             const newHotel = {
                 ...info, rooms, photos: list
             };
+
+            console.log('data: ', newHotel);
+
 
             await axios.post(HOTEL_PATH, newHotel);
         } catch (err) {
@@ -95,7 +115,7 @@ const NewHotel = () => {
                                 {loading ? 'loading' : data && data.map((room) => (<option key={room._id} value={room._id}>{room.title}</option>))}
                             </select>
                         </div>
-                        <button onClick={handleClick}>Send</button>
+                        <Button variant='contained' onClick={handleClick}>Submit</Button>
                     </form>
                 </div>
             </div>

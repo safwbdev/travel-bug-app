@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import classes from './Edit.module.scss'
 import useFetch from '../../hooks/useFetch'
-import { API_URL, IMG_UPLOAD_PATH, USER_PATH } from '../../routes'
+import { API_URL, IMG_UPLOAD_PATH } from '../../routes'
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import {
     hotelInputs, userInputs,
@@ -10,20 +10,32 @@ import {
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { Button } from '@mui/material';
 
 const Edit = () => {
     const path = location.pathname.split("/")[1];
     const id = location.pathname.split("/")[3];
     const { data, loading } = useFetch(`${API_URL}/${path === 'hotels' ? 'hotels/find' : path}/${id}`);
+    const requiresImage = path === 'users' || path === 'hotels';
 
     const [info, setInfo] = useState({});
     const [file, setFile] = useState("");
+    const [defaultImg, setdefaultImg] = useState("https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg");
     const navigate = useNavigate()
 
     useEffect(() => {
-        setInfo(data)
+        setInfo(data);
     }, [data])
 
+    useEffect(() => {
+        if (!requiresImage) return;
+        if (path === 'users') {
+            setdefaultImg(data.img);
+        }
+        if (path === 'hotels' && info.photos && info.photos.length > 0) {
+            setdefaultImg(data.photos[0]);
+        }
+    }, [info])
 
     const handleChange = (e) => {
         setInfo(prev => ({ ...prev, [e.target.id]: e.target.value }))
@@ -44,6 +56,7 @@ const Edit = () => {
     }
 
     const handleClick = async () => {
+        let updatedData = {};
         if (file) {
             const data = new FormData();
             data.append("file", file);
@@ -51,31 +64,23 @@ const Edit = () => {
             try {
                 const uploadRes = await axios.post(IMG_UPLOAD_PATH, data);
                 const { url } = uploadRes.data;
-                const newUser = {
-                    ...info,
-                    img: url
-                }
-
-                await axios.put(`${API_URL}/${path}/${id}`, newUser);
-                toast.success(`Entry has been updated!`);
-                navigate(`/${path}`)
-
+                updatedData = { ...info, img: url };
             } catch (err) {
                 console.log(err);
 
             }
 
         } else {
-            const newUser = {
-                ...info
-            }
-            try {
-                await axios.put(`${API_URL}/${path}/${id}`, newUser);
-                toast.success(`Entry without image has been updated!`);
-                navigate(`/${path}`)
-            } catch (err) {
-                console.log(err);
-            }
+            updatedData = { ...info };
+        }
+
+        try {
+            await axios.put(`${API_URL}/${path}/${id}`, updatedData);
+            const getType = path[0].toUpperCase() + path.slice(1);
+            toast.success(`${getType.slice(0, -1)} has been updated!`);
+            navigate(`/${path}`)
+        } catch (err) {
+            console.log(err);
         }
     }
 
@@ -100,20 +105,20 @@ const Edit = () => {
                 <h1>{data.name}</h1>
             </div>
             <div className={classes.bottom}>
-                {path === 'users' && (<div className={classes.left}>
+                {requiresImage && (<div className={classes.left}>
                     <img
                         src={
                             file
                                 ? URL.createObjectURL(file)
                                 : data.img ||
-                                "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
+                                defaultImg
                         }
                         alt=""
                     />
                 </div>)}
                 <div className={classes.right}>
                     <form>
-                        {path === 'users' && (<div className={classes.formInput}>
+                        {requiresImage && (<div className={classes.formInput}>
                             <label htmlFor="file">
                                 Image: <DriveFolderUploadOutlinedIcon className={classes.icon} />
                             </label>
@@ -126,7 +131,9 @@ const Edit = () => {
                         </div>)}
                         {displayData(getDataType())}
                     </form>
-                    <button onClick={handleClick}>Update</button>
+                    <div style={{ display: 'flex', justifyContent: 'center', margin: '2.5em 0' }}>
+                        <Button variant='contained' onClick={handleClick}>Update</Button>
+                    </div>
                 </div>
             </div>
         </div>
