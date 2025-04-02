@@ -104,7 +104,8 @@ const Edit = () => {
                 value={info[input.id]}
                 onChange={handleChange}
                 fullWidth
-                type={input.type} />
+                type={input.type}
+                disabled={input.id === 'username'} />
         </Grid2>
     ))
 

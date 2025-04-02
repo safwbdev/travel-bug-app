@@ -6,6 +6,7 @@ import NewUser from "./newUser/NewUser";
 import NewHotel from "./newHotel/NewHotel";
 import NewRoom from "./newRoom/NewRoom";
 import Single from "./single/Single";
+import EditHotel from "./editHotel/EditHotel";
 
 export {
     Home,
@@ -15,5 +16,6 @@ export {
     NewHotel,
     NewRoom,
     Single,
-    Edit
+    Edit,
+    EditHotel
 }

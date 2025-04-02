@@ -9,6 +9,7 @@ import {
   NewHotel,
   NewRoom,
   Single,
+  EditHotel,
 } from './pages';
 import { useContext } from 'react';
 import { DarkModeContext } from './context/darkModeContext';
@@ -90,7 +91,7 @@ function App() {
               } />
               <Route path={`${EDIT}/${BY_ID}`} element={
                 <ProtectedRoute>
-                  <Edit />
+                  <EditHotel />
                 </ProtectedRoute>
               } />
             </Route>
