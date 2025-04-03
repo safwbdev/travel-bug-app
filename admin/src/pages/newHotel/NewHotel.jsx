@@ -7,7 +7,9 @@ import axios from 'axios';
 import { HOTEL_PATH, IMG_UPLOAD_PATH, ROOM_PATH } from '../../routes';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-import { Avatar, Button, Card, CardActions, CardContent, CardHeader, Checkbox, FormControlLabel, FormGroup, FormLabel, Grid2, TextField } from '@mui/material';
+
+import CloseIcon from '@mui/icons-material/Close';
+import { Avatar, Button, Card, CardActions, CardContent, CardHeader, Checkbox, Fab, FormControlLabel, FormGroup, FormLabel, Grid2, ImageList, ImageListItem, TextField } from '@mui/material';
 
 const NewHotel = () => {
     const [files, setFiles] = useState("");
@@ -58,9 +60,8 @@ const NewHotel = () => {
         /**
          *
          * TODO: 
-         * - display the extra images on UI
          * - delete the extra images on UI
-         * - select rooms checkbox bug
+         * - select rooms checkbox order bug (order of checkboxes shouldn't change)
          * 
          */
 
@@ -92,6 +93,32 @@ const NewHotel = () => {
         }
     }
 
+    const UploadImageButton = () => (<>
+        <label htmlFor="file"
+            style={{
+                alignItems: "center",
+                display: "flex",
+                width: 'max-content'
+            }}>
+            <DriveFolderUploadOutlinedIcon
+                className={classes.icon} style={{ marginRight: '.3em' }} />
+            Upload new Image
+        </label>
+        <input
+            type="file"
+            id="file"
+            multiple
+            onChange={(e) => setFiles(e.target.files)}
+            style={{ display: "none" }}
+        />
+    </>)
+    const SelectedMainImage = () => (
+        <Avatar alt="image" src={files
+            ? URL.createObjectURL(files[0])
+            : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"}
+            variant="square"
+            sx={{ width: 150, height: 150 }} />
+    )
 
     return (
         <Grid2 container justify="center" spacing={1}>
@@ -99,35 +126,47 @@ const NewHotel = () => {
                 <Card className={classes.padding}>
                     <CardHeader title={`ADD NEW HOTEL`} />
                     <form>
-                        <CardContent>
-                            <CardHeader title={
-                                <>
-                                    <label htmlFor="file"
-                                        style={{
-                                            alignItems: "center",
-                                            display: "flex",
-                                            width: 'max-content'
-                                        }}>
-                                        <DriveFolderUploadOutlinedIcon
-                                            className={classes.icon} style={{ marginRight: '.3em' }} />
-                                        Upload new Image
-                                    </label>
-                                    <input
-                                        type="file"
-                                        id="file"
-                                        onChange={(e) => setFiles(e.target.files)}
-                                        style={{ display: "none" }}
+                        <CardContent >
+                            <Grid2
+                                columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+                                container
+                                justifyContent='space-between'
+                                rowSpacing={4}>
+                                <Grid2 item xs={1} display={'flex'}>
+                                    <CardHeader
+                                        title={<UploadImageButton />}
+                                        avatar={<SelectedMainImage />}
                                     />
-                                </>}
-                                avatar={
-                                    <Avatar alt="image" src={
-                                        files
-                                            ? URL.createObjectURL(files[0])
-                                            : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
-                                    }
-                                        variant="square"
-                                        sx={{ width: 150, height: 150 }} />
-                                } ></CardHeader>
+                                </Grid2>
+                                <Grid2 item xs={12}>
+                                    {files && (
+                                        <ImageList
+                                            sx={{ width: 600, height: 250 }}
+                                            cols={3} rowHeight={164}>
+                                            {Object.values(files).map((item, index) => (
+                                                <ImageListItem key={index}>
+                                                    <img
+                                                        srcSet={URL.createObjectURL(files[index])}
+                                                        src={URL.createObjectURL(files[index])}
+                                                        alt='hotelImg'
+                                                        loading="lazy"
+                                                    />
+                                                    <Fab
+                                                        color="primary"
+                                                        aria-label="add"
+                                                        style={{
+                                                            position: 'absolute',
+                                                            right: 5,
+                                                            top: 5
+                                                        }}>
+                                                        <CloseIcon />
+                                                    </Fab>
+                                                </ImageListItem>
+                                            ))}
+                                        </ImageList>
+                                    )}
+                                </Grid2>
+                            </Grid2>
                             <Grid2 container rowSpacing={4} columnSpacing={{ xs: 1, sm: 2, md: 3 }} >
                                 {hotelInputs.map((input) => (
                                     <Grid2 size={{ xs: 12, sm: 6 }} key={input.id} >
