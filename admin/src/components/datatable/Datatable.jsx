@@ -6,7 +6,8 @@ import useFetch from '../../hooks/useFetch.jsx';
 import axios from 'axios';
 import { API_URL, EDIT } from '../../routes.js';
 import { toast } from 'react-toastify';
-import { Button, CircularProgress, Grid2 } from '@mui/material';
+import { Button, Grid2, Typography } from '@mui/material';
+import LoadingComponent from '../loadingComponent/LoadingComponent.jsx';
 
 
 const Datatable = ({ columns }) => {
@@ -60,51 +61,57 @@ const Datatable = ({ columns }) => {
             renderCell: (params) => {
                 return (
                     <div className={classes.cellAction}>
-                        <Link to={params.row._id} style={{ textDecoration: "none" }}>
+                        <Link to={params.row._id}>
                             <Button variant="contained">View</Button>
-
                         </Link>
-                        <Link to={`${EDIT}/${params.row._id}`} style={{ textDecoration: "none" }}>
+                        <Link to={`${EDIT}/${params.row._id}`}>
                             <Button variant="contained" color="success">Edit</Button>
                         </Link>
-                        <Button variant="contained" color="error"
+                        <Button
                             onClick={() => handleDelete(params.row._id)}
-                        >
+                            color="error"
+                            variant="contained">
                             Delete
                         </Button>
-
                     </div>
                 );
             },
         },
     ];
-    return (
-        <Grid2 container justify="center" spacing={1}>
-            {loading ? (<CircularProgress />) : (
-                <div className={classes.datatable}>
-                    <div className={classes.datatableTitle}>
-                        <h4>
-                            {path}
-                        </h4>
-                        <Link to={`/${path}/new`}>
-                            <Button variant='contained' color="success">
-                                Add New {path.slice(0, -1)}
-                            </Button>
-                        </Link>
-                    </div>
-                    <DataGrid
-                        className={classes.datagrid}
-                        rows={list}
-                        columns={columns.concat(actionColumn)}
-                        pageSize={9}
-                        rowsPerPageOptions={[9]}
-                        checkboxSelection
-                        getRowId={(row) => row._id}
-                    />
-                </div>
-            )}
-
+    return loading ? (<LoadingComponent />) : (
+        <Grid2
+            alignContent='center'
+            container
+            justifyContent="center"
+            marginTop={5}
+            spacing={1}>
+            <Grid2 item
+                display={'flex'}
+                justifyContent={"space-between"}
+                width={'100%'}>
+                <Typography
+                    component="div"
+                    textTransform={"capitalize"}
+                    variant="h5">
+                    {path}
+                </Typography>
+                <Link to={`/${path}/new`}>
+                    <Button variant='contained' color="success">
+                        Add New {path.slice(0, -1)}
+                    </Button>
+                </Link>
+            </Grid2>
+            <DataGrid
+                checkboxSelection
+                className={classes.datagrid}
+                columns={columns.concat(actionColumn)}
+                getRowId={(row) => row._id}
+                rows={list}
+                rowsPerPageOptions={[9]}
+                pageSize={9} />
         </Grid2>
+
+
 
     );
 }
