@@ -4,6 +4,8 @@ import { roomInputs } from '../../formSource';
 import useFetch from '../../hooks/useFetch';
 import axios from 'axios';
 import { HOTEL_PATH, ROOM_PATH } from '../../routes';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 import { Button, Card, CardActions, CardContent, CardHeader, FormControl, Grid2, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 
 const NewRoom = () => {
@@ -11,6 +13,7 @@ const NewRoom = () => {
     const [hotelId, setHotelId] = useState(undefined);
     const [rooms, setRooms] = useState([]);
     const { data, loading, error } = useFetch(HOTEL_PATH);
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setInfo(prev => ({ ...prev, [e.target.id]: e.target.value }))
@@ -21,6 +24,8 @@ const NewRoom = () => {
         const roomNumbers = rooms.split(",").map((room) => ({ number: room }));
         try {
             await axios.post(`${ROOM_PATH}/${hotelId}`, { ...info, roomNumbers })
+            toast.success(`Room has been created!`);
+            navigate(`/rooms`);
         } catch (err) {
             console.log(err);
 
@@ -53,11 +58,17 @@ const NewRoom = () => {
                                             type={input.type} />
                                     </Grid2>
                                 ))}
-                                {/* FIXME  */}
                                 <Grid2 size={{ xs: 12, sm: 6 }}>
-                                    <textarea onChange={e => setRooms(e.target.value)} placeholder='Give comma between room numbers' />
+                                    <TextField
+                                        id="outlined-multiline-flexible"
+                                        label="Room numbers"
+                                        placeholder='Give comma between room numbers (1,2,3,..)'
+                                        multiline
+                                        onChange={e => setRooms(e.target.value)}
+                                        maxRows={4}
+                                        fullWidth
+                                    />
                                 </Grid2>
-                                {/* FIXME  */}
                                 <Grid2 size={{ xs: 12, sm: 6 }}>
                                     <FormControl fullWidth>
                                         <InputLabel id="demo-simple-select-label">Select Hotel</InputLabel>

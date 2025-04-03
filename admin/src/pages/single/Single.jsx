@@ -74,7 +74,7 @@ const Single = () => {
                         component="div"
                         sx={{ color: 'text.secondary' }}
                     >
-                        {data.isAdmin ? 'Admin' : 'General User'}
+                        {path === 'users' ? data.isAdmin ? 'Admin' : 'General User' : ''}
                     </Typography>
                     {displayData(getDataType())}
                 </CardContent>
