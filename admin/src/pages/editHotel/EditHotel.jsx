@@ -9,6 +9,7 @@ import {
 } from '../../editFormSource'
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import CloseIcon from '@mui/icons-material/Close';
 import { useNavigate } from 'react-router-dom';
 import {
     Avatar,
@@ -26,6 +27,7 @@ import {
     TextField,
     ImageList,
     ImageListItem,
+    Fab
 } from '@mui/material';
 
 const EditHotel = () => {
