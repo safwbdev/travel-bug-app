@@ -1,0 +1,42 @@
+.header {
+    &Search {
+        align-items: center;
+        background-color: #ffffff;
+        border: 3px solid #febb02;
+        border-radius: 5px;
+        display: flex;
+        height: 30px;
+        justify-content: space-around;
+        min-width: 1024px;
+        padding: 10px 0;
+
+        color: #000000;
+
+        &Item {
+            align-items: center;
+            display: flex;
+            gap: 10px;
+        }
+
+        &Input {
+            border: 0;
+            outline: none;
+        }
+
+        &Text {
+            cursor: pointer;
+            color: lightgray;
+        }
+
+    }
+
+    &Button {
+        background-color: #0071c2;
+        border: none;
+        color: #ffffff;
+        cursor: pointer;
+        font-weight: 500;
+        padding: 10px;
+        border-radius: 5px;
+    }
+}
