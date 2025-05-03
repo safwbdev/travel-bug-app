@@ -16,6 +16,8 @@ const Hotel = () => {
     const id = location.pathname.split("/")[2]
     const { data, loading, error } = useFetch(`/api/hotels/find/${id}`);
 
+    // TODO 
+    // Fix crash when visiting page from home page 
     const { dates, options } = useContext(SearchContext)
     const { user } = useContext(AuthContext)
     const navigate = useNavigate()

@@ -1,6 +1,7 @@
 import React from 'react'
 import classes from './FeaturedProperties.module.scss'
 import useFetch from '../../hooks/useFetch';
+import { Link } from 'react-router-dom';
 
 const FeaturedProperties = () => {
 
@@ -8,23 +9,26 @@ const FeaturedProperties = () => {
 
     return (
         <div className={classes.featuredProperties}>
-            {loading ? "Loading" : (
+            {error ? (<span>Something went wrong. Please try again later</span>) : loading ? "Loading" : (
                 <>
                     {data.map((item, index) => (
-                        <div className={classes.featuredPropertiesItem} key={index}>
-                            <img
-                                className={classes.featuredPropertiesImage}
-                                src={item.photos.length > 0 ? item.photos[0] : "https://placehold.co/400x400?text=Image+Not+Found"}
-                                alt="" />
-                            <span className={classes.featuredPropertiesName}>{item.name}</span>
-                            <span className={classes.featuredPropertiesCity}>{item.city}</span>
-                            <span className={classes.featuredPropertiesPrice}>Starting from ${item.cheapestPrice}</span>
-                            {item.rating && (
-                                <div className={classes.featuredPropertiesRating}>
-                                    <button>{item.rating}</button>
-                                    <span>Excellent</span>
-                                </div>)}
-                        </div>))}
+                        <Link to={`/hotels/${item._id}`}>
+                            <div className={classes.featuredPropertiesItem} key={index}>
+                                <img
+                                    className={classes.featuredPropertiesImage}
+                                    src={item.photos.length > 0 ? item.photos[0] : "https://placehold.co/400x400?text=Image+Not+Found"}
+                                    alt="" />
+                                <span className={classes.featuredPropertiesName}>{item.name}</span>
+                                <span className={classes.featuredPropertiesCity}>{item.city}</span>
+                                <span className={classes.featuredPropertiesPrice}>Starting from ${item.cheapestPrice}</span>
+                                {item.rating && (
+                                    <div className={classes.featuredPropertiesRating}>
+                                        <button>{item.rating}</button>
+                                        <span>Excellent</span>
+                                    </div>)}
+                            </div>
+                        </Link>
+                    ))}
                 </>
             )}
         </div>

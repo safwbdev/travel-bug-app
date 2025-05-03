@@ -22,7 +22,7 @@ const PropertyList = () => {
 
     return (
         <div className={classes.propertyList}>
-            {loading ? "Loading" : (
+            {error ? (<span>Something went wrong. Please try again later</span>) : loading ? "Loading" : (
                 <>
                     {data && photos.map((photo, index) => (<div className={classes.propertyListItem} key={index}>
                         <img className={classes.propertyListImage} src={photo} alt="" />

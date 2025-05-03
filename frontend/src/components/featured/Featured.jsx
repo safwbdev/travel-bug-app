@@ -27,10 +27,9 @@ const Featured = () => {
 
   return (
     <div className={classes.featured}>
-      {loading ? "Loading" : (<>
+      {error ? (<span>Something went wrong. Please try again later</span>) : loading ? "Loading" : (<>
         {featuredArray.map((feature, index) => (<FeaturedBox feature={feature} id={index} />))}
       </>)}
-      {error && (<span>Something went wrong. Please try again later</span>)}
     </div>
   )
 }
