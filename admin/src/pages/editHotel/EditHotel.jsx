@@ -24,6 +24,8 @@ import {
     FormLabel,
     Grid2,
     TextField,
+    ImageList,
+    ImageListItem,
 } from '@mui/material';
 
 const EditHotel = () => {
@@ -33,7 +35,7 @@ const EditHotel = () => {
     const { data: roomData } = useFetch(ROOM_PATH);
 
     const [info, setInfo] = useState({});
-    const [file, setFile] = useState("");
+    const [files, setFiles] = useState("");
     const [rooms, setRooms] = useState([]);
     const [selectedRooms, setSelectedRooms] = useState([]);
     const [isFeatured, setIsFeatured] = useState(false);
@@ -153,8 +155,35 @@ const EditHotel = () => {
                 fullWidth
                 type={input.type} />
         </Grid2>
-    ))
+    ));
 
+    const UploadImageButton = () => (<>
+        <label htmlFor="file"
+            style={{
+                alignItems: "center",
+                display: "flex",
+                width: 'max-content'
+            }}>
+            <DriveFolderUploadOutlinedIcon
+                className={classes.icon} style={{ marginRight: '.3em' }} />
+            Upload new Image
+        </label>
+        <input
+            type="file"
+            id="file"
+            multiple
+            onChange={(e) => setFiles(e.target.files)}
+            style={{ display: "none" }}
+        />
+    </>);
+
+    const SelectedMainImage = () => (
+        <Avatar alt="image" src={files
+            ? URL.createObjectURL(files[0])
+            : defaultImg}
+            variant="square"
+            sx={{ width: 150, height: 150 }} />
+    )
 
     return loading ? (<CircularProgress />) : (
         <Grid2 container justify="center" spacing={1}>
@@ -163,35 +192,43 @@ const EditHotel = () => {
                     <CardHeader title={`EDIT HOTEL`} />
                     <form>
                         <CardContent>
-                            <CardHeader title={
-                                <>
-                                    <label htmlFor="file"
-                                        style={{
-                                            alignItems: "center",
-                                            display: "flex",
-                                            width: 'max-content'
-                                        }}>
-                                        <DriveFolderUploadOutlinedIcon
-                                            className={classes.icon} style={{ marginRight: '.3em' }} />
-                                        Upload new Image
-                                    </label>
-                                    <input
-                                        type="file"
-                                        id="file"
-                                        onChange={(e) => setFile(e.target.files[0])}
-                                        style={{ display: "none" }}
-                                    />
-                                </>}
-                                avatar={
-                                    <Avatar alt="image" src={
-                                        file
-                                            ? URL.createObjectURL(file)
-                                            : hotelData.img ||
-                                            defaultImg
-                                    }
-                                        variant="square"
-                                        sx={{ width: 150, height: 150 }} />
-                                } ></CardHeader>
+                            <Grid2 item xs={1} display={'flex'}>
+                                <CardHeader
+                                    title={<UploadImageButton />}
+                                    avatar={<SelectedMainImage />}
+                                />
+                            </Grid2>
+                            <Grid2 item xs={12}>
+                                {files && (
+                                    <ImageList
+                                        sx={{ width: 600, height: 250 }}
+                                        cols={3} rowHeight={164}>
+                                        {Object.values(files).map((item, index) => {
+                                            return (
+                                                <ImageListItem key={index}>
+                                                    <img
+                                                        srcSet={URL.createObjectURL(files[index])}
+                                                        src={URL.createObjectURL(files[index])}
+                                                        alt='hotelImg'
+                                                        loading="lazy"
+                                                    />
+                                                    <Fab
+                                                        onClick={() => handleDelete(index)}
+                                                        color="primary"
+                                                        aria-label="add"
+                                                        style={{
+                                                            position: 'absolute',
+                                                            right: 5,
+                                                            top: 5
+                                                        }}>
+                                                        <CloseIcon />
+                                                    </Fab>
+                                                </ImageListItem>
+                                            )
+                                        })}
+                                    </ImageList>
+                                )}
+                            </Grid2>
                             <Grid2 container rowSpacing={4} columnSpacing={{ xs: 1, sm: 2, md: 3 }} >
                                 {displayData(hotelInputs)}
                                 {path === "hotels" && (<Grid2 size={{ xs: 12, sm: 6 }}>
@@ -206,7 +243,6 @@ const EditHotel = () => {
                                 </Grid2>)}
                                 {path === "hotels" && (
                                     <Grid2 size={{ xs: 12, sm: 6 }}>
-
                                         <FormLabel component="legend">Select Room(s)</FormLabel>
                                         <FormGroup>
                                             {rooms && rooms.map((room) => (

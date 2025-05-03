@@ -1,16 +1,23 @@
 import React from 'react'
 import classes from './PropertyList.module.scss'
 import useFetch from '../../hooks/useFetch';
+import {
+    hotelImage,
+    apartmentImage,
+    resortImage,
+    villaImage,
+    cabinImage,
+} from '../../assets';
 
 const PropertyList = () => {
     const { data, loading, error } = useFetch("/api/hotels/countByType");
 
     const photos = [
-        "https://cf.bstatic.com/xdata/images/hotel/square240/647130478.webp?k=622d868070952901f87760d0ee8eafb7a3d69c251131d826489cfacc2c098be4&o=",
-        "https://cf.bstatic.com/xdata/images/hotel/square240/647130478.webp?k=622d868070952901f87760d0ee8eafb7a3d69c251131d826489cfacc2c098be4&o=",
-        "https://cf.bstatic.com/xdata/images/hotel/square240/647130478.webp?k=622d868070952901f87760d0ee8eafb7a3d69c251131d826489cfacc2c098be4&o=",
-        "https://cf.bstatic.com/xdata/images/hotel/square240/647130478.webp?k=622d868070952901f87760d0ee8eafb7a3d69c251131d826489cfacc2c098be4&o=",
-        "https://cf.bstatic.com/xdata/images/hotel/square240/647130478.webp?k=622d868070952901f87760d0ee8eafb7a3d69c251131d826489cfacc2c098be4&o=",
+        hotelImage,
+        apartmentImage,
+        resortImage,
+        villaImage,
+        cabinImage,
     ];
 
     return (

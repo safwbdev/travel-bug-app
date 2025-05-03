@@ -8,6 +8,7 @@ import { format } from 'date-fns'
 import { useNavigate } from 'react-router-dom';
 import { SearchContext } from '../../context/SearchContext';
 import { AuthContext } from '../../context/AuthContext';
+import { bannerImage } from '../../assets';
 
 
 const Header = ({ type }) => {
@@ -49,12 +50,15 @@ const Header = ({ type }) => {
     }
 
     return (
-        <div className={classes.header}>
+        <div className={classes.header} style={{
+            background: `url(${bannerImage})`,
+            backgroundSize: 'cover'
+        }}>
             <div className={`${classes.headerContainer} ${type === 'list' && classes.listMode}`}>
                 <div className={classes.headerList}>
                     <div className={`${classes.headerListItem} ${classes.active}`}>
                         <FaBed />
-                        <span>Stays</span>
+                        <span>Hotels</span>
                     </div>
                     <div className={classes.headerListItem}>
                         <FaPlane />
@@ -75,7 +79,7 @@ const Header = ({ type }) => {
                 </div>
                 {type !== 'list' && (
                     <>
-                        <h1 className={classes.headerTitle}>A lifetime of discounts? It's genius!</h1>
+                        <h1 className={classes.headerTitle}>Getting you around the world at the best rates!</h1>
                         <p className={classes.headerDesc}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, tempore quod? Dolore, excepturi voluptate? Exercitationem dicta unde deserunt, ipsam facilis minima sequi molestias illum in. Exercitationem placeat nam temporibus quibusdam.</p>
                         {!user && (<button className={classes.headerButton}>Sign In / Register</button>)}
                         <div className={classes.headerSearch}>

@@ -1,43 +1,36 @@
 import React from 'react'
 import classes from './Featured.module.scss'
 import useFetch from '../../hooks/useFetch'
+import { amsterdamImage, berlinImage, parisImage, tokyoImage } from '../../assets';
 
 const Featured = () => {
 
   const { data, loading, error } = useFetch("/api/hotels/countByCity?cities=berlin,tokyo,paris,amsterdam");
 
+  const featuredArray = [
+    { title: 'berlin', img: berlinImage },
+    { title: 'tokyo', img: tokyoImage },
+    { title: 'paris', img: parisImage },
+    { title: 'amsterdam', img: amsterdamImage },
+  ]
+
+
+  const FeaturedBox = ({ feature, id }) => (
+    <div className={classes.featuredItem}>
+      <img className={classes.featuredImage} src={feature.img} alt="" />
+      <div className={classes.featuredTitles}>
+        <h1>{feature.title}</h1>
+        <h2>{data[id]} Properties</h2>
+      </div>
+    </div>
+  )
+
   return (
     <div className={classes.featured}>
       {loading ? "Loading" : (<>
-        <div className={classes.featuredItem}>
-          <img className={classes.featuredImage} src="https://cf.bstatic.com/xdata/images/hotel/square600/48746534.webp?k=5d55617da818d4ac5ff605f4edda73ac132d013abda679b82a18334f5c07453c&o=" alt="" />
-          <div className={classes.featuredTitles}>
-            <h1>Berlin</h1>
-            <h2>{data[0]} Properties</h2>
-          </div>
-        </div>
-        <div className={classes.featuredItem}>
-          <img className={classes.featuredImage} src="https://cf.bstatic.com/xdata/images/hotel/square600/48746534.webp?k=5d55617da818d4ac5ff605f4edda73ac132d013abda679b82a18334f5c07453c&o=" alt="" />
-          <div className={classes.featuredTitles}>
-            <h1>Tokyo</h1>
-            <h2>{data[1]} Properties</h2>
-          </div>
-        </div>
-        <div className={classes.featuredItem}>
-          <img className={classes.featuredImage} src="https://cf.bstatic.com/xdata/images/hotel/square600/48746534.webp?k=5d55617da818d4ac5ff605f4edda73ac132d013abda679b82a18334f5c07453c&o=" alt="" />
-          <div className={classes.featuredTitles}>
-            <h1>Paris</h1>
-            <h2>{data[2]} Properties</h2>
-          </div>
-        </div>
-        <div className={classes.featuredItem}>
-          <img className={classes.featuredImage} src="https://cf.bstatic.com/xdata/images/hotel/square600/48746534.webp?k=5d55617da818d4ac5ff605f4edda73ac132d013abda679b82a18334f5c07453c&o=" alt="" />
-          <div className={classes.featuredTitles}>
-            <h1>Amsterdam</h1>
-            <h2>{data[3]} Properties</h2>
-          </div>
-        </div>
+        {featuredArray.map((feature, index) => (<FeaturedBox feature={feature} id={index} />))}
       </>)}
+      {error && (<span>Something went wrong. Please try again later</span>)}
     </div>
   )
 }

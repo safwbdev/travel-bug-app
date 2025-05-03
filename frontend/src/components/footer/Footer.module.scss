@@ -15,9 +15,13 @@
         padding: 0;
 
         &Item {
-            color: #003580;
-            cursor: pointer;
             margin-bottom: 10px;
+
+            a {
+                color: #003580;
+                cursor: pointer;
+            }
+
         }
     }
 }
