@@ -40,3 +40,66 @@
         border-radius: 5px;
     }
 }
+
+.dateWindow {
+    position: absolute !important;
+    bottom: 14em;
+    z-index: 2;
+    border: 3px solid #febb02 !important;
+}
+
+.options {
+    background-color: #ffffff;
+    border: 3px solid #febb02;
+    border-radius: 5px;
+    color: gray;
+    position: relative;
+    bottom: -6em;
+    z-index: 2;
+
+
+    .option {
+        &Counter {
+            align-items: center;
+            display: flex;
+            color: #000000;
+            font-size: 12px;
+            gap: 10px;
+
+            &Button {
+                background-color: #0071c2;
+                border: 0;
+                color: #ffffff;
+                padding: .4em;
+                // height: 30px;
+                // width: 30px;
+
+                // &:disabled {
+                //     cursor: not-allowed;
+                // }
+            }
+        }
+
+        &Item {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px;
+            width: 200px;
+            flex-direction: column;
+
+            .optionCounter {
+                margin: 5px;
+                font-size: 1em;
+                display: flex;
+                justify-content: space-around;
+
+                select {
+                    font-size: 1em;
+                    padding: .2em;
+                }
+
+            }
+        }
+
+    }
+}
