@@ -60,7 +60,7 @@ const Header = ({ type }) => {
                         {!user && (<button className={classes.headerButton}>Sign In / Register</button>)}
                         <div className={classes.headerList}>
                             {tabs.map((tab, index) => (
-                                <div onClick={() => setCurrentForm(index)} className={`${classes.headerListItem} ${currentForm === index && classes.active}`}>
+                                <div key={index} onClick={() => setCurrentForm(index)} className={`${classes.headerListItem} ${currentForm === index && classes.active}`}>
                                     {tab.icon}
                                     <span>{tab.label}</span>
                                 </div>

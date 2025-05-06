@@ -33,31 +33,23 @@ const Footer = () => {
             { url: "/", label: "FAQ" },
             { url: "/", label: "Terms & Conditions" }
         ],
-    ]
+    ];
+
+    const FooterLinks = ({ columnNo }) => (
+        <ul className={classes.footerList}>
+            {footerLinks[columnNo].map((link) => (<li key={link.label} className={classes.footerListItem}>
+                <a href={link.url}>{link.label}</a>
+            </li>))}
+        </ul>
+    )
 
     return (
         <div className={classes.footer}>
             <div className={classes.footerLists}>
-                <ul className={classes.footerList}>
-                    {footerLinks[0].map((link) => (<li className={classes.footerListItem}>
-                        <a href={link.url}>{link.label}</a>
-                    </li>))}
-                </ul>
-                <ul className={classes.footerList}>
-                    {footerLinks[1].map((link) => (<li className={classes.footerListItem}>
-                        <a href={link.url}>{link.label}</a>
-                    </li>))}
-                </ul>
-                <ul className={classes.footerList}>
-                    {footerLinks[2].map((link) => (<li className={classes.footerListItem}>
-                        <a href={link.url}>{link.label}</a>
-                    </li>))}
-                </ul>
-                <ul className={classes.footerList}>
-                    {footerLinks[3].map((link) => (<li className={classes.footerListItem}>
-                        <a href={link.url}>{link.label}</a>
-                    </li>))}
-                </ul>
+                <FooterLinks columnNo={0} />
+                <FooterLinks columnNo={1} />
+                <FooterLinks columnNo={2} />
+                <FooterLinks columnNo={3} />
             </div>
             <div className={classes.footetText}>Copyright © 2025 SAFWBDEV</div>
         </div>

@@ -12,7 +12,7 @@ const FeaturedProperties = () => {
             {error ? (<span>Something went wrong. Please try again later</span>) : loading ? "Loading" : (
                 <>
                     {data.map((item, index) => (
-                        <Link to={`/hotels/${item._id}`}>
+                        <Link key={index} to={`/hotels/${item._id}`}>
                             <div className={classes.featuredPropertiesItem} key={index}>
                                 <img
                                     className={classes.featuredPropertiesImage}
