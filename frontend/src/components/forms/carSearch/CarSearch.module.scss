@@ -16,6 +16,7 @@
             align-items: center;
             display: flex;
             gap: 10px;
+            position: relative;
         }
 
         &Input {
@@ -43,9 +44,16 @@
 
 .dateWindow {
     position: absolute !important;
-    bottom: 14em;
+    top: 3em;
     z-index: 2;
     border: 3px solid #febb02 !important;
+}
+
+.optionsWindow {
+    position: absolute;
+    top: 2.5em;
+    z-index: 2;
+
 }
 
 .options {
@@ -53,9 +61,9 @@
     border: 3px solid #febb02;
     border-radius: 5px;
     color: gray;
-    position: relative;
-    bottom: -6em;
-    z-index: 2;
+    // position: relative;
+    // bottom: -6em;
+    // z-index: 2;
 
 
     .option {

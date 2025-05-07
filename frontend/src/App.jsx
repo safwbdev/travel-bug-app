@@ -12,9 +12,7 @@ function App() {
    * TODO
    * ====
    * - deploy backend
-   * - flight form
-   * - flight form
-   * - car rental form
+   * - attractions form
    * - taxi form
    * - search results for featured country
    * - search results for featured property type
@@ -22,8 +20,17 @@ function App() {
    * ====
    * FIXES
    * ====
-   * - image gallery on hotel page
+   * - select single date on date picker 
+   * - adjust image gallery on hotel page
    * - fix hotel page crashing when visting from home (set date & room default value if not selected from home form
+   * 
+   * 
+   * 
+   * ====
+   * DONE
+   * ====
+   * - car rental form
+   * - flight form
    * - fix datepicker/roompicker box posiTion on responsive
    */
 

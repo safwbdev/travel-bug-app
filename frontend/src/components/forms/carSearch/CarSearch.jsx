@@ -81,33 +81,36 @@ const CarSearch = () => {
                 <span onClick={() => setOpenTime(!openTime)} className={classes.headerSearchText}>
                     {`START TIME: ${startTime.h}:${startTime.m}  | END TIME: ${endTime.h}:${endTime.m}`}
                 </span>
-                {openTime && (<div className={classes.options}>
-                    <div className={classes.optionItem}>
-                        <div className={classes.optionCounter}>
-                            <span className={classes.optionText}>Start Date</span>
-                            <select name="startH" onChange={handleStartHour}>
-                                {hours.map((h) => (<option value={h} key={h} selected={h === startTime.h}>{h}</option>))}
-                            </select>
-                            <select name="startM" onChange={handleStartMinute}>
-                                {minutes.map((h) => (<option value={h} key={h} selected={h === startTime.m}>{h}</option>))}
-                            </select>
+                {openTime && (
+                    <div className={classes.optionsWindow}>
+                        <div className={classes.options}>
+                            <div className={classes.optionItem}>
+                                <div className={classes.optionCounter}>
+                                    <span className={classes.optionText}>Start Date</span>
+                                    <select name="startH" onChange={handleStartHour}>
+                                        {hours.map((h) => (<option value={h} key={h} selected={h === startTime.h}>{h}</option>))}
+                                    </select>
+                                    <select name="startM" onChange={handleStartMinute}>
+                                        {minutes.map((h) => (<option value={h} key={h} selected={h === startTime.m}>{h}</option>))}
+                                    </select>
+                                </div>
+                                <div className={classes.optionCounter}>
+                                    <span className={classes.optionText}>End Date</span>
+                                    <select name="endH" onChange={handleEndHour}>
+                                        {hours.map((h) => (<option value={h} key={h} selected={h === endTime.h}>{h}</option>))}
+                                    </select>
+                                    <select name="endM" onChange={handleEndMinute}>
+                                        {minutes.map((h) => (<option value={h} key={h} selected={h === endTime.m}>{h}</option>))}
+                                    </select>
+                                </div>
+                                <button
+                                    className={classes.optionCounterButton}
+                                    onClick={() => setOpenTime(!openTime)}>
+                                    Apply
+                                </button>
+                            </div>
                         </div>
-                        <div className={classes.optionCounter}>
-                            <span className={classes.optionText}>End Date</span>
-                            <select name="endH" onChange={handleEndHour}>
-                                {hours.map((h) => (<option value={h} key={h} selected={h === endTime.h}>{h}</option>))}
-                            </select>
-                            <select name="endM" onChange={handleEndMinute}>
-                                {minutes.map((h) => (<option value={h} key={h} selected={h === endTime.m}>{h}</option>))}
-                            </select>
-                        </div>
-                        <button
-                            className={classes.optionCounterButton}
-                            onClick={() => setOpenTime(!openTime)}>
-                            Apply
-                        </button>
-                    </div>
-                </div>)}
+                    </div>)}
             </div>
             <div className={classes.headerSearchItem}>
                 <FaLocationDot className={classes.headerIcon} />

@@ -1,5 +1,4 @@
-import React, { useContext } from 'react'
-import { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import classes from './HotelSearch.module.scss'
 import { useNavigate } from 'react-router-dom'
 import { SearchContext } from '../../../context/SearchContext'
@@ -77,47 +76,50 @@ const HotelSearch = () => {
             <div className={classes.headerSearchItem}>
                 <FaPerson className={classes.headerIcon} />
                 <span onClick={() => setOpenOptions(!openOptions)} className={classes.headerSearchText}>{`${options.adult} Adult | ${options.children} Children | ${options.room} Room`}</span>
-                {openOptions && (<div className={classes.options}>
-                    <div className={classes.optionItem}>
-                        <span className={classes.optionText}>Adult</span>
-                        <div className={classes.optionCounter}>
-                            <button
-                                className={classes.optionCounterButton}
-                                onClick={() => handleOption("adult", "-")}
-                                disabled={options.adult <= 1}>
-                                -
-                            </button>
-                            <span className={classes.optionCounterNumber}>{options.adult}</span>
-                            <button className={classes.optionCounterButton} onClick={() => handleOption("adult", "+")}>+</button>
+                {openOptions && (
+                    <div className={classes.optionsWindow}>
+                        <div className={classes.options}>
+                            <div className={classes.optionItem}>
+                                <span className={classes.optionText}>Adult</span>
+                                <div className={classes.optionCounter}>
+                                    <button
+                                        className={classes.optionCounterButton}
+                                        onClick={() => handleOption("adult", "-")}
+                                        disabled={options.adult <= 1}>
+                                        -
+                                    </button>
+                                    <span className={classes.optionCounterNumber}>{options.adult}</span>
+                                    <button className={classes.optionCounterButton} onClick={() => handleOption("adult", "+")}>+</button>
+                                </div>
+                            </div>
+                            <div className={classes.optionItem}>
+                                <span className={classes.optionText}>Children</span>
+                                <div className={classes.optionCounter}>
+                                    <button
+                                        className={classes.optionCounterButton}
+                                        onClick={() => handleOption("children", "-")}
+                                        disabled={options.children <= 1}>
+                                        -
+                                    </button>
+                                    <span className={classes.optionCounterNumber}>{options.children}</span>
+                                    <button className={classes.optionCounterButton} onClick={() => handleOption("children", "+")}>+</button>
+                                </div>
+                            </div>
+                            <div className={classes.optionItem}>
+                                <span className={classes.optionText}>Room</span>
+                                <div className={classes.optionCounter}>
+                                    <button
+                                        className={classes.optionCounterButton}
+                                        onClick={() => handleOption("room", "-")}
+                                        disabled={options.room <= 1}>
+                                        -
+                                    </button>
+                                    <span className={classes.optionCounterNumber}>{options.room}</span>
+                                    <button className={classes.optionCounterButton} onClick={() => handleOption("room", "+")}>+</button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div className={classes.optionItem}>
-                        <span className={classes.optionText}>Children</span>
-                        <div className={classes.optionCounter}>
-                            <button
-                                className={classes.optionCounterButton}
-                                onClick={() => handleOption("children", "-")}
-                                disabled={options.children <= 1}>
-                                -
-                            </button>
-                            <span className={classes.optionCounterNumber}>{options.children}</span>
-                            <button className={classes.optionCounterButton} onClick={() => handleOption("children", "+")}>+</button>
-                        </div>
-                    </div>
-                    <div className={classes.optionItem}>
-                        <span className={classes.optionText}>Room</span>
-                        <div className={classes.optionCounter}>
-                            <button
-                                className={classes.optionCounterButton}
-                                onClick={() => handleOption("room", "-")}
-                                disabled={options.room <= 1}>
-                                -
-                            </button>
-                            <span className={classes.optionCounterNumber}>{options.room}</span>
-                            <button className={classes.optionCounterButton} onClick={() => handleOption("room", "+")}>+</button>
-                        </div>
-                    </div>
-                </div>)}
+                    </div>)}
             </div>
             <div className={classes.headerSearchItem}>
                 <button className={classes.headerButton} onClick={handleSearch}>Search</button>
