@@ -23,19 +23,6 @@ const Hotel = () => {
     const [slideIndex, setSlideIndex] = useState(0);
     const [openSlide, setOpenSlide] = useState(false);
     const [openBook, setOpenBook] = useState(false);
-    const [initDates, setInitDates] = useState({
-        "startDate": "2025-05-12T16:00:00.000Z",
-        "endDate": "2025-05-14T16:00:00.000Z",
-        "key": "selection"
-    });
-
-    useEffect(() => {
-        if (!dates[0]) return;
-        setInitDates({
-            startDate: dates[0].endDate,
-            endDate: dates[0].startDate,
-        })
-    }, [dates, data])
 
 
     const handleOpen = (i) => {
@@ -61,7 +48,7 @@ const Hotel = () => {
         return diffDays
     }
 
-    const days = calculateDayDifference(initDates.endDate, initDates.startDate);
+    const days = calculateDayDifference(dates.endDate, dates.startDate);
 
     const handleBook = () => {
         if (user) {
@@ -95,7 +82,7 @@ const Hotel = () => {
                     <div className={classes.header}>
                         <div className={classes.gallery}>
                             <div className={classes.hotelMainImage}>
-                                {data?.photos && (<img src={data?.photos[0]} alt="" />)}
+                                {data?.photos && (<img src={data?.photos[0]} alt="" onClick={() => handleOpen(0)} />)}
                             </div>
                             <div className={classes.hotelImages}>
                                 {data.photos?.map((photo, index) => (
@@ -115,10 +102,7 @@ const Hotel = () => {
                                 <span className={classes.hotelDistance}>{data.distance}m from city centre</span>
                                 <h1>Perfect for a {days}-night stay!</h1>
                                 <span>Located in the heart of <span className={classes.city}>{data.city}</span>, this property has an excellent location score of 9.8!</span>
-                                <h2>
-                                    {/* <b>${days * data?.cheapestPrice * options.room}</b> ({days} nights) */}
-                                    <b>${days * data?.cheapestPrice * options.room}</b> ({days + 1}D{days}N)
-                                </h2>
+                                <h2><b>${days * data?.cheapestPrice * options.room}</b> ({days + 1}D{days}N)</h2>
                                 <button onClick={handleBook}>Reserve or Book Now!</button>
                             </div>
                         </div>

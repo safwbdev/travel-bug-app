@@ -2,11 +2,14 @@ import { createContext, useReducer } from "react"
 
 const INIT_STATE = {
     city: undefined,
-    dates: [],
+    dates: {
+        "startDate": "2025-05-12T16:00:00.000Z",
+        "endDate": "2025-05-14T16:00:00.000Z",
+    },
     options: {
-        adult: undefined,
-        children: undefined,
-        room: undefined,
+        adult: 1,
+        children: 0,
+        room: 1,
     }
 }
 
