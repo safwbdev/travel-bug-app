@@ -1,7 +1,6 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import classes from './Hotel.module.scss'
 import Navbar from '../../components/navbar/Navbar'
-import Header from '../../components/header/Header'
 import { FaCircleArrowLeft, FaCircleArrowRight, FaCircleXmark, FaLocationDot } from 'react-icons/fa6'
 import MailList from '../../components/mailList/MailList'
 import Footer from '../../components/footer/Footer'
@@ -10,14 +9,13 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { SearchContext } from '../../context/SearchContext'
 import { AuthContext } from '../../context/AuthContext'
 import Booking from '../../components/booking/Booking'
+import parse from 'html-react-parser';
 
 const Hotel = () => {
     const location = useLocation();
     const id = location.pathname.split("/")[2]
     const { data, loading, error } = useFetch(`/api/hotels/find/${id}`);
 
-    // TODO 
-    // Fix crash when visiting page from home page 
     const { dates, options } = useContext(SearchContext)
     const { user } = useContext(AuthContext)
     const navigate = useNavigate()
@@ -25,6 +23,20 @@ const Hotel = () => {
     const [slideIndex, setSlideIndex] = useState(0);
     const [openSlide, setOpenSlide] = useState(false);
     const [openBook, setOpenBook] = useState(false);
+    const [initDates, setInitDates] = useState({
+        "startDate": "2025-05-12T16:00:00.000Z",
+        "endDate": "2025-05-14T16:00:00.000Z",
+        "key": "selection"
+    });
+
+    useEffect(() => {
+        if (!dates[0]) return;
+        setInitDates({
+            startDate: dates[0].endDate,
+            endDate: dates[0].startDate,
+        })
+    }, [dates, data])
+
 
     const handleOpen = (i) => {
         setSlideIndex(i);
@@ -44,10 +56,12 @@ const Hotel = () => {
     const ms_per_day = 1000 * 60 * 60 * 24;
 
     const calculateDayDifference = (date1, date2) => {
-        const timeDiff = Math.abs(date2.getTime() - date1.getTime());
+        const timeDiff = Math.abs(new Date(date2).getTime() - new Date(date1).getTime());
         const diffDays = Math.ceil(timeDiff / ms_per_day);
         return diffDays
     }
+
+    const days = calculateDayDifference(initDates.endDate, initDates.startDate);
 
     const handleBook = () => {
         if (user) {
@@ -56,53 +70,68 @@ const Hotel = () => {
             navigate("/login")
         }
     }
-    const days = calculateDayDifference(dates[0].endDate, dates[0].startDate);
+
+    const ImageSlider = () => (
+        <div className={classes.slider}>
+            <FaCircleXmark className={classes.close} onClick={() => setOpenSlide(false)} />
+            <FaCircleArrowLeft className={classes.arrow} onClick={() => handleMove("l")} />
+            <div className={classes.sliderWrapper}>
+                {data?.photos && (<img src={data?.photos[slideIndex]} alt="" className={classes.sliderImage} />)}
+            </div>
+            <FaCircleArrowRight className={classes.arrow} onClick={() => handleMove("r")} />
+        </div>
+    )
+
 
     return (
         <div>
             <Navbar />
-            <Header type={"list"} />
             {loading ? "Loading" : (<div className={classes.hotelContainer}>
-                {openSlide && (
-                    <div className={classes.slider}>
-                        <FaCircleXmark className={classes.close} onClick={() => setOpenSlide(false)} />
-                        <FaCircleArrowLeft className={classes.arrow} onClick={() => handleMove("l")} />
-                        <div className={classes.sliderWrapper}>
-                            <img src={data?.photos[slideIndex].src} alt="" className={classes.sliderImage} />
-                        </div>
-                        <FaCircleArrowRight className={classes.arrow} onClick={() => handleMove("r")} />
-                    </div>)}
+                {openSlide && <ImageSlider />}
                 <div className={classes.hotelWrapper}>
-                    <button className={classes.bookNow} onClick={handleBook}>Reserve or Book Now!</button>
-                    <h1 className={classes.hotelTitle}>{data?.name}</h1>
-                    <div className={classes.hotelAddress}>
-                        <FaLocationDot />
-                        <span >{data.address}</span>
-                    </div>
-                    <span className={classes.hotelDistance}>{data.distance}m from city centre</span>
-                    <span className={classes.hotelPriceHighlight}>Book over ${data.cheapestPrice} at this property and get a free airport taxi</span>
-                    <div className={classes.hotelImages}>
-                        {data.photos?.map((photo, index) => (
-                            <div className={classes.hotelImageWrapper} key={index}>
-                                <img src={photo} className={classes.hotelImage} onClick={() => handleOpen(index)} />
+                    <span className={classes.hotelPriceHighlight}>
+                        Book over ${data.cheapestPrice} at this property and get a free airport taxi
+                    </span>
+                    <div className={classes.header}>
+                        <div className={classes.gallery}>
+                            <div className={classes.hotelMainImage}>
+                                {data?.photos && (<img src={data?.photos[0]} alt="" />)}
                             </div>
-                        ))}
+                            <div className={classes.hotelImages}>
+                                {data.photos?.map((photo, index) => (
+                                    <div className={classes.hotelImageWrapper} key={index}>
+                                        <img src={photo} className={classes.hotelImage} onClick={() => handleOpen(index)} />
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                        <div className={classes.hotelRightSection}>
+                            <h1 className={classes.hotelTitle}>{data?.name}</h1>
+                            <div className={classes.hotelDetailsPrice}>
+                                <div className={classes.hotelAddress}>
+                                    <FaLocationDot />
+                                    <span >{data.address}</span>
+                                </div>
+                                <span className={classes.hotelDistance}>{data.distance}m from city centre</span>
+                                <h1>Perfect for a {days}-night stay!</h1>
+                                <span>Located in the heart of <span className={classes.city}>{data.city}</span>, this property has an excellent location score of 9.8!</span>
+                                <h2>
+                                    {/* <b>${days * data?.cheapestPrice * options.room}</b> ({days} nights) */}
+                                    <b>${days * data?.cheapestPrice * options.room}</b> ({days + 1}D{days}N)
+                                </h2>
+                                <button onClick={handleBook}>Reserve or Book Now!</button>
+                            </div>
+                        </div>
                     </div>
                     <div className={classes.hotelDetails}>
                         <div className={classes.hotelDetailsTexts}>
-                            <div className={classes.hotelTitle}>Stay in the Heart of New York</div>
-                            <p className={classes.hotelDesc}>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe numquam facilis quam exercitationem quasi dolor voluptates corrupti debitis porro. Eveniet corporis ratione quibusdam aliquid obcaecati enim libero commodi odio ducimus.
-                            </p>
+                            <div className={classes.hotelTitle}>{data.title}</div>
+                            <p className={classes.hotelDesc}>{data.desc && parse(data.desc.toString())}</p>
                         </div>
-                        <div className={classes.hotelDetailsPrice}>
-                            <h1>Perfect for a {days}-night stay!</h1>
-                            <span>Located in the heart of New York, this property has an excellent location score of 9.8!</span>
-                            <h2>
-                                <b>${days * data?.cheapestPrice * options.room}</b> ({days} nights)
-                            </h2>
-                            <button onClick={handleBook}>Reserve or Book Now!</button>
-                        </div>
+                    </div>
+                    <div className={classes.hotelFooter}>
+                        <button className={classes.bookNow} onClick={handleBook}>Reserve or Book Now!</button>
+
                     </div>
                 </div>
                 <MailList />

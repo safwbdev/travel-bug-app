@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef, useMemo } from 'react'
 import classes from './EditHotel.module.scss'
 import useFetch from '../../hooks/useFetch'
 import { API_URL, IMG_UPLOAD_PATH, ROOM_PATH } from '../../routes'
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
-import {
-    hotelInputs, userInputs,
-    roomInputs
-} from '../../editFormSource'
+import JoditEditor from 'jodit-react';
+import { hotelInputs } from '../../editFormSource'
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import CloseIcon from '@mui/icons-material/Close';
@@ -42,10 +40,18 @@ const EditHotel = () => {
     const [selectedRooms, setSelectedRooms] = useState([]);
     const [isFeatured, setIsFeatured] = useState(false);
     const [defaultImg, setdefaultImg] = useState("https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg");
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+
+    const editor = useRef(null);
+    const [descContent, setDescContent] = useState('');
+
+    const config = useMemo(() => ({
+        readonly: false
+    }));
 
     useEffect(() => {
         setInfo(hotelData);
+        setDescContent(hotelData.desc)
         setIsFeatured(hotelData.featured);
     }, [hotelData]);
 
@@ -96,7 +102,8 @@ const EditHotel = () => {
 
     const handleClick = async () => {
         let updatedData = {};
-        if (file) {
+        if (files) {
+            console.log('with file');
             const list = await Promise.all(
                 Object.values(files).map(async (file) => {
                     console.log('adding');
@@ -113,6 +120,7 @@ const EditHotel = () => {
             try {
                 updatedData = {
                     ...info,
+                    desc: descContent,
                     rooms: selectedRooms,
                     photos: list,
                     featured: isFeatured
@@ -125,6 +133,7 @@ const EditHotel = () => {
         } else {
             updatedData = {
                 ...info,
+                desc: descContent,
                 rooms: selectedRooms,
                 featured: isFeatured
             };
@@ -145,19 +154,30 @@ const EditHotel = () => {
     }
 
 
-    const displayData = (array) => array.map((input) => (
-        <Grid2 size={{ xs: 12, sm: 6 }} key={input.id} >
-            <TextField
-                id={input.id}
-                label={input.label || ''}
-                variant="outlined"
-                placeholder={hotelData[input.label]}
-                value={info[input.id]}
-                onChange={handleChange}
-                fullWidth
-                type={input.type} />
-        </Grid2>
-    ));
+    const displayData = (array) => array.map((input) => {
+        return input.id === "desc" ? (<Grid2 size={{ xs: 12, sm: 6 }}>
+            <JoditEditor
+                ref={editor}
+                value={descContent}
+                config={config}
+                tabIndex={1} // tabIndex of textarea
+                onBlur={newContent => setDescContent(newContent)} // preferred to use only this option to update the content for performance reasons
+                onChange={newContent => { }}
+            />
+        </Grid2>) : (
+            <Grid2 size={{ xs: 12, sm: 6 }} key={input.id} >
+                <TextField
+                    id={input.id}
+                    label={input.label || ''}
+                    variant="outlined"
+                    placeholder={hotelData[input.label]}
+                    value={info[input.id]}
+                    onChange={handleChange}
+                    fullWidth
+                    type={input.type} />
+            </Grid2>
+        )
+    });
 
     const UploadImageButton = () => (<>
         <label htmlFor="file"
