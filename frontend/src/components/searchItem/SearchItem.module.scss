@@ -11,12 +11,13 @@
         width: 200px;
         height: 200px;
         object-fit: cover;
+        border-radius: 5px;
     }
 
     &Desc {
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: 8px;
         flex: 2;
     }
 
@@ -63,6 +64,14 @@
 
     &Features {
         font-size: 12px;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+
+        p {
+            margin: 0;
+        }
     }
 
     &Rating {

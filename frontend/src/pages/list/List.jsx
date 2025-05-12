@@ -23,8 +23,6 @@ const List = () => {
     const handleClick = () => {
         reFetch()
     }
-    console.log('dates: ', dates);
-
 
     return (
         <div>
