@@ -2,6 +2,7 @@ import { createContext, useReducer } from "react"
 
 const INIT_STATE = {
     city: undefined,
+    type: ["hotel"],
     dates: {
         "startDate": "2025-05-12T16:00:00.000Z",
         "endDate": "2025-05-14T16:00:00.000Z",
@@ -10,6 +11,10 @@ const INIT_STATE = {
         adult: 1,
         children: 0,
         room: 1,
+    },
+    price: {
+        min: 0,
+        max: 999
     }
 }
 

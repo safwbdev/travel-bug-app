@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Navbar from '../../components/navbar/Navbar'
 import classes from './List.module.scss'
 import { useLocation } from 'react-router-dom'
@@ -9,7 +9,7 @@ import useFetch from '../../hooks/useFetch'
 import { SearchContext } from '../../context/SearchContext'
 
 const List = () => {
-    const { dates, city, options } = useContext(SearchContext)
+    const { dates, city, options, type } = useContext(SearchContext)
     const { state } = useLocation();
     const [destination, setDestination] = useState(state.destination || city)
     const [openDate, setOpenDate] = useState(false)
@@ -17,12 +17,35 @@ const List = () => {
     const [searchOptions, setSearchOptions] = useState(state.options || options)
     const [min, setMin] = useState(undefined)
     const [max, setMax] = useState(undefined)
+    const [types, setTypes] = useState(state.type || type)
+
+    const accomodation = [
+        "hotel",
+        "apartment",
+        "resort",
+        "villa",
+        "cabin",
+    ]
+
+    console.log(types);
+
 
     const { data, loading, error, reFetch } = useFetch(`/api/hotels?city=${destination}&min=${min || 0}&max=${max || 999}`);
 
     const handleClick = () => {
         reFetch()
     }
+
+    const handleTypes = (e) => {
+        if (types.includes(e.target.value)) {
+            setTypes(types.filter(tp => tp !== e.target.value))
+
+        } else {
+            setTypes(old => [...old, e.target.value])
+        }
+    }
+
+
 
     return (
         <div>
@@ -90,6 +113,23 @@ const List = () => {
                                             className={classes.listOptionInput}
                                             placeholder={searchOptions.room} />
                                     </div>
+                                    {accomodation.map((acco, index) => (
+                                        <div
+                                            className={classes.listOptionItem}
+                                            key={index}
+                                        >
+                                            <label htmlFor="checkbox">{acco}</label>
+                                            <input
+                                                type="checkbox"
+                                                id="checkbox"
+                                                name="checkbox"
+                                                value={acco}
+                                                checked={types.includes(acco)}
+                                                onChange={handleTypes}
+                                            />
+                                        </div>
+
+                                    ))}
                                 </div>
                             </div>
                             <button onClick={handleClick}>Search</button>
