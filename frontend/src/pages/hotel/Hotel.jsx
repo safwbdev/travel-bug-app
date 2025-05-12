@@ -16,6 +16,7 @@ const Hotel = () => {
     const id = location.pathname.split("/")[2]
     const { data, loading, error } = useFetch(`/api/hotels/find/${id}`);
 
+    // FIXME: dtaes when visiting from list or home
     const { dates, options } = useContext(SearchContext)
     const { user } = useContext(AuthContext)
     const navigate = useNavigate()
@@ -48,7 +49,7 @@ const Hotel = () => {
         return diffDays
     }
 
-    const days = calculateDayDifference(dates[0].endDate, dates[0].startDate);
+    const days = calculateDayDifference(dates.endDate, dates.startDate);
 
     const handleBook = () => {
         if (user) {
