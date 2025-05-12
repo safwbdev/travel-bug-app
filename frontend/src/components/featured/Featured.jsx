@@ -17,7 +17,6 @@ const Featured = () => {
     { title: 'paris', img: parisImage },
     { title: 'amsterdam', img: amsterdamImage },
   ]
-  console.log(dates);
 
   const linkFeature = (destination) => {
     dispatch({
