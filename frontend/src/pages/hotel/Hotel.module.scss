@@ -17,12 +17,22 @@
     }
 
     &ImageWrapper {
-        // width: 33%;
         width: 25%;
+        height: 100px;
+        overflow: hidden;
+        margin-top: 2px;
+
+        &:not(:first-child) {
+            img {
+                margin: 2px;
+            }
+        }
+
+
     }
 
+
     &Image {
-        object-fit: cover;
         width: 100%;
     }
 
@@ -117,15 +127,10 @@
     cursor: pointer;
     font-weight: bold;
     padding: 10px 20px;
-    // position: absolute;
-    // right: 0;
-    // bottom: 10px;
-
 }
 
 .slider {
     position: absolute;
-    // position: sticky;
     top: 0;
     left: 0;
     width: 100vw;
@@ -168,7 +173,6 @@
 
 
 .header {
-    // border: 1px solid red;
     display: flex;
     gap: 20px;
     flex-direction: row;
@@ -178,12 +182,16 @@
 
 .gallery {
     flex: 2;
-    // border: 1px solid blue;
 }
 
 .hotelMainImage {
+    width: 100%;
+    height: 450px;
+    overflow: hidden;
+
     img {
-        width: 100%;
+        width: 110%;
+        height: auto;
     }
 }
 
