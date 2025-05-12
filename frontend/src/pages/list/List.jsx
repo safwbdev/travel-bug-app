@@ -1,20 +1,20 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Navbar from '../../components/navbar/Navbar'
-// import Header from '../../components/header/Header'
 import classes from './List.module.scss'
 import { useLocation } from 'react-router-dom'
 import { format } from 'date-fns'
 import { DateRange } from 'react-date-range'
 import SearchItem from '../../components/searchItem/SearchItem'
 import useFetch from '../../hooks/useFetch'
+import { SearchContext } from '../../context/SearchContext'
 
 const List = () => {
-
+    const { dates, city, options } = useContext(SearchContext)
     const { state } = useLocation();
-    const [destination, setDestination] = useState(state.destination)
+    const [destination, setDestination] = useState(state.destination || city)
     const [openDate, setOpenDate] = useState(false)
-    const [dates, setDates] = useState(state.dates)
-    const [options, setOptions] = useState(state.options)
+    const [calDates, setCalDates] = useState(state.dates[0] || dates)
+    const [searchOptions, setSearchOptions] = useState(state.options || options)
     const [min, setMin] = useState(undefined)
     const [max, setMax] = useState(undefined)
 
@@ -23,11 +23,12 @@ const List = () => {
     const handleClick = () => {
         reFetch()
     }
+    console.log('dates: ', dates);
+
 
     return (
         <div>
             <Navbar />
-            {/* <Header type={'list'} /> */}
             <div className={classes.list}>
                 <div className={classes.listContainer}>
                     <div className={classes.listWrapper}>
@@ -39,9 +40,9 @@ const List = () => {
                             </div>
                             <div className={classes.listItem}>
                                 <label>Check-in Date</label>
-                                <span onClick={() => setOpenDate(!openDate)}>{`${format(dates[0].startDate, "MM/dd/yyyy")} to ${format(dates[0].endDate, "MM/dd/yyyy")}`}</span>
+                                <span onClick={() => setOpenDate(!openDate)}>{`${format(calDates.startDate, "MM/dd/yyyy")} to ${format(calDates.endDate, "MM/dd/yyyy")}`}</span>
                                 {openDate && (<DateRange
-                                    onChange={item => setDates([item.selection])}
+                                    onChange={item => setCalDates([item.selection])}
                                     ranges={dates}
                                     minDate={new Date()}
                                 />)}
@@ -69,7 +70,7 @@ const List = () => {
                                             type="number"
                                             min={1}
                                             className={classes.listOptionInput}
-                                            placeholder={options.adult} />
+                                            placeholder={searchOptions.adult} />
                                     </div>
                                     <div className={classes.listOptionItem}>
                                         <span className={classes.listOptionText}>
@@ -79,7 +80,7 @@ const List = () => {
                                             type="number"
                                             min={0}
                                             className={classes.listOptionInput}
-                                            placeholder={options.children} />
+                                            placeholder={searchOptions.children} />
                                     </div>
                                     <div className={classes.listOptionItem}>
                                         <span className={classes.listOptionText}>
@@ -89,7 +90,7 @@ const List = () => {
                                             type="number"
                                             min={1}
                                             className={classes.listOptionInput}
-                                            placeholder={options.room} />
+                                            placeholder={searchOptions.room} />
                                     </div>
                                 </div>
                             </div>

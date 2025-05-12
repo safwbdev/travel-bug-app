@@ -14,7 +14,6 @@ function App() {
    * - deploy backend
    * - attractions form
    * - taxi form
-   * - search results for featured country
    * - search results for featured property type
    * 
    * ====
@@ -30,6 +29,7 @@ function App() {
    * - car rental form
    * - flight form
    * - adjust image gallery on hotel page
+   * - search results for featured country
    * - fix datepicker/roompicker box posiTion on responsive
    * - fix hotel page crashing when visting from home (set date & room default value if not selected from home form
    */
