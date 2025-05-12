@@ -5,6 +5,7 @@ import {
     createHotel,
     deleteHotel,
     getAllHotels,
+    getFeaturedHotels,
     getHotel,
     getHotelRooms,
     updateHotel
@@ -30,6 +31,7 @@ HotelsRouter.get('/find/:id', getHotel);
 
 // get all
 HotelsRouter.get('/', getAllHotels);
+HotelsRouter.get('/featured', getFeaturedHotels);
 HotelsRouter.get('/countByCity', countByCity);
 HotelsRouter.get('/countByType', countByType);
 HotelsRouter.get('/room/:id', getHotelRooms);

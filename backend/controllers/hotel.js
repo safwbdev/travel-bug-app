@@ -79,6 +79,20 @@ export const countByType = async (req, res, next) => {
         next(error)
     }
 }
+
+export const getFeaturedHotels = async (req, res, next) => {
+    try {
+        const { limit, ...others } = req.query;
+        const hotels = await Hotel.find({
+            ...others,
+            featured: true,
+        }).limit(limit);
+        res.status(200).json(hotels);
+
+    } catch (error) {
+        next(error)
+    }
+}
 export const getHotelRooms = async (req, res, next) => {
     try {
         const hotel = await Hotel.findById(req.params.id);

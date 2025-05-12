@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const FeaturedProperties = () => {
 
-    const { data, loading, error } = useFetch("/api/hotels?featured=true&limit=4");
+    const { data, loading, error } = useFetch("/api/hotels/featured");
 
     return (
         <div className={classes.featuredProperties}>

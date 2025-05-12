@@ -110,12 +110,11 @@ const Hotel = () => {
                     <div className={classes.hotelDetails}>
                         <div className={classes.hotelDetailsTexts}>
                             <div className={classes.hotelTitle}>{data.title}</div>
-                            <p className={classes.hotelDesc}>{data.desc && parse(data.desc.toString())}</p>
+                            <div className={classes.hotelDesc}>{data.desc && parse(data.desc.toString())}</div>
                         </div>
                     </div>
                     <div className={classes.hotelFooter}>
                         <button className={classes.bookNow} onClick={handleBook}>Reserve or Book Now!</button>
-
                     </div>
                 </div>
                 <MailList />

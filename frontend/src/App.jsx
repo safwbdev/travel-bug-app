@@ -22,7 +22,6 @@ function App() {
    * ====
    * - select single date on date picker 
    * - adjust image gallery on hotel page
-   * - fix hotel page crashing when visting from home (set date & room default value if not selected from home form
    * 
    * 
    * 
@@ -32,6 +31,7 @@ function App() {
    * - car rental form
    * - flight form
    * - fix datepicker/roompicker box posiTion on responsive
+   * - fix hotel page crashing when visting from home (set date & room default value if not selected from home form
    */
 
   return (

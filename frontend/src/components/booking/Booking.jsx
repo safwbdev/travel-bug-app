@@ -28,7 +28,7 @@ const Booking = ({ setOpen, hotelId }) => {
         return dates;
     };
 
-    const alldates = getDatesInRange(dates[0].startDate, dates[0].endDate);
+    const alldates = getDatesInRange(dates.startDate, dates.endDate);
 
     const navigate = useNavigate();
 
