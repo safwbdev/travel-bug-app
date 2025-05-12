@@ -49,7 +49,7 @@ const Hotel = () => {
         return diffDays
     }
 
-    const days = calculateDayDifference(dates.endDate, dates.startDate);
+    const days = calculateDayDifference(dates.endDate || dates[0].endDate, dates.startDate || dates[0].startDate);
 
     const handleBook = () => {
         if (user) {

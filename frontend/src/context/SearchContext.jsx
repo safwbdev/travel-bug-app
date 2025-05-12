@@ -20,6 +20,9 @@ const SearchReducer = (state, action) => {
         case "NEW_SEARCH":
             return action.payload
             break;
+        case "LINK":
+            return action.payload
+            break;
         case "RESET_SEARCH":
             return INIT_STATE
             break;
