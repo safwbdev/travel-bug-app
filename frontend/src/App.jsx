@@ -13,12 +13,15 @@ function App() {
    * ====
    * - deploy backend
    * - attractions form
-   * - taxi form
+   * - data for flights
+   * - data for Car rentals
+   * - data for attractions
+   * - data for taxis
    * 
    * ====
    * FIXES
    * ====
-   * - select single date on date picker 
+   * - select single date on date picker (flights & taxis)
    * 
    * 
    * 
@@ -26,6 +29,7 @@ function App() {
    * DONE
    * ====
    * - car rental form
+   * - taxi form
    * - flight form
    * - search results for featured property type
    * - adjust image gallery on hotel page

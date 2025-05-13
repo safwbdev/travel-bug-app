@@ -121,7 +121,7 @@ const CarSearch = () => {
                     onChange={(e) => setLocation(e.target.value)} />
             </div>
             <div className={classes.headerSearchItem}>
-                <button className={classes.headerButton} onClick={handleSearch}>Search</button>
+                <button className={classes.headerButton} onClick={handleSearch} disabled>Search</button>
             </div>
         </div>
     )

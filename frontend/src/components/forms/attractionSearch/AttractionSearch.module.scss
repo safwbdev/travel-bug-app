@@ -15,11 +15,14 @@
         &Item {
             align-items: center;
             display: flex;
+            justify-content: center;
             gap: 10px;
+            flex: 1;
         }
 
         &Input {
             border: 0;
+            width: 83%;
             outline: none;
         }
 
