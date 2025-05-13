@@ -10,6 +10,7 @@ import {
     AttractionSearch,
     TaxiSearch,
 } from '../forms';
+import { Link } from 'react-router-dom';
 
 
 const Header = ({ type }) => {
@@ -52,12 +53,17 @@ const Header = ({ type }) => {
                 {type !== 'list' && (
                     <>
                         <h1 className={classes.headerTitle}>
-                            Getting you around the world at the best rates!
+                            Welcome to Your Gateway to Adventure
                         </h1>
                         <p className={classes.headerDesc}>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, tempore quod? Dolore, excepturi voluptate? Exercitationem dicta unde deserunt, ipsam facilis minima sequi molestias illum in. Exercitationem placeat nam temporibus quibusdam.
-                        </p>
-                        {!user && (<button className={classes.headerButton}>Sign In / Register</button>)}
+                            Ready to explore the world? Whether you're planning a relaxing beach getaway, an exciting city escape, or a once-in-a-lifetime adventure, we've got you covered. Our easy-to-use platform helps you find the best deals on flights, hotels, tours, and more — all in one place.
+                            Book with confidence, travel with ease. Your journey starts here.</p>
+                        {!user && (
+                            <div className={classes.headerButtonRow}>
+                                <Link to={'/login'}>
+                                    <button className={classes.headerButton}>Sign In / Register & Book Now</button>
+                                </Link>
+                            </div>)}
                         <div className={classes.headerList}>
                             {tabs.map((tab, index) => (
                                 <div key={index} onClick={() => setCurrentForm(index)} className={`${classes.headerListItem} ${currentForm === index && classes.active}`}>

@@ -46,6 +46,11 @@
         margin: 10px 0;
     }
 
+    &ButtonRow {
+        display: flex;
+        padding: 1em 0;
+    }
+
     &Button {
         background-color: #0071c2;
         border: none;
@@ -53,6 +58,8 @@
         cursor: pointer;
         font-weight: 500;
         padding: 10px;
+        border-radius: 5px;
+        width: fit-content;
     }
 
     &Search {

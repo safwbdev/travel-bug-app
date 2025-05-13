@@ -26,14 +26,18 @@ function App() {
    * ====
    * DONE
    * ====
-   * - car rental form
-   * - attractions form
+   * - Sign Out 
    * - taxi form
    * - flight form
    * - deploy backend
-   * - search results for featured property type
+   * - car rental form
+   * - attractions form
+   * - Register/Login Links
+   * - Mail list margin/padding bug
    * - adjust image gallery on hotel page
    * - search results for featured country
+   * - Adjust header text & sign in button
+   * - search results for featured property type
    * - fix datepicker/roompicker box posiTion on responsive
    * - fix hotel page crashing when visting from home (set date & room default value if not selected from home form
    */

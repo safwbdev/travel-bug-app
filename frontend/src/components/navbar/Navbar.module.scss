@@ -26,7 +26,9 @@
 .navButton {
     border: none;
     cursor: pointer;
-    color: #ffd400;
+    border-radius: 5px;
+    background: #000000;
+    color: #ffffff;
     margin-left: 20px;
     padding: 5px 10px;
 }
@@ -37,4 +39,19 @@
     align-items: center;
     gap: 5px;
     text-transform: capitalize;
+    cursor: pointer;
+}
+
+.userWindow {
+    background: #febb02;
+    border: 1px solid #000000;
+    position: absolute;
+    right: 10%;
+    top: 3.5%;
+    z-index: 2;
+    padding: .4em;
+
+    span {
+        cursor: pointer;
+    }
 }
