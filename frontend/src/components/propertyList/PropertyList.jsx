@@ -25,15 +25,15 @@ const PropertyList = () => {
     const navigate = useNavigate();
 
     const { dispatch, dates, options } = useContext(SearchContext)
-    const destination = 'berlin';
-
 
     const linkTypes = (type) => {
         dispatch({
             type: "NEW_SEARCH",
-            payload: { destination, dates, options, type }
+            payload: { dates, options, type }
         })
-        navigate("/hotels", { state: { destination, dates, options, type } })
+        navigate("/hotels", {
+            state: { dates, options, type }
+        })
     }
 
     return (

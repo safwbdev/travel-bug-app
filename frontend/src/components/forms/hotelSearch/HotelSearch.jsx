@@ -24,6 +24,7 @@ const HotelSearch = () => {
             key: 'selection'
         }
     ]);
+    const type = ["hotel", "apartment", "resort", "villa", "cabin"]
 
     const handleOption = (name, operation) => {
         setOptions(prev => {
@@ -41,9 +42,9 @@ const HotelSearch = () => {
     const handleSearch = () => {
         dispatch({
             type: "NEW_SEARCH",
-            payload: { destination, dates, options }
+            payload: { destination, dates, options, type }
         })
-        navigate("/hotels", { state: { destination, dates, options } })
+        navigate("/hotels", { state: { destination, dates, options, type } })
     }
 
     return (

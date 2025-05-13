@@ -18,13 +18,15 @@ const Featured = () => {
     { title: 'amsterdam', img: amsterdamImage },
   ]
 
+  const type = ["hotel", "apartment", "resort", "villa", "cabin"]
+
   const linkFeature = (destination) => {
     dispatch({
       type: "NEW_SEARCH",
-      payload: { destination, dates, options }
+      payload: { destination, dates, options, type }
     })
 
-    navigate("/hotels", { state: { destination, dates, options } })
+    navigate("/hotels", { state: { destination, dates, options, type } })
   }
 
 

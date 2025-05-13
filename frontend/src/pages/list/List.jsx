@@ -27,10 +27,7 @@ const List = () => {
         "cabin",
     ]
 
-    console.log(types);
-
-
-    const { data, loading, error, reFetch } = useFetch(`/api/hotels?city=${destination}&min=${min || 0}&max=${max || 999}`);
+    const { data, loading, error, reFetch } = useFetch(`/api/hotels?min=${min || 0}&max=${max || 999}${destination !== undefined ? `&city=${destination}` : ''}&type=${types.join(",")}`);
 
     const handleClick = () => {
         reFetch()
@@ -44,8 +41,6 @@ const List = () => {
             setTypes(old => [...old, e.target.value])
         }
     }
-
-
 
     return (
         <div>
@@ -61,7 +56,7 @@ const List = () => {
                             </div>
                             <div className={classes.listItem}>
                                 <label>Check-in Date</label>
-                                <span onClick={() => setOpenDate(!openDate)}>{`${format(calDates.startDate, "MM/dd/yyyy")} to ${format(calDates.endDate, "MM/dd/yyyy")}`}</span>
+                                <span onClick={() => setOpenDate(!openDate)}>{`${format(calDates.startDate, "MM/dd/yyyy")} to ${format(calDates.endDate, "MM/dd/yyyy")} `}</span>
                                 {openDate && (<DateRange
                                     onChange={item => setCalDates([item.selection])}
                                     ranges={dates}
@@ -113,6 +108,7 @@ const List = () => {
                                             className={classes.listOptionInput}
                                             placeholder={searchOptions.room} />
                                     </div>
+                                    <br />
                                     {accomodation.map((acco, index) => (
                                         <div
                                             className={classes.listOptionItem}
@@ -124,7 +120,7 @@ const List = () => {
                                                 id="checkbox"
                                                 name="checkbox"
                                                 value={acco}
-                                                checked={types.includes(acco)}
+                                                checked={types && types.includes(acco)}
                                                 onChange={handleTypes}
                                             />
                                         </div>

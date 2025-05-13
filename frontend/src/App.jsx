@@ -14,7 +14,6 @@ function App() {
    * - deploy backend
    * - attractions form
    * - taxi form
-   * - search results for featured property type
    * 
    * ====
    * FIXES
@@ -28,6 +27,7 @@ function App() {
    * ====
    * - car rental form
    * - flight form
+   * - search results for featured property type
    * - adjust image gallery on hotel page
    * - search results for featured country
    * - fix datepicker/roompicker box posiTion on responsive

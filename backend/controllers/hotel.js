@@ -36,19 +36,48 @@ export const getHotel = async (req, res, next) => {
         next(error);
     }
 }
+// export const getAllHotels = async (req, res, next) => {
+//     try {
+//         const { limit, featured, min, max, type, ...others } = req.query;
+//         // Check if founf in array
+//         const types = type.split(",");
+//         const hotels = await Promise.all(types.map((type) => {
+//             return Hotel.find({
+//                 ...others,
+//                 type: type,
+//                 cheapestPrice: { $gt: min | 1, $lt: max || 999 }
+//             }).limit(limit);
+//         }))
+
+//         res.status(200).json(hotels);
+
+//     } catch (error) {
+//         next(error)
+//     }
+// }
+
 export const getAllHotels = async (req, res, next) => {
     try {
-        const { limit, featured, min, max, ...others } = req.query;
+        const { limit, featured, min, max, type, ...others } = req.query;
+        const types = type.split(",");
+
         const hotels = await Hotel.find({
             ...others,
             cheapestPrice: { $gt: min | 1, $lt: max || 999 }
         }).limit(limit);
-        res.status(200).json(hotels);
 
+        let updatedArray = [];
+
+        hotels.map(htl => {
+            if (types.includes(htl.type)) updatedArray.push(htl)
+        })
+        res.status(200).json(updatedArray);
     } catch (error) {
         next(error)
     }
 }
+
+
 export const countByCity = async (req, res, next) => {
     const cities = req.query.cities.split(",");
     try {
