@@ -3,10 +3,11 @@ import classes from './FeaturedProperties.module.scss'
 import useFetch from '../../hooks/useFetch';
 import { Link, useNavigate } from 'react-router-dom';
 import { SearchContext } from '../../context/SearchContext';
+import { API_URL } from '../../routes';
 
 const FeaturedProperties = () => {
 
-    const { data, loading, error } = useFetch("/api/hotels/featured");
+    const { data, loading, error } = useFetch(`${API_URL}/api/hotels/featured`);
     const navigate = useNavigate()
     const { dispatch, dates, options } = useContext(SearchContext)
 

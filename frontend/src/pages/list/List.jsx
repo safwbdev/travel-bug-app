@@ -7,6 +7,7 @@ import { DateRange } from 'react-date-range'
 import SearchItem from '../../components/searchItem/SearchItem'
 import useFetch from '../../hooks/useFetch'
 import { SearchContext } from '../../context/SearchContext'
+import { API_URL } from '../../routes'
 
 const List = () => {
     const { dates, city, options, type } = useContext(SearchContext)
@@ -27,7 +28,7 @@ const List = () => {
         "cabin",
     ]
 
-    const { data, loading, error, reFetch } = useFetch(`/api/hotels?min=${min || 0}&max=${max || 999}${destination !== undefined ? `&city=${destination}` : ''}&type=${types.join(",")}`);
+    const { data, loading, error, reFetch } = useFetch(`${API_URL}/api/hotels?min=${min || 0}&max=${max || 999}${destination !== undefined ? `&city=${destination}` : ''}&type=${types.join(",")}`);
 
     const handleClick = () => {
         reFetch()

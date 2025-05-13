@@ -11,8 +11,6 @@ function App() {
    * ====
    * TODO
    * ====
-   * - deploy backend
-   * - attractions form
    * - data for flights
    * - data for Car rentals
    * - data for attractions
@@ -29,8 +27,10 @@ function App() {
    * DONE
    * ====
    * - car rental form
+   * - attractions form
    * - taxi form
    * - flight form
+   * - deploy backend
    * - search results for featured property type
    * - adjust image gallery on hotel page
    * - search results for featured country

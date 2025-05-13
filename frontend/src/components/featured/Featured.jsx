@@ -4,10 +4,11 @@ import useFetch from '../../hooks/useFetch'
 import { amsterdamImage, berlinImage, parisImage, tokyoImage } from '../../assets';
 import { useNavigate } from 'react-router-dom';
 import { SearchContext } from '../../context/SearchContext';
+import { API_URL } from '../../routes';
 
 const Featured = () => {
 
-  const { data, loading, error } = useFetch("/api/hotels/countByCity?cities=berlin,tokyo,paris,amsterdam");
+  const { data, loading, error } = useFetch(`${API_URL}/api/hotels/countByCity?cities=berlin,tokyo,paris,amsterdam`);
   const navigate = useNavigate()
   const { dispatch, dates, options } = useContext(SearchContext)
 

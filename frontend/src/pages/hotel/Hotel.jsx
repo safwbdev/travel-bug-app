@@ -10,11 +10,12 @@ import { SearchContext } from '../../context/SearchContext'
 import { AuthContext } from '../../context/AuthContext'
 import Booking from '../../components/booking/Booking'
 import parse from 'html-react-parser';
+import { API_URL } from '../../routes'
 
 const Hotel = () => {
     const location = useLocation();
     const id = location.pathname.split("/")[2]
-    const { data, loading, error } = useFetch(`/api/hotels/find/${id}`);
+    const { data, loading, error } = useFetch(`${API_URL}/api/hotels/find/${id}`);
 
     // FIXME: dtaes when visiting from list or home
     const { dates, options } = useContext(SearchContext)
