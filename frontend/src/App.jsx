@@ -5,6 +5,7 @@ import List from './pages/list/List';
 import Hotel from './pages/hotel/Hotel';
 import Login from './pages/login/Login';
 import AttractionList from './pages/attractions/AttractionList';
+import AttractionPage from './pages/attractions/AttractionPage';
 
 function App() {
 
@@ -15,7 +16,6 @@ function App() {
    * - data for flights
    * - data for Car rentals
    * - data for taxis
-   * - attractions page
    * ====
    * FIXES
    * ====
@@ -31,6 +31,7 @@ function App() {
    * - flight form
    * - deploy backend
    * - car rental form
+   * - attractions page
    * - attractions form
    * - Register/Login Links
    * - data for attractions
@@ -51,6 +52,7 @@ function App() {
         <Route path="/hotels/:id" element={<Hotel />} />
         <Route path="/login" element={<Login />} />
         <Route path="/attractions" element={<AttractionList />} />
+        <Route path="/attractions/:id" element={<AttractionPage />} />
       </Routes>
     </BrowserRouter>
   )
