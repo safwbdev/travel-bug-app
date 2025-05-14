@@ -15,7 +15,7 @@ import HotelIcon from '@mui/icons-material/Hotel';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
 import LogoutIcon from '@mui/icons-material/Logout';
 import SettingsIcon from '@mui/icons-material/Settings';
-import { HOTELS, ROOMS, ROOT, USERS } from '../../routes';
+import { ATTRACTIONS, HOTELS, ROOMS, ROOT, USERS } from '../../routes';
 import { AuthContext } from '../../context/AuthContext';
 import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
@@ -40,7 +40,8 @@ const Sidebar = () => {
         { label: 'Dashboard', url: ROOT, icon: (<DashboardIcon />) },
         { label: 'Users', url: USERS, icon: (<GroupIcon />) },
         { label: 'Hotels', url: HOTELS, icon: (<LocationCityIcon />) },
-        { label: 'Rooms', url: ROOMS, icon: (<HotelIcon />) }
+        { label: 'Rooms', url: ROOMS, icon: (<HotelIcon />) },
+        { label: 'Attractions', url: ATTRACTIONS, icon: (<HotelIcon />) },
     ];
 
     return (

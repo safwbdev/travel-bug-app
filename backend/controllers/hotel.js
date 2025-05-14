@@ -36,26 +36,6 @@ export const getHotel = async (req, res, next) => {
         next(error);
     }
 }
-// export const getAllHotels = async (req, res, next) => {
-//     try {
-//         const { limit, featured, min, max, type, ...others } = req.query;
-//         // Check if founf in array
-//         const types = type.split(",");
-//         const hotels = await Promise.all(types.map((type) => {
-//             return Hotel.find({
-//                 ...others,
-//                 type: type,
-//                 cheapestPrice: { $gt: min | 1, $lt: max || 999 }
-//             }).limit(limit);
-//         }))
-
-//         res.status(200).json(hotels);
-
-//     } catch (error) {
-//         next(error)
-//     }
-// }
-
 export const getAllHotels = async (req, res, next) => {
     try {
         const { limit, featured, min, max, type, ...others } = req.query;

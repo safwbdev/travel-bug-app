@@ -14,10 +14,11 @@ import {
 import { useContext } from 'react';
 import { DarkModeContext } from './context/darkModeContext';
 import { AuthContext } from './context/AuthContext';
-import { hotelColumns, roomColumns, userColumns } from './components/datatable/datatablesource';
-import { HOTELS, LOGIN, NEW, ROOMS, ROOT, BY_ID, USERS, EDIT } from './routes.js';
+import { hotelColumns, roomColumns, userColumns, attractionsColumns } from './components/datatable/datatablesource';
+import { HOTELS, LOGIN, NEW, ROOMS, ROOT, BY_ID, USERS, EDIT, ATTRACTIONS } from './routes.js';
 import { ToastContainer } from 'react-toastify';
 import Main from './layout/Main.jsx';
+import NewAttraction from './pages/newAttraction/NewAttraction.jsx';
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -86,6 +87,28 @@ function App() {
               <Route path={NEW} element={
                 <ProtectedRoute>
                   <NewHotel />
+                </ProtectedRoute>
+              } />
+              <Route path={`${EDIT}/${BY_ID}`} element={
+                <ProtectedRoute>
+                  <EditHotel />
+                </ProtectedRoute>
+              } />
+            </Route>
+            <Route path={ATTRACTIONS}>
+              <Route index element={
+                <ProtectedRoute>
+                  <List columns={attractionsColumns} />
+                </ProtectedRoute>}>
+              </Route>
+              <Route path={BY_ID} element={
+                <ProtectedRoute>
+                  <Single />
+                </ProtectedRoute>
+              } />
+              <Route path={NEW} element={
+                <ProtectedRoute>
+                  <NewAttraction />
                 </ProtectedRoute>
               } />
               <Route path={`${EDIT}/${BY_ID}`} element={

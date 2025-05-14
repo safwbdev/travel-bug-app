@@ -9,7 +9,7 @@ import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import { HOTELS, ROOMS, ROOT, USERS } from '../../routes';
+import { ATTRACTIONS, HOTELS, ROOMS, ROOT, USERS } from '../../routes';
 import { AuthContext } from '../../context/AuthContext';
 
 import { toast } from 'react-toastify';
@@ -60,6 +60,12 @@ const Sidebar = () => {
                         <li>
                             <CreditCardIcon className={classes.sidebarIcon} />
                             <span>Rooms</span>
+                        </li>
+                    </Link>
+                    <Link to={`/${ATTRACTIONS}`} style={{ textDecoration: "none" }}>
+                        <li>
+                            <CreditCardIcon className={classes.sidebarIcon} />
+                            <span>Attractions</span>
                         </li>
                     </Link>
                     <p className={classes.sidebarTitle}>USER</p>

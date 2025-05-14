@@ -17,7 +17,8 @@ import {
 import {
     hotelInputs,
     userInputs,
-    roomInputs
+    roomInputs,
+    atractionsInputs
 } from '../../editFormSource'
 
 const Single = () => {
@@ -27,8 +28,10 @@ const Single = () => {
 
     const [defaultImg, setdefaultImg] = useState("https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg");
     const [files, setFiles] = useState();
+    console.log(`${API_URL}/${path === 'hotels' ? 'hotels/find' : path}/${id}`);
 
     const { data, loading } = useFetch(`${API_URL}/${path === 'hotels' ? 'hotels/find' : path}/${id}`);
+
 
     useEffect(() => {
         if (path === 'users') {
@@ -37,6 +40,8 @@ const Single = () => {
         if (path === 'hotels' && data.photos && data.photos.length > 0) {
             setFiles(data.photos)
             setdefaultImg(data.photos[0]);
+
+
         }
     }, [data])
 
@@ -48,6 +53,8 @@ const Single = () => {
                 return userInputs;
             case 'rooms':
                 return roomInputs;
+            case 'attractions':
+                return atractionsInputs;
             default:
                 return null;
         }
@@ -61,6 +68,8 @@ const Single = () => {
                 {data[arr.id] || 'NA'}</div>
         ))
     }
+
+
 
     return loading ? (<CircularProgress />) : (
         <Grid2

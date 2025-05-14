@@ -98,6 +98,44 @@ export const hotelInputs = [
         placeholder: "100",
     },
 ];
+export const atractionsInputs = [
+    {
+        id: "title",
+        label: "Title",
+        type: "text",
+        placeholder: "The best hotel in town",
+    },
+    {
+        id: "type",
+        label: "Type",
+        type: "text",
+        placeholder: "hotel",
+    },
+    {
+        id: "city",
+        label: "City",
+        type: "text",
+        placeholder: "New York",
+    },
+    {
+        id: "location",
+        label: "Location",
+        type: "text",
+        placeholder: "Elton st, 216",
+    },
+    {
+        id: "desc",
+        label: "Desc",
+        type: "text",
+        placeholder: "Description",
+    },
+    {
+        id: "price",
+        label: "Price",
+        type: "text",
+        placeholder: "100",
+    },
+];
 
 export const roomInputs = [
     {

@@ -64,6 +64,38 @@ export const hotelColumns = [
         width: 100,
     },
 ];
+export const attractionsColumns = [
+    {
+        field: "_id",
+        headerName: "ID",
+        width: 250
+    },
+    {
+        field: "title",
+        headerName: "Title",
+        width: 150,
+    },
+    {
+        field: "type",
+        headerName: "Type",
+        width: 100,
+    },
+    {
+        field: "location",
+        headerName: "Location",
+        width: 100,
+    },
+    {
+        field: "price",
+        headerName: "Price",
+        width: 100,
+    },
+    {
+        field: "city",
+        headerName: "City",
+        width: 100,
+    },
+];
 
 export const roomColumns = [
     {
