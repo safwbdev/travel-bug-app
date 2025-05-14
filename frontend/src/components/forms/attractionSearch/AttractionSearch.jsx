@@ -1,16 +1,23 @@
 import React, { useState } from 'react'
 import classes from './AttractionSearch.module.scss'
 import { MdLocalActivity } from "react-icons/md";
+import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { SearchContext } from '../../../context/SearchContext';
 
 const AttractionSearch = () => {
     const [query, setQuery] = useState('');
 
+    const navigate = useNavigate();
+
+    const { dispatch } = useContext(SearchContext)
     const handleSearch = () => {
-        const data = { query: query };
-        console.log("SEND ATTRACTIONS: ", data);
+        dispatch({
+            type: "NEW_SEARCH",
+            payload: { query }
+        })
+        navigate("/attractions", { state: { query } })
     }
-
-
 
     return (
         <div className={classes.headerSearch}>
@@ -21,7 +28,7 @@ const AttractionSearch = () => {
                     placeholder="Search for tors & activities"
                     className={classes.headerSearchInput}
                     onChange={(e) => setQuery(e.target.value)} />
-                <button className={classes.headerButton} onClick={handleSearch} disabled>Search</button>
+                <button className={classes.headerButton} onClick={handleSearch} >Search</button>
             </div>
         </div>
     )

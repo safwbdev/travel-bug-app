@@ -1,0 +1,72 @@
+.attractionBox {
+    border: 1px solid #d8d8d8;
+    flex: 1;
+    height: fit-content;
+    border-radius: 5px;
+
+    .image {
+        width: 100%;
+        height: 200px;
+        overflow: hidden;
+        position: relative;
+        cursor: pointer;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+
+        img {
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+
+    }
+
+    .content {
+        padding: 0.5em;
+
+        h2 {
+            font-size: 1.2em;
+            margin: 0;
+        }
+
+        .location {
+            font-size: .8em;
+        }
+
+        p {
+            font-size: .8em;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            p {
+                margin: 0;
+            }
+        }
+
+        .price {
+            font-size: 1em;
+            font-weight: bold;
+        }
+
+        .free {
+            color: red;
+            font-size: 1em;
+            font-weight: bold;
+        }
+
+        .type {
+            color: #ffffff;
+            background: red;
+            padding: .3em 1em;
+            border-radius: 15px;
+            font-size: .8em;
+            text-transform: capitalize;
+        }
+    }
+}

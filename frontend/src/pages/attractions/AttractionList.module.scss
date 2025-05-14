@@ -1,0 +1,100 @@
+.list {
+    &Container {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+
+    }
+
+    &Wrapper {
+        width: 100%;
+        max-width: 1024px;
+        display: flex;
+        gap: 20px;
+    }
+
+    &Search {
+        flex: 1;
+        background-color: #febb02;
+        // background-color: #ffd400;
+        padding: 10px;
+        border-radius: 10px;
+        position: sticky;
+        top: 10px;
+        height: max-content;
+    }
+
+    &Title {
+        font-size: 20px;
+        color: #555555;
+        margin-bottom: 10px;
+    }
+
+    &Item {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        margin-bottom: 10px;
+
+        label {
+            font-size: 12px;
+        }
+
+        >input {
+            height: 30px;
+            border: none;
+            padding: 5px;
+        }
+
+        >span {
+            height: 30px;
+            padding: 5px;
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+    }
+
+    &Option {
+        &Item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            color: #555555;
+            font-size: 12px;
+
+            label {
+                text-transform: capitalize;
+            }
+        }
+
+        &Input {
+            width: 50px;
+        }
+    }
+
+    &Options {
+        padding: 10px;
+    }
+
+    &Search {
+        >button {
+            padding: 10px;
+            background-color: #0071c2;
+            border-radius: 10px;
+            color: #ffffff;
+            border: none;
+            width: 100%;
+            cursor: pointer;
+            height: max-content;
+        }
+    }
+
+    &Result {
+        flex: 3;
+        display: flex;
+        gap: 20px;
+        height: auto;
+    }
+}

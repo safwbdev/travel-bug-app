@@ -4,6 +4,7 @@ import Home from './pages/home/Home';
 import List from './pages/list/List';
 import Hotel from './pages/hotel/Hotel';
 import Login from './pages/login/Login';
+import AttractionList from './pages/attractions/AttractionList';
 
 function App() {
 
@@ -13,9 +14,8 @@ function App() {
    * ====
    * - data for flights
    * - data for Car rentals
-   * - data for attractions
    * - data for taxis
-   * 
+   * - attractions page
    * ====
    * FIXES
    * ====
@@ -33,6 +33,7 @@ function App() {
    * - car rental form
    * - attractions form
    * - Register/Login Links
+   * - data for attractions
    * - Mail list margin/padding bug
    * - adjust image gallery on hotel page
    * - search results for featured country
@@ -49,6 +50,7 @@ function App() {
         <Route path="/hotels" element={<List />} />
         <Route path="/hotels/:id" element={<Hotel />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/attractions" element={<AttractionList />} />
       </Routes>
     </BrowserRouter>
   )
