@@ -8,11 +8,22 @@
         justify-content: space-between;
         margin-bottom: 50px;
         width: 100%;
+
+        @media (max-width: 768px) {
+            justify-content: center;
+        }
+
     }
 
     &List {
         list-style: none;
         padding: 0;
+
+        @media (max-width: 768px) {
+            &:not(:first-child) {
+                display: none;
+            }
+        }
 
         &Item {
             margin-bottom: 10px;
@@ -24,4 +35,11 @@
 
         }
     }
+}
+
+.footetText {
+    padding: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

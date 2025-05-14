@@ -16,10 +16,21 @@ function App() {
    * - data for flights
    * - data for Car rentals
    * - data for taxis
+   * - Mobile Responsiveness
    * ====
    * FIXES
    * ====
    * - select single date on date picker (flights & taxis)
+   * 
+   * 
+   * =====================
+   * Mobile Responsiveness
+   * =====================
+   * - Home
+   * - List
+   * - Forms
+   * - Single Pages
+   * - sliders on mobile
    * 
    * 
    * 

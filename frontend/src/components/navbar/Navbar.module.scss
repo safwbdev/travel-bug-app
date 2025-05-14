@@ -4,6 +4,7 @@
     height: 50px;
     justify-content: center;
 
+
 }
 
 .navContainer {
@@ -13,6 +14,11 @@
     max-width: 1024px;
     justify-content: space-between;
     width: 100%;
+
+    @media (max-width: 768px) {
+        justify-content: center;
+    }
+
 }
 
 .logo {
@@ -40,6 +46,10 @@
     gap: 5px;
     text-transform: capitalize;
     cursor: pointer;
+
+    @media (max-width: 768px) {
+        display: none;
+    }
 }
 
 .userWindow {
