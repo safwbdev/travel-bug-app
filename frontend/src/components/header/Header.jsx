@@ -22,7 +22,7 @@ const Header = ({ type }) => {
     const tabs = [
         { label: "Hotels", icon: (<FaBed />) },
         { label: "Flights", icon: (<FaPlane />) },
-        { label: "Car Rentals", icon: (<FaCar />) },
+        { label: "Rentals", icon: (<FaCar />) },
         { label: "Attractions", icon: (<FaBed />) },
         { label: "Taxis", icon: (<FaTaxi />) },
     ]

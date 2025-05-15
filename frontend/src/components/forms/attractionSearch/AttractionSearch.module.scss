@@ -4,42 +4,83 @@
         background-color: #ffffff;
         border: 3px solid #febb02;
         border-radius: 5px;
+        color: #000000;
         display: flex;
         height: 30px;
         justify-content: space-around;
-        min-width: 1024px;
         padding: 10px 0;
 
-        color: #000000;
+        @media (max-width: 768px) {
+            flex-direction: column;
+            background: none;
+            border: 0;
+            height: unset;
+            padding: 0;
+            margin: 0 .8em;
+        }
 
         &Item {
             align-items: center;
             display: flex;
-            justify-content: center;
-            gap: 10px;
             flex: 1;
+            gap: 10px;
+            justify-content: center;
+
+            @media (max-width: 768px) {
+                flex-direction: column;
+                padding: 1em 0;
+                width: 100%;
+
+                svg {
+                    color: #000000;
+                    display: none;
+                    left: .9em;
+                    position: absolute;
+                }
+            }
         }
 
         &Input {
             border: 0;
-            width: 83%;
             outline: none;
+            width: 83%;
+
+            @media (max-width: 768px) {
+                background-color: #ffffff;
+                border: 3px solid #febb02;
+                border-radius: 5px;
+                font-size: 1.4em;
+                padding: 5px 5px 5px 35px;
+                width: 87%;
+            }
         }
 
         &Text {
             cursor: pointer;
             color: lightgray;
-        }
 
+            @media (max-width: 768px) {
+                background-color: #ffffff;
+                border: 3px solid #febb02;
+                border-radius: 5px;
+                font-size: 1.4em;
+                padding: 5px 5px 5px 35px;
+                width: 100%;
+            }
+        }
     }
 
     &Button {
         background-color: #0071c2;
         border: none;
+        border-radius: 5px;
         color: #ffffff;
         cursor: pointer;
         font-weight: 500;
         padding: 10px;
-        border-radius: 5px;
+
+        @media (max-width: 768px) {
+            width: 100%;
+        }
     }
 }

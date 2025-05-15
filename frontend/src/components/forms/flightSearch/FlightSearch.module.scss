@@ -5,13 +5,20 @@
         border: 3px solid #febb02;
         border-radius: 5px;
         display: flex;
-        // height: 30px;
         justify-content: space-around;
-        min-width: 1024px;
         flex-direction: column;
         padding: 10px 0;
 
         color: #000000;
+
+        @media (max-width: 768px) {
+            background: none;
+            border: 0;
+            flex-direction: column;
+            height: unset;
+            margin: 0 .8em;
+            padding: 0;
+        }
 
         &Item {
             align-items: center;
@@ -20,45 +27,85 @@
             gap: 10px;
             padding: 10px;
             position: relative;
+
+            @media (max-width: 768px) {
+                padding: 1em 0;
+                width: 100%;
+
+                svg {
+                    color: #000000;
+                    left: .9em;
+                    position: absolute;
+                }
+
+                &:first-child {
+                    justify-content: center;
+                }
+            }
         }
 
         &Input {
             border: 0;
             outline: none;
+
+            @media (max-width: 768px) {
+                background-color: #ffffff;
+                border: 3px solid #febb02;
+                border-radius: 5px;
+                font-size: 1.4em;
+                padding: 5px 5px 5px 35px;
+                width: 100%;
+            }
         }
 
         &Text {
             cursor: pointer;
             color: lightgray;
-        }
 
+            @media (max-width: 768px) {
+                background-color: #ffffff;
+                border: 3px solid #febb02;
+                border-radius: 5px;
+                font-size: 1.4em;
+                padding: 5px 5px 5px 35px;
+                width: 100%;
+            }
+        }
     }
 
     &Button {
         background-color: #0071c2;
         border: none;
+        border-radius: 5px;
         color: #ffffff;
         cursor: pointer;
         font-weight: 500;
         padding: 10px;
-        border-radius: 5px;
         width: 100%;
+
+        @media (max-width: 768px) {
+            width: 100%;
+        }
     }
 }
 
 .headerRow {
     display: flex;
     flex-direction: row;
-    width: 100%;
     justify-content: space-between;
+    width: 100%;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+    }
 }
 
 
 .dateWindow {
+    border: 3px solid #febb02 !important;
     position: absolute !important;
     top: 6em;
     z-index: 2;
-    border: 3px solid #febb02 !important;
 }
 
 .optionsWindow {
@@ -76,6 +123,7 @@
 
 
     .option {
+
         &Counter {
             align-items: center;
             display: flex;
@@ -108,14 +156,14 @@
 
 
 .trip {
-    font-size: .9em;
-    padding: .4em;
-    font-weight: bold;
     cursor: pointer;
+    font-size: .9em;
+    font-weight: bold;
+    padding: .4em;
 
     &.active {
-        color: #ffffff;
         background: #0071c2;
         border-radius: 5px;
+        color: #ffffff;
     }
 }
