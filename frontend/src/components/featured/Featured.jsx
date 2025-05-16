@@ -5,6 +5,11 @@ import { amsterdamImage, berlinImage, parisImage, tokyoImage } from '../../asset
 import { useNavigate } from 'react-router-dom';
 import { SearchContext } from '../../context/SearchContext';
 import { API_URL } from '../../routes';
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+// Import Swiper styles
+import 'swiper/css';
 
 const Featured = () => {
 
@@ -43,9 +48,28 @@ const Featured = () => {
 
   return (
     <div className={classes.featured}>
-      {error ? (<span>Something went wrong. Please try again later</span>) : loading ? "Loading" : (<>
-        {featuredArray.map((feature, index) => (<FeaturedBox key={index} feature={feature} id={index} />))}
-      </>)}
+      {error ? (<span>Something went wrong. Please try again later</span>) : loading ? "Loading" : (
+        <Swiper
+          className={classes.swiper}
+          cssMode={true}
+          breakpoints={{
+            320: {
+              slidesPerView: 1.3,
+              spaceBetween: 0,
+            },
+            768: {
+              slidesPerView: 4,
+              spaceBetween: 10,
+            },
+          }}
+        >
+          {featuredArray.map((feature, index) => (
+            <SwiperSlide key={index}>
+              <FeaturedBox feature={feature} id={index} />
+            </SwiperSlide>
+
+          ))}
+        </Swiper>)}
     </div>
   )
 }
