@@ -26,11 +26,11 @@ function App() {
    * =====================
    * Mobile Responsiveness
    * =====================
-   * - Home
+   * + Home
    * - List
    * - Forms
    * - Single Pages
-   * - sliders on mobile
+   * + sliders on mobile
    * 
    * 
    * 

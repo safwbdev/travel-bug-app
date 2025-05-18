@@ -25,7 +25,7 @@ const AttractionSearch = () => {
                 <MdLocalActivity className={classes.headerIcon} />
                 <input
                     type="text"
-                    placeholder="Search for tors & activities"
+                    placeholder="Search for tours & activities"
                     className={classes.headerSearchInput}
                     onChange={(e) => setQuery(e.target.value)} />
                 <button className={classes.headerButton} onClick={handleSearch} >Search</button>

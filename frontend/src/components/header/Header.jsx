@@ -72,7 +72,9 @@ const Header = ({ type }) => {
                                 </div>
                             ))}
                         </div>
-                        <HeaderForm />
+                        <div className={classes.headerForm}>
+                            <HeaderForm />
+                        </div>
                     </>
                 )}
             </div>
