@@ -1,3 +1,22 @@
+.featuredSection {
+    min-width: 1024px;
+    max-width: 1024px;
+
+    @media (max-width: 768px) {
+        min-width: 100%;
+        max-width: 100%;
+    }
+}
+
+.featuredTitle {
+    display: flex;
+    font-size: 1.3em;
+
+    @media (max-width: 768px) {
+        margin-left: .5em;
+    }
+}
+
 .featuredProperties {
     display: flex;
     gap: 20px;

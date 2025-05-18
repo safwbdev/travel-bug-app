@@ -47,30 +47,33 @@ const FeaturedProperties = () => {
     </div>)
 
     return (
-        <div className={classes.featuredProperties}>
-            {error ? (<span>Something went wrong. Please try again later</span>) : loading ? "Loading" : (
-                <Swiper
-                    className={classes.swiper}
-                    cssMode={true}
-                    breakpoints={{
-                        320: {
-                            slidesPerView: 1.3,
-                            spaceBetween: 0,
-                        },
-                        768: {
-                            slidesPerView: 4,
-                            spaceBetween: 10,
-                        },
-                    }}
-                >
-                    {data.map((item, index) => (
-                        <SwiperSlide key={index}>
-                            <Property item={item} key={index} />
-                        </SwiperSlide>
+        <div className={classes.featuredSection}>
+            <h1 className={classes.featuredTitle}>Trending Accomodations</h1>
+            <div className={classes.featuredProperties}>
+                {error ? (<span>Something went wrong. Please try again later</span>) : loading ? "Loading" : (
+                    <Swiper
+                        className={classes.swiper}
+                        cssMode={true}
+                        breakpoints={{
+                            320: {
+                                slidesPerView: 1.3,
+                                spaceBetween: 0,
+                            },
+                            768: {
+                                slidesPerView: 4,
+                                spaceBetween: 10,
+                            },
+                        }}
+                    >
+                        {data.map((item, index) => (
+                            <SwiperSlide key={index}>
+                                <Property item={item} key={index} />
+                            </SwiperSlide>
 
-                    ))}
-                </Swiper>
-            )}
+                        ))}
+                    </Swiper>
+                )}
+            </div>
         </div>
     )
 }

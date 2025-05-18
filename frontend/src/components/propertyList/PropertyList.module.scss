@@ -1,3 +1,22 @@
+.propertySection {
+    min-width: 1024px;
+    max-width: 1024px;
+
+    @media (max-width: 768px) {
+        min-width: 100%;
+        max-width: 100%;
+    }
+}
+
+.propertyTitle {
+    display: flex;
+    font-size: 1.3em;
+
+    @media (max-width: 768px) {
+        margin-left: .5em;
+    }
+}
+
 .propertyList {
     display: flex;
     gap: 20px;
@@ -9,6 +28,10 @@
         cursor: pointer;
         flex: 1;
         overflow: hidden;
+
+        @media (max-width: 768px) {
+            margin: 0 .5em;
+        }
     }
 
     &Image {
