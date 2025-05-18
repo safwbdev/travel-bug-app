@@ -22,6 +22,7 @@ function App() {
    * FIXES
    * ====
    * - select single date on date picker (flights & taxis)
+   * - scrolling on list while search window is open on mobile
    * 
    * 
    * =====================
@@ -52,7 +53,9 @@ function App() {
    * - adjust image gallery on hotel page
    * - search results for featured country
    * - Adjust header text & sign in button
+   * - responsivness of gallery on hotel page
    * - search results for featured property type
+   * - size & padding of featured boxes on home on desktop
    * - fix datepicker/roompicker box posiTion on responsive
    * - fix hotel page crashing when visting from home (set date & room default value if not selected from home form
    */

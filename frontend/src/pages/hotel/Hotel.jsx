@@ -63,11 +63,11 @@ const Hotel = () => {
     const ImageSlider = () => (
         <div className={classes.slider}>
             <FaCircleXmark className={classes.close} onClick={() => setOpenSlide(false)} />
-            <FaCircleArrowLeft className={classes.arrow} onClick={() => handleMove("l")} />
+            <FaCircleArrowLeft className={`${classes.arrow} ${classes.left}`} onClick={() => handleMove("l")} />
             <div className={classes.sliderWrapper}>
                 {data?.photos && (<img src={data?.photos[slideIndex]} alt="" className={classes.sliderImage} />)}
             </div>
-            <FaCircleArrowRight className={classes.arrow} onClick={() => handleMove("r")} />
+            <FaCircleArrowRight className={`${classes.arrow} ${classes.right}`} onClick={() => handleMove("r")} />
         </div>
     )
 
