@@ -4,6 +4,12 @@ import useFetch from '../../hooks/useFetch';
 import { Link, useNavigate } from 'react-router-dom';
 import { SearchContext } from '../../context/SearchContext';
 import { API_URL } from '../../routes';
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+// Import Swiper styles
+import 'swiper/css';
+
 
 const FeaturedProperties = () => {
 
@@ -21,27 +27,49 @@ const FeaturedProperties = () => {
         navigate(`/hotels/${id}`, { state: { dates, options } })
     }
 
+
+    const Property = ({ item }) => (<div className={classes.featuredPropertiesItem} onClick={() => featureLink(item._id)}>
+        <img
+            className={classes.featuredPropertiesImage}
+            src={item.photos.length > 0 ? item.photos[0] : "https://placehold.co/400x400?text=Image+Not+Found"}
+            alt="" />
+        <div className={classes.featuredContent}>
+            <span className={classes.featuredPropertiesName}>{item.name}</span>
+            <span className={classes.featuredPropertiesCity}>{item.city}</span>
+            <span className={classes.featuredPropertiesPrice}>Starting from ${item.cheapestPrice}</span>
+            {item.rating && (
+                <div className={classes.featuredPropertiesRating}>
+                    <button>{item.rating}</button>
+                    <span>Excellent</span>
+                </div>)}
+
+        </div>
+    </div>)
+
     return (
         <div className={classes.featuredProperties}>
             {error ? (<span>Something went wrong. Please try again later</span>) : loading ? "Loading" : (
-                <>
+                <Swiper
+                    className={classes.swiper}
+                    cssMode={true}
+                    breakpoints={{
+                        320: {
+                            slidesPerView: 1.3,
+                            spaceBetween: 0,
+                        },
+                        768: {
+                            slidesPerView: 4,
+                            spaceBetween: 10,
+                        },
+                    }}
+                >
                     {data.map((item, index) => (
-                        <div className={classes.featuredPropertiesItem} key={index} onClick={() => featureLink(item._id)}>
-                            <img
-                                className={classes.featuredPropertiesImage}
-                                src={item.photos.length > 0 ? item.photos[0] : "https://placehold.co/400x400?text=Image+Not+Found"}
-                                alt="" />
-                            <span className={classes.featuredPropertiesName}>{item.name}</span>
-                            <span className={classes.featuredPropertiesCity}>{item.city}</span>
-                            <span className={classes.featuredPropertiesPrice}>Starting from ${item.cheapestPrice}</span>
-                            {item.rating && (
-                                <div className={classes.featuredPropertiesRating}>
-                                    <button>{item.rating}</button>
-                                    <span>Excellent</span>
-                                </div>)}
-                        </div>
+                        <SwiperSlide key={index}>
+                            <Property item={item} key={index} />
+                        </SwiperSlide>
+
                     ))}
-                </>
+                </Swiper>
             )}
         </div>
     )
