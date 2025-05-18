@@ -16,12 +16,10 @@
 
         @media (max-width: 768px) {
             justify-content: flex-end;
-            flex-direction: column-reverse;
+            // flex-direction: column-reverse;
             background-color: rgb(255 255 255 / 70%);
 
             h1 {
-                font-size: 2em;
-                text-align: center;
                 display: none;
             }
 
@@ -87,7 +85,8 @@
         padding: 1em 0;
 
         @media (max-width: 768px) {
-            display: none;
+            // display: none;
+            justify-content: center;
         }
     }
 
@@ -192,6 +191,28 @@
                 margin: 10px;
                 width: 200px;
             }
+        }
+    }
+}
+
+.interactionArea {
+    display: flex;
+    flex-direction: column;
+
+
+    @media (max-width: 768px) {
+        align-items: center;
+        justify-content: flex-end;
+        flex-direction: column-reverse;
+
+        h1 {
+            font-size: 2em;
+            text-align: center;
+            display: none;
+        }
+
+        p {
+            display: none;
         }
     }
 }

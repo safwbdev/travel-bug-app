@@ -13,7 +13,7 @@ import {
 import { Link } from 'react-router-dom';
 
 
-const Header = ({ type }) => {
+const Header = () => {
 
     const [currentForm, setCurrentForm] = useState(0)
 
@@ -49,36 +49,33 @@ const Header = ({ type }) => {
             background: `url(${bannerImage})`,
             backgroundSize: 'cover'
         }}>
-            <div className={`${classes.headerContainer} ${type === 'list' && classes.listMode}`}>
-                {type !== 'list' && (
-                    <>
-                        <h1 className={classes.headerTitle}>
-                            Welcome to Your Gateway to Adventure
-                        </h1>
-                        <p className={classes.headerDesc}>
-                            Ready to explore the world? Whether you're planning a relaxing beach getaway, an exciting city escape, or a once-in-a-lifetime adventure, we've got you covered. Our easy-to-use platform helps you find the best deals on flights, hotels, tours, and more — all in one place.
-                            Book with confidence, travel with ease. Your journey starts here.
-                        </p>
-                        {/* NOTE: UNHIDE ON MOBILE IN FUTURE */}
-                        {!user && (
-                            <div className={classes.headerButtonRow}>
-                                <Link to={'/login'}>
-                                    <button className={classes.headerButton}>Sign In / Register & Book Now</button>
-                                </Link>
-                            </div>)}
-                        <div className={classes.headerList}>
-                            {tabs.map((tab, index) => (
-                                <div key={index} onClick={() => setCurrentForm(index)} className={`${classes.headerListItem} ${currentForm === index && classes.active}`}>
-                                    {tab.icon}
-                                    <span>{tab.label}</span>
-                                </div>
-                            ))}
-                        </div>
-                        <div className={classes.headerForm}>
-                            <HeaderForm />
-                        </div>
-                    </>
-                )}
+            <div className={classes.headerContainer}>
+                <h1 className={classes.headerTitle}>
+                    Welcome to Your Gateway to Adventure
+                </h1>
+                <p className={classes.headerDesc}>
+                    Ready to explore the world? Whether you're planning a relaxing beach getaway, an exciting city escape, or a once-in-a-lifetime adventure, we've got you covered. Our easy-to-use platform helps you find the best deals on flights, hotels, tours, and more — all in one place.
+                    Book with confidence, travel with ease. Your journey starts here.
+                </p>
+                <div className={classes.interactionArea}>
+                    {!user && (
+                        <div className={classes.headerButtonRow}>
+                            <Link to={'/login'}>
+                                <button className={classes.headerButton}>Sign In / Register & Book Now</button>
+                            </Link>
+                        </div>)}
+                    <div className={classes.headerList}>
+                        {tabs.map((tab, index) => (
+                            <div key={index} onClick={() => setCurrentForm(index)} className={`${classes.headerListItem} ${currentForm === index && classes.active}`}>
+                                {tab.icon}
+                                <span>{tab.label}</span>
+                            </div>
+                        ))}
+                    </div>
+                    <div className={classes.headerForm}>
+                        <HeaderForm />
+                    </div>
+                </div>
             </div>
         </div>
     )
