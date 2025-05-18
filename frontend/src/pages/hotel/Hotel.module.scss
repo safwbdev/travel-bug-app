@@ -14,6 +14,8 @@
         max-width: 1024px;
         position: relative;
         width: 100%;
+
+
     }
 
     &ImageWrapper {
@@ -21,6 +23,10 @@
         height: 100px;
         overflow: hidden;
         margin-top: 2px;
+
+        @media (max-width: 768px) {
+            height: 60px;
+        }
 
         &:not(:first-child) {
             img {
@@ -37,6 +43,15 @@
     }
 
     &Title {
+        font-size: 24px;
+
+        @media (max-width: 768px) {
+            padding: 0 0 .8em 1em;
+            line-height: 0;
+        }
+    }
+
+    &SubTitle {
         font-size: 24px;
     }
 
@@ -55,6 +70,10 @@
     &PriceHighlight {
         color: #008009;
         font-weight: 500;
+
+        @media (max-width: 768px) {
+            padding: 0 1em;
+        }
     }
 
     &Images {
@@ -68,6 +87,11 @@
         gap: 20px;
         justify-content: space-between;
         margin-top: 20px;
+
+
+        @media (max-width: 768px) {
+            margin: 1em;
+        }
 
         &Texts {
             flex: 3;
@@ -176,7 +200,11 @@
     display: flex;
     gap: 20px;
     flex-direction: row;
-    align-items: start
+    align-items: start;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+    }
 }
 
 
@@ -188,6 +216,11 @@
     width: 100%;
     height: 450px;
     overflow: hidden;
+
+
+    @media (max-width: 768px) {
+        height: 250px;
+    }
 
     img {
         width: 110%;
@@ -206,6 +239,11 @@
 .hotelFooter {
     display: flex;
     justify-content: flex-end;
+
+
+    @media (max-width: 768px) {
+        justify-content: center;
+    }
 }
 
 .city {

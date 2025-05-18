@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import classes from './Header.module.scss'
-import { FaBed, FaCar, FaPlane, FaTaxi } from "react-icons/fa6";
+import { FaBed, FaCar, FaPlane, FaTaxi, FaTicket } from "react-icons/fa6";
 import { AuthContext } from '../../context/AuthContext';
 import { bannerImage } from '../../assets';
 import {
@@ -23,7 +23,7 @@ const Header = ({ type }) => {
         { label: "Hotels", icon: (<FaBed />) },
         { label: "Flights", icon: (<FaPlane />) },
         { label: "Rentals", icon: (<FaCar />) },
-        { label: "Attractions", icon: (<FaBed />) },
+        { label: "Attractions", icon: (<FaTicket />) },
         { label: "Taxis", icon: (<FaTaxi />) },
     ]
 

@@ -28,7 +28,7 @@ const AttractionSearch = () => {
                     placeholder="Search for tours & activities"
                     className={classes.headerSearchInput}
                     onChange={(e) => setQuery(e.target.value)} />
-                <button className={classes.headerButton} onClick={handleSearch} >Search</button>
+                <button className={classes.headerButton} onClick={handleSearch} >Search (Work In Progress)</button>
             </div>
         </div>
     )

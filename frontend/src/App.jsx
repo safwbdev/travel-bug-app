@@ -16,7 +16,6 @@ function App() {
    * - data for flights
    * - data for Car rentals
    * - data for taxis
-   * - Mobile Responsiveness
    * - Mobile Nav buttons
    * - Mobile login/signin button on Header
    * ====
@@ -30,8 +29,8 @@ function App() {
    * =====================
    * + Home
    * + List
-   * - Forms
-   * - Single Pages
+   * + Forms
+   * + Single Pages
    * + sliders on mobile
    * 
    * 
@@ -48,6 +47,7 @@ function App() {
    * - attractions form
    * - Register/Login Links
    * - data for attractions
+   * - Mobile Responsiveness
    * - Mail list margin/padding bug
    * - adjust image gallery on hotel page
    * - search results for featured country

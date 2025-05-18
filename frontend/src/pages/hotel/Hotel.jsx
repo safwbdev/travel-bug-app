@@ -111,7 +111,7 @@ const Hotel = () => {
                     </div>
                     <div className={classes.hotelDetails}>
                         <div className={classes.hotelDetailsTexts}>
-                            <div className={classes.hotelTitle}>{data.title}</div>
+                            <div className={classes.hotelSubTitle}>{data.title}</div>
                             <div className={classes.hotelDesc}>{data.desc && parse(data.desc.toString())}</div>
                         </div>
                     </div>
