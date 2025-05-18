@@ -3,9 +3,11 @@ import classes from './Navbar.module.scss'
 import { Link, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../context/AuthContext'
 import { BiSolidBugAlt, BiSolidUser } from "react-icons/bi";
+import { IoMenu } from "react-icons/io5";
 
 const Navbar = () => {
     const [openUser, setOpenUser] = useState(false)
+    const [openMenu, setOpenMenu] = useState(false)
     const { user, dispatch } = useContext(AuthContext)
     const navigate = useNavigate()
 
@@ -42,11 +44,17 @@ const Navbar = () => {
     return (
         <div className={classes.navbar}>
             <div className={classes.navContainer}>
-                <Link to={'/'} style={{ color: 'inherit', textDecoration: "none" }}>
+                <Link to={'/'} className={classes.logoLink}>
                     <span className={classes.logo}>
                         <BiSolidBugAlt /> TravelBug</span>
                 </Link>
-                {/* NOTE: UNHIDE ON MOBILE IN FUTURE */}
+                <div className={classes.menuButton} onClick={() => setOpenMenu(!openMenu)}><IoMenu /></div>
+                <div className={classes.mobileMenu} style={{ display: openMenu ? 'flex' : 'none' }}>
+                    {user ? (<LoggedUserLink />) : (<LoginLinks />)}
+                    {user && (<span onClick={confirmLogout}>
+                        <b>Log Out</b>
+                    </span>)}
+                </div>
                 <div className={classes.loginLinks}>
                     {user ? (<LoggedUserLink />) : (<LoginLinks />)}
                 </div>

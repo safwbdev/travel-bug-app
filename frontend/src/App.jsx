@@ -16,8 +16,6 @@ function App() {
    * - data for flights
    * - data for Car rentals
    * - data for taxis
-   * - Mobile Nav buttons
-   * - Mobile login/signin button on Header
    * ====
    * FIXES
    * ====
@@ -46,6 +44,7 @@ function App() {
    * - car rental form
    * - attractions page
    * - attractions form
+   * - Mobile Nav buttons
    * - Register/Login Links
    * - data for attractions
    * - Mobile Responsiveness
@@ -53,6 +52,7 @@ function App() {
    * - adjust image gallery on hotel page
    * - search results for featured country
    * - Adjust header text & sign in button
+   * - Mobile login/signin button on Header
    * - responsivness of gallery on hotel page
    * - search results for featured property type
    * - size & padding of featured boxes on home on desktop
