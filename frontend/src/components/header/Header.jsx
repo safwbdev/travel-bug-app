@@ -57,7 +57,9 @@ const Header = ({ type }) => {
                         </h1>
                         <p className={classes.headerDesc}>
                             Ready to explore the world? Whether you're planning a relaxing beach getaway, an exciting city escape, or a once-in-a-lifetime adventure, we've got you covered. Our easy-to-use platform helps you find the best deals on flights, hotels, tours, and more — all in one place.
-                            Book with confidence, travel with ease. Your journey starts here.</p>
+                            Book with confidence, travel with ease. Your journey starts here.
+                        </p>
+                        {/* NOTE: UNHIDE ON MOBILE IN FUTURE */}
                         {!user && (
                             <div className={classes.headerButtonRow}>
                                 <Link to={'/login'}>

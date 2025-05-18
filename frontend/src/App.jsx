@@ -17,6 +17,8 @@ function App() {
    * - data for Car rentals
    * - data for taxis
    * - Mobile Responsiveness
+   * - Mobile Nav buttons
+   * - Mobile login/signin button on Header
    * ====
    * FIXES
    * ====

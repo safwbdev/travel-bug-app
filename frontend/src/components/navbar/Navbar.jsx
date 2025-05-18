@@ -46,7 +46,10 @@ const Navbar = () => {
                     <span className={classes.logo}>
                         <BiSolidBugAlt /> TravelBug</span>
                 </Link>
-                {user ? (<LoggedUserLink />) : (<LoginLinks />)}
+                {/* NOTE: UNHIDE ON MOBILE IN FUTURE */}
+                <div className={classes.loginLinks}>
+                    {user ? (<LoggedUserLink />) : (<LoginLinks />)}
+                </div>
             </div>
         </div>
     )
