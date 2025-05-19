@@ -60,7 +60,7 @@
 
         &Text {
             cursor: pointer;
-            color: lightgray;
+            color: #555555;
 
             @media (max-width: 768px) {
                 background-color: #ffffff;
@@ -166,4 +166,11 @@
         border-radius: 5px;
         color: #ffffff;
     }
+}
+
+button.headerSearchText {
+    border: 0;
+    color: #555555;
+    font-weight: normal;
+    background: none;
 }

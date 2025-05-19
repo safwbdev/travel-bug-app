@@ -1,17 +1,19 @@
-import React, { useState } from 'react'
+import React, { forwardRef, useState } from 'react'
 import classes from './FlightSearch.module.scss'
 import { useNavigate } from 'react-router-dom'
 import { SearchContext } from '../../../context/SearchContext'
 import { FaBed, FaCalendarDays, FaPerson } from "react-icons/fa6";
 import { FaPlaneDeparture, FaPlaneArrival } from "react-icons/fa";
-import { DateRange } from 'react-date-range';
-import 'react-date-range/dist/styles.css'; // main style file
-import 'react-date-range/dist/theme/default.css'; // theme css file
+// import { DateRange } from 'react-date-range';
+// import 'react-date-range/dist/styles.css'; // main style file
+// import 'react-date-range/dist/theme/default.css'; // theme css file
 import { format } from 'date-fns'
+import DatePicker from "react-datepicker";
 
+import "react-datepicker/dist/react-datepicker.css";
 
 const FlightSearch = () => {
-    const [openDate, setOpenDate] = useState(false)
+    // const [openDate, setOpenDate] = useState(false)
     const [oneWay, setOneWay] = useState(true);
     const [openOptions, setOpenOptions] = useState(false)
     const [departure, setDeparture] = useState('')
@@ -21,13 +23,27 @@ const FlightSearch = () => {
         children: 0,
         type: "Economy"
     })
+
     const [dates, setDates] = useState([
         {
             startDate: new Date(),
             endDate: new Date(),
-            key: 'selection'
         }
     ]);
+
+    const pickRange = (dates) => {
+        const [start, end] = dates;
+        setDates([{
+            startDate: start,
+            endDate: end,
+        }])
+    };
+
+    const pickSingle = (date) => {
+        setDates([{
+            startDate: date,
+        }])
+    };
 
     const handleOption = (name, operation) => {
         setOptions(prev => {
@@ -47,6 +63,43 @@ const FlightSearch = () => {
         })
     }
 
+
+    const SingleDate = forwardRef(
+        ({ value, onClick, className }, ref) => (
+            <button className={className} onClick={onClick} ref={ref}>
+                {value}
+            </button>
+        ),
+    );
+    const RangedDate = forwardRef(
+        ({ value, onClick, className }, ref) => (
+            <button className={className} onClick={onClick} ref={ref}>
+                {value}
+            </button>
+        ),
+    );
+
+
+
+    const DatePickerWindow = () => oneWay ? (
+        <DatePicker
+            selected={dates[0].startDate}
+            onChange={pickSingle}
+            startDate={dates[0].startDate}
+            monthsShown={2}
+            customInput={<SingleDate className={classes.headerSearchText} />}
+        />
+    ) : (
+        <DatePicker
+            customInput={<RangedDate className={classes.headerSearchText} />}
+            selected={dates[0].startDate}
+            onChange={pickRange}
+            startDate={dates[0].startDate}
+            endDate={dates[0].endDate}
+            monthsShown={2}
+            selectsRange
+        />
+    )
 
     const handleSearch = () => { }
 
@@ -87,20 +140,7 @@ const FlightSearch = () => {
             <div className={classes.headerRow}>
                 <div className={classes.headerSearchItem}>
                     <FaCalendarDays className={classes.headerIcon} />
-                    <span
-                        className={classes.headerSearchText}
-                        onClick={() => setOpenDate(!openDate)}
-                    >
-                        {oneWay ? `${format(dates[0].startDate, "MM/dd/yyyy")}` : `${format(dates[0].startDate, "MM/dd/yyyy")} to ${format(dates[0].endDate, "MM/dd/yyyy")}`}
-                    </span>
-                    {openDate && (<DateRange
-                        editableDateInputs={true}
-                        onChange={item => setDates([item.selection])}
-                        moveRangeOnFirstSelection={false}
-                        ranges={dates}
-                        className={classes.dateWindow}
-                        minDate={new Date()}
-                    />)}
+                    <DatePickerWindow />
                 </div>
                 <div className={classes.headerSearchItem}>
                     <FaPerson className={classes.headerIcon} />

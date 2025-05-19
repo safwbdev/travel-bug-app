@@ -16,10 +16,10 @@ function App() {
    * - data for flights
    * - data for Car rentals
    * - data for taxis
+   * - replace current date pickers with new one
    * ====
    * FIXES
    * ====
-   * - select single date on date picker (flights & taxis)
    * - scrolling on list while search window is open on mobile
    * 
    * 
@@ -56,6 +56,7 @@ function App() {
    * - Mobile login/signin button on Header
    * - responsivness of gallery on hotel page
    * - search results for featured property type
+   * - select single date on date picker (flights & taxis)
    * - size & padding of featured boxes on home on desktop
    * - fix datepicker/roompicker box posiTion on responsive
    * - fix hotel page crashing when visting from home (set date & room default value if not selected from home form

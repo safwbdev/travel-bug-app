@@ -77,3 +77,13 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+
+.react-datepicker-popper .react-datepicker {
+  border: 3px solid #febb02;
+  display: flex;
+}
+
+.react-datepicker-popper svg {
+  display: none;
+}
