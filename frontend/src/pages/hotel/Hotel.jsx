@@ -11,6 +11,7 @@ import { AuthContext } from '../../context/AuthContext'
 import Booking from '../../components/booking/Booking'
 import parse from 'html-react-parser';
 import { API_URL } from '../../routes'
+import FeaturedProperties from '../../components/featuredProperties/FeaturedProperties'
 
 const Hotel = () => {
     const location = useLocation();
@@ -124,6 +125,8 @@ const Hotel = () => {
                         <button className={classes.bookNow} onClick={handleBook}>Reserve or Book Now!</button>
                     </div>
                 </div>
+                <hr />
+                <FeaturedProperties title={'Related Properties'} />
                 <MailList />
                 <Footer />
             </div>)}

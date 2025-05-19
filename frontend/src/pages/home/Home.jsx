@@ -15,7 +15,7 @@ const Home = () => {
             <div className={classes.homeContainer}>
                 <Featured />
                 <PropertyList />
-                <FeaturedProperties />
+                <FeaturedProperties title={'Trending Accomodations'} />
                 <MailList />
                 <Footer />
             </div>

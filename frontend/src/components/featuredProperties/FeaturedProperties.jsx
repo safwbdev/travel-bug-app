@@ -11,7 +11,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 
 
-const FeaturedProperties = () => {
+const FeaturedProperties = ({ title }) => {
 
     const { data, loading, error } = useFetch(`${API_URL}/api/hotels/featured`);
     const navigate = useNavigate()
@@ -48,7 +48,7 @@ const FeaturedProperties = () => {
 
     return (
         <div className={classes.featuredSection}>
-            <h1 className={classes.featuredTitle}>Trending Accomodations</h1>
+            {title && (<h1 className={classes.featuredTitle}>{title}</h1>)}
             <div className={classes.featuredProperties}>
                 {error ? (<span>Something went wrong. Please try again later</span>) : loading ? "Loading" : (
                     <Swiper

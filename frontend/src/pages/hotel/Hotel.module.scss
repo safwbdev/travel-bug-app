@@ -5,6 +5,10 @@
         display: flex;
         flex-direction: column;
         margin-top: 5em;
+
+        hr {
+            margin: 1em 0;
+        }
     }
 
     &Wrapper {
