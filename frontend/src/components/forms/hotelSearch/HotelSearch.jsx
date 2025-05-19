@@ -1,15 +1,12 @@
-import React, { useContext, useState } from 'react'
+import React, { forwardRef, useContext, useState } from 'react'
 import classes from './HotelSearch.module.scss'
 import { useNavigate } from 'react-router-dom'
 import { SearchContext } from '../../../context/SearchContext'
 import { FaBed, FaCalendarDays, FaPerson } from "react-icons/fa6";
-import { DateRange } from 'react-date-range';
-import 'react-date-range/dist/styles.css'; // main style file
-import 'react-date-range/dist/theme/default.css'; // theme css file
-import { format } from 'date-fns'
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const HotelSearch = () => {
-    const [openDate, setOpenDate] = useState(false)
     const [destination, setDestination] = useState('')
     const [openOptions, setOpenOptions] = useState(false)
     const [options, setOptions] = useState({
@@ -25,6 +22,14 @@ const HotelSearch = () => {
         }
     ]);
     const type = ["hotel", "apartment", "resort", "villa", "cabin"]
+
+    const pickRange = (dates) => {
+        const [start, end] = dates;
+        setDates([{
+            startDate: start,
+            endDate: end,
+        }])
+    };
 
     const handleOption = (name, operation) => {
         setOptions(prev => {
@@ -47,6 +52,14 @@ const HotelSearch = () => {
         navigate("/hotels", { state: { destination, dates, options, type } })
     }
 
+    const RangedDate = forwardRef(
+        ({ value, onClick, className }, ref) => (
+            <button className={className} onClick={onClick} ref={ref}>
+                {value}
+            </button>
+        ),
+    );
+
     return (
         <div className={classes.headerSearch}>
             <div className={classes.headerSearchItem}>
@@ -59,20 +72,15 @@ const HotelSearch = () => {
             </div>
             <div className={classes.headerSearchItem}>
                 <FaCalendarDays className={classes.headerIcon} />
-                <span
-                    className={classes.headerSearchText}
-                    onClick={() => setOpenDate(!openDate)}
-                >
-                    {`${format(dates[0].startDate, "MM/dd/yyyy")} to ${format(dates[0].endDate, "MM/dd/yyyy")}`}
-                </span>
-                {openDate && (<DateRange
-                    editableDateInputs={true}
-                    onChange={item => setDates([item.selection])}
-                    moveRangeOnFirstSelection={false}
-                    ranges={dates}
-                    className={classes.dateWindow}
-                    minDate={new Date()}
-                />)}
+                <DatePicker
+                    customInput={<RangedDate className={classes.headerSearchText} />}
+                    selected={dates[0].startDate}
+                    onChange={pickRange}
+                    startDate={dates[0].startDate}
+                    endDate={dates[0].endDate}
+                    monthsShown={2}
+                    selectsRange
+                />
             </div>
             <div className={classes.headerSearchItem}>
                 <FaPerson className={classes.headerIcon} />

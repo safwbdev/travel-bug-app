@@ -1,19 +1,13 @@
 import React, { forwardRef, useState } from 'react'
 import classes from './FlightSearch.module.scss'
-import { useNavigate } from 'react-router-dom'
-import { SearchContext } from '../../../context/SearchContext'
-import { FaBed, FaCalendarDays, FaPerson } from "react-icons/fa6";
+// import { useNavigate } from 'react-router-dom'
+// import { SearchContext } from '../../../context/SearchContext'
+import { FaCalendarDays, FaPerson } from "react-icons/fa6";
 import { FaPlaneDeparture, FaPlaneArrival } from "react-icons/fa";
-// import { DateRange } from 'react-date-range';
-// import 'react-date-range/dist/styles.css'; // main style file
-// import 'react-date-range/dist/theme/default.css'; // theme css file
-import { format } from 'date-fns'
 import DatePicker from "react-datepicker";
-
 import "react-datepicker/dist/react-datepicker.css";
 
 const FlightSearch = () => {
-    // const [openDate, setOpenDate] = useState(false)
     const [oneWay, setOneWay] = useState(true);
     const [openOptions, setOpenOptions] = useState(false)
     const [departure, setDeparture] = useState('')
@@ -23,7 +17,6 @@ const FlightSearch = () => {
         children: 0,
         type: "Economy"
     })
-
     const [dates, setDates] = useState([
         {
             startDate: new Date(),
@@ -63,7 +56,6 @@ const FlightSearch = () => {
         })
     }
 
-
     const SingleDate = forwardRef(
         ({ value, onClick, className }, ref) => (
             <button className={className} onClick={onClick} ref={ref}>
@@ -71,6 +63,7 @@ const FlightSearch = () => {
             </button>
         ),
     );
+
     const RangedDate = forwardRef(
         ({ value, onClick, className }, ref) => (
             <button className={className} onClick={onClick} ref={ref}>

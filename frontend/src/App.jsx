@@ -16,7 +16,6 @@ function App() {
    * - data for flights
    * - data for Car rentals
    * - data for taxis
-   * - replace current date pickers with new one
    * ====
    * FIXES
    * ====
@@ -56,6 +55,7 @@ function App() {
    * - Mobile login/signin button on Header
    * - responsivness of gallery on hotel page
    * - search results for featured property type
+   * - replace current date pickers with new one
    * - select single date on date picker (flights & taxis)
    * - size & padding of featured boxes on home on desktop
    * - fix datepicker/roompicker box posiTion on responsive

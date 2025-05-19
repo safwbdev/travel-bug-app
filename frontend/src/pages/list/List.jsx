@@ -1,21 +1,20 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { forwardRef, useContext, useEffect, useState } from 'react'
 import Navbar from '../../components/navbar/Navbar'
 import classes from './List.module.scss'
 import { useLocation } from 'react-router-dom'
-import { format } from 'date-fns'
-import { DateRange } from 'react-date-range'
 import SearchItem from '../../components/searchItem/SearchItem'
 import useFetch from '../../hooks/useFetch'
 import { SearchContext } from '../../context/SearchContext'
 import { API_URL } from '../../routes'
 import { FaCircleXmark } from 'react-icons/fa6'
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const List = () => {
     const isMobile = window.innerWidth <= 768 ? true : false;
     const { dates, city, options, type } = useContext(SearchContext)
     const { state } = useLocation();
     const [destination, setDestination] = useState(state.destination || city)
-    const [openDate, setOpenDate] = useState(false)
     const [calDates, setCalDates] = useState(state.dates[0] || dates)
     const [searchOptions, setSearchOptions] = useState(state.options || options)
     const [min, setMin] = useState(undefined)
@@ -37,15 +36,20 @@ const List = () => {
     - List By
     */
 
-
-
-
     const { data, loading, error, reFetch } = useFetch(`${API_URL}/api/hotels?min=${min || 0}&max=${max || 999}${destination !== undefined ? `&city=${destination}` : ''}&type=${types.join(",")}`);
 
     const handleClick = () => {
         setOpenSearch(false)
         reFetch()
     }
+
+    const pickRange = (dates) => {
+        const [start, end] = dates;
+        setCalDates({
+            startDate: start,
+            endDate: end,
+        })
+    };
 
     const handleTypes = (e) => {
         if (types.includes(e.target.value)) {
@@ -55,6 +59,16 @@ const List = () => {
             setTypes(old => [...old, e.target.value])
         }
     }
+
+    const RangedDate = forwardRef(
+        ({ value, onClick, className }, ref) => (
+            <button className={className} onClick={onClick} ref={ref}>
+                {value}
+            </button>
+        ),
+    );
+    console.log(calDates);
+
 
     const SearchBox = () => (
         <>
@@ -71,12 +85,15 @@ const List = () => {
                 </div>
                 <div className={classes.listItem}>
                     <label>Check-in Date</label>
-                    <span onClick={() => setOpenDate(!openDate)}>{`${format(calDates.startDate, "MM/dd/yyyy")} to ${format(calDates.endDate, "MM/dd/yyyy")} `}</span>
-                    {openDate && (<DateRange
-                        onChange={item => setCalDates([item.selection])}
-                        ranges={dates}
-                        minDate={new Date()}
-                    />)}
+                    <DatePicker
+                        customInput={<RangedDate className={classes.headerSearchText} />}
+                        selected={calDates.startDate}
+                        onChange={pickRange}
+                        startDate={calDates.startDate}
+                        endDate={calDates.endDate}
+                        monthsShown={2}
+                        selectsRange
+                    />
                 </div>
                 <div className={classes.listItem}>
                     <label>Options</label>
