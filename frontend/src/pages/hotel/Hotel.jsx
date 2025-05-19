@@ -71,6 +71,18 @@ const Hotel = () => {
         </div>
     )
 
+    const DetailsBox = () => (<div className={classes.hotelDetailsPrice}>
+        <div className={classes.hotelAddress}>
+            <FaLocationDot />
+            <span >{data.address}</span>
+        </div>
+        <span className={classes.hotelDistance}>{data.distance}m from city centre</span>
+        <h1>Perfect for a {days}-night stay!</h1>
+        <span>Located in the heart of <span className={classes.city}>{data.city}</span>, this property has an excellent location score of 9.8!</span>
+        <h2><b>${days * data?.cheapestPrice * options.room}</b> ({days + 1}D{days}N)</h2>
+        <button onClick={handleBook}>Reserve or Book Now!</button>
+    </div>)
+
 
     return (
         <div>
@@ -78,9 +90,12 @@ const Hotel = () => {
             {loading ? "Loading" : (<div className={classes.hotelContainer}>
                 {openSlide && <ImageSlider />}
                 <div className={classes.hotelWrapper}>
-                    <span className={classes.hotelPriceHighlight}>
-                        Book over ${data.cheapestPrice} at this property and get a free airport taxi
-                    </span>
+                    <div className={classes.titleWrapper}>
+                        <h1 className={classes.hotelTitle}>{data?.name}</h1>
+                        <span className={classes.hotelPriceHighlight}>
+                            Book over ${data.cheapestPrice} at this property and get a free airport taxi
+                        </span>
+                    </div>
                     <div className={classes.header}>
                         <div className={classes.gallery}>
                             <div className={classes.hotelMainImage}>
@@ -96,17 +111,7 @@ const Hotel = () => {
                         </div>
                         <div className={classes.hotelRightSection}>
                             <h1 className={classes.hotelTitle}>{data?.name}</h1>
-                            <div className={classes.hotelDetailsPrice}>
-                                <div className={classes.hotelAddress}>
-                                    <FaLocationDot />
-                                    <span >{data.address}</span>
-                                </div>
-                                <span className={classes.hotelDistance}>{data.distance}m from city centre</span>
-                                <h1>Perfect for a {days}-night stay!</h1>
-                                <span>Located in the heart of <span className={classes.city}>{data.city}</span>, this property has an excellent location score of 9.8!</span>
-                                <h2><b>${days * data?.cheapestPrice * options.room}</b> ({days + 1}D{days}N)</h2>
-                                <button onClick={handleBook}>Reserve or Book Now!</button>
-                            </div>
+                            <DetailsBox />
                         </div>
                     </div>
                     <div className={classes.hotelDetails}>

@@ -44,11 +44,7 @@
 
     &Title {
         font-size: 24px;
-
-        @media (max-width: 768px) {
-            padding: 0 0 .8em 1em;
-            line-height: 0;
-        }
+        margin-top: 0;
     }
 
     &SubTitle {
@@ -70,10 +66,6 @@
     &PriceHighlight {
         color: #008009;
         font-weight: 500;
-
-        @media (max-width: 768px) {
-            padding: 0 1em;
-        }
     }
 
     &Images {
@@ -141,6 +133,28 @@
             margin: 0;
         }
     }
+}
+
+.titleWrapper {
+
+    h1 {
+        display: none;
+    }
+
+    @media (max-width: 768px) {
+        padding: 0 .5em;
+
+        h1 {
+            display: block;
+            margin: 0;
+        }
+
+        span {
+            font-size: 12px;
+        }
+
+    }
+
 }
 
 .bookNow {
@@ -215,6 +229,7 @@
 
     @media (max-width: 768px) {
         flex-direction: column;
+        gap: unset
     }
 }
 
@@ -245,6 +260,14 @@
     margin: 0;
     display: flex;
     height: 100%;
+
+    .hotelTitle {
+        display: block;
+
+        @media (max-width: 768px) {
+            display: none;
+        }
+    }
 }
 
 .hotelFooter {
