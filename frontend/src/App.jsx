@@ -45,6 +45,7 @@ function App() {
    * - attractions page
    * - attractions form
    * - Mobile Nav buttons
+   * - overlapping navbar
    * - Register/Login Links
    * - data for attractions
    * - Mobile Responsiveness
